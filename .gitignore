@@ -1,0 +1,23 @@
+# .gitignore file
+# bootstraped with https://publish.obsidian.md/git-doc/Tips-and-Tricks
+
+# to exclude plugin configuration. Might be useful to prevent some plugin from exposing sensitive data
+.obsidian/plugins
+
+# to exclude excess redownloable themes
+.obsidian/themes
+
+# to exclude workspace cache
+.obsidian/workspace.json
+
+# to exclude workspace cache specific to mobile devices
+.obsidian/workspace-mobile.json
+
+# to exclude OS settings and caches
+.trash/
+.DS_Store
+
+# only record markdown file
+*.*
+!*.md
+!.gitignore

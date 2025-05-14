@@ -1,0 +1,2 @@
+Chromium Based Application （Edge、VSCode） 切换Tab只渲染一部分，一般是上半40%，滚动
+[Only part of screen updating when i switch tabs, anyone else experiencing this issue? (started 1-2ish weeks ago : r/chrome](https://www.reddit.com/r/chrome/comments/1gt4la0/only_part_of_screen_updating_when_i_switch_tabs/)

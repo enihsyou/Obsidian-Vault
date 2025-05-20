@@ -9,6 +9,7 @@ javascript.preferGoToSourceDefinition
 > 通过改为触发“转到源定义”，使“转到定义”尽可能避免类型声明文件。这样就可使用鼠标手势触发“转到源定义”
 
 意思是开启后可以通过 Ctrl+LMB 触发转到源定义动作，原先是触发转到定义动作
+现在 F12 会跳过 .d.ts 直达 .js，用 Shift+F12 可以跳到 .d.ts
 
 files.simpleDialog.enable
 Windows 下更方便选择文件。特别是新建文件时，快速粘贴路径

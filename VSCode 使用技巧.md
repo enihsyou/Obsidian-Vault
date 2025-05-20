@@ -14,3 +14,7 @@ Vim [Boost Your Coding Fu With VSCode and Vim - The Book | Barbarian Meets Codin
 ```
 都能切换速览窗口的键盘焦点到代码预览窗格，方便 Vim 导航
 keyboard shortcut to focus into preview panel in peek definition window
+
+
+在 TypeScript 中，更新 tsconfig.json 的 compilerConfig.paths 后导入元素提示 "Unsafe assignment of an error typed value" 
+https://stackoverflow.com/a/79386184/5277711  重启插件

@@ -17,6 +17,9 @@
 .trash/
 .DS_Store
 
+# Syncthing stuff
+.stfolder/
+
 # only record markdown file
 *.*
 !*.md

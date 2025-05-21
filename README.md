@@ -1,20 +1,47 @@
-## 关于 Vault 保存在哪
+## 如何取得 Obsidian Vault
 
-存放在自家部署的 Synology 服务器上。
+存放在自家部署的 Synology 服务器上，用多种方式共享和同步。
 
-### 如何取得 Obsidian Vault
+获取副本的推荐方式是使用 [[#Syncthing]] 保持实时同步。这里描述用到的多种工具方式。
 
-```shell
-git clone "ssh://enihsyou@enihsyou.synology.me:/volume1/Storage/Obsidian Vault/.git"
+### Synology
+
+通过 Git 管理的文件由于未记载精确的元信息，它们的文件创建时间和修改时间是不准确的。
+所以在 Synology 上同步了一份作为 Single Source of Truth 的版本。
+
+存放在 `/volume1/Storage/Obsidian Vault` 目录，通过 [[#Syncthing]] 在各局域网设备同步。
+
+### Syncthing
+
+用于在局域网内的设备间与中央仓库做实时同步。
+
+要连接名为“enihsyou-NAS”的 Syncthing 设备，请在您的终端添加具有此 ID 的新远程设备：
+
+`KMU5F74-3IAALDX-B4CTVDJ-ILKDF3C-CHMOMIY-V2ULX3R-RKVOA56-UXIN2A7`
+
+请求对方接受连接请求后，添加名为“Obsidian Vault”的文件夹，ID 为 `rwfhh-ihkes`。
+
+### iCloud
+
+用于在 macOS / iOS / iPadOS 设备间同步。
+文件保存在 iCloud 云盘的带有图标的 Obsidian 文件夹中的 Obsidian Vault 子文件夹。
+因为沙箱机制，实际路径会放在 `iCloud~md~obsidian/Documents` 位置。
+
+```path
+/Users/enihsyou/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian Vault/
 ```
 
-然后使用 Obsidian 打开创建的 `Obsidian Vault` 目录
+### Git
 
-> 注意
-> 由 Git 克隆下来的文件由于未记载精确的元信息，它们的文件创建时间和修改时间肯定是不准确的。
-> 这就还需要配合 Remotely Sync 插件使用，从 NAS 上把文件下载下来。
+用于保留更新的历史记录，仓库只保留纯文本部分，不包括图片等大型文件。
 
-### 仓库是如何初始化的
+```shell
+git clone "ssh://enihsyou@enihsyou.synology.me:/volume1/Storage/Obsidian Vault.git"
+```
+
+存放在 Synology 上的版本已经带有这个部分。
+
+仓库是通过以下方式初始化的
 
 ```shell
 ssh enihsyou.synology.me "
@@ -23,6 +50,6 @@ cd '/volume1/Storage/Obsidian Vault/.git'
 git init --bare
 "
 
-git remote set-url synology 'ssh://enihsyou@enihsyou.synology.me:/volume1/Storage/Obsidian Vault/.git'
+git remote set-url synology 'ssh://enihsyou@enihsyou.synology.me:/volume1/Storage/Obsidian Vault.git'
 git push
 ```

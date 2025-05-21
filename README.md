@@ -21,6 +21,9 @@
 
 请求对方接受连接请求后，添加名为“Obsidian Vault”的文件夹，ID 为 `rwfhh-ihkes`。
 
+添加文件夹时 **手动** 设置忽略模式 `#include .stignore-shared`。
+
+Synology 上开启勾选 `忽略权限` 并，取消勾选 `同步扩展属性`，因为这会在 Windows & Synology 间卡在 `file modified but not rescanned` 错误。其他平台不需要这么做
 ### iCloud
 
 用于在 macOS / iOS / iPadOS 设备间同步。
@@ -45,8 +48,8 @@ git clone "ssh://enihsyou@enihsyou.synology.me:/volume1/Storage/Obsidian Vault.g
 
 ```shell
 ssh enihsyou.synology.me "
-mkdir -p '/volume1/Storage/Obsidian Vault/.git'
-cd '/volume1/Storage/Obsidian Vault/.git'
+mkdir -p '/volume1/Storage/Obsidian Vault.git'
+cd '/volume1/Storage/Obsidian Vault.git'
 git init --bare
 "
 

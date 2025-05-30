@@ -26,3 +26,6 @@
 
 Vim 输入法切换
 [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)
+
+
+非常好的资源 [Moving around in Vim | irian.to](https://irian.to/blogs/moving-around-in-vim)

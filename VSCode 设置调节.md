@@ -11,6 +11,12 @@ javascript.preferGoToSourceDefinition
 意思是开启后可以通过 Ctrl+LMB 触发转到源定义动作，原先是触发转到定义动作
 现在 F12 会跳过 .d.ts 直达 .js，用 Shift+F12 可以跳到 .d.ts
 
+editor.gotoLocation.alternativeDefinitionCommand
+> 设置为空，这样在 Ctrl+LMB 触发跳转动作时，如果已经在源点了，什么都不做。
+> 默认是会弹出当前符号的引用的速览窗口。但会把当前符号列在第一个找到的元素，不像 JetBrains 系列能过滤当前元素。
+> 对想要找引用的建议操作是按 Shift+F12 打开引用速览，然后按F12遍历元素
+
+
 files.simpleDialog.enable
 Windows 下更方便选择文件。特别是新建文件时，快速粘贴路径
 https://stackoverflow.com/a/70271937

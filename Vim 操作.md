@@ -20,7 +20,7 @@
 
 `v%` 选择一大段跨行的 XML 注释 `<!-- ... -->`
 
-`yss"` 把一整行都添加到引号里 [How to select a whole line for as a motion in Vim?](https://stackoverflow.com/a/47861999)
+`yss"` 把一整行都添加到引号里 [How to select a whole line for as a motion in Vim?](https://stackoverflow.com/a/47861999) [Vim Surround - Visual line mode adds newlines : r/vim](https://www.reddit.com/r/vim/comments/rrh19d/vim_surround_visual_line_mode_adds_newlines/) 如果使用 `V S"` 先进入行选择模式再给整行添加引号，会在前后添加换行
 
 `cs>b` 把 Markdown 中的无名链接 `<https://>` 替换为括号包裹 `(https://)` 为下一步在前方添加方括号做准备 [Surround with angle brackets](https://github.com/tpope/vim-surround/issues/209)
 

@@ -59,3 +59,10 @@ editor.definitionLinkOpensInPeek
 "vim.highlightedyank.duration": 500
 ```
 快速提示刚才复制了什么，就像 Vim 一样
+
+
+```json
+"editor.occurrencesHighlight": "multiFile"
+"editor.occurrencesHighlightDelay": 2000
+```
+免得光标移过去就展示，恼人。但同时搜索多文件/多栏

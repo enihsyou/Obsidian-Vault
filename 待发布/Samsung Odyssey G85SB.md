@@ -159,5 +159,7 @@ MHC2 MaxCLL: 400nits
 https://www.reddit.com/r/OLED_Gaming/comments/1gjkcm8/comment/lvesp10/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 
 
- 扬声器存在共振现象
- 电源砖块我贴在桌子底下了，冬天当暖手宝
+扬声器存在共振现象
+电源砖块我贴在桌子底下了，冬天当暖手宝
+
+[[Windows 11 窗口只渲染一半#^7588d8]]

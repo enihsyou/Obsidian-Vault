@@ -16,7 +16,11 @@
 
 `vin'` 选中下一个引号，不限定同一行，需要启用 [wellle/targets.vim](https://github.com/wellle/targets.vim?tab=readme-ov-file#next-and-last-pair)
 
-`veS)` `yse)` 当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround)
+`veS)` `yse)` 创建函数，当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround) 
+
+`ea()` 在当前单词后面添加括号，变成函数
+
+`A;` 快速在行尾添加分号
 
 `v%` 选择一大段跨行的 XML 注释 `<!-- ... -->`
 

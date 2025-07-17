@@ -1,4 +1,10 @@
 
+History
+1. PTR record on dnsmasq.d
+2. /etc/hosts
+3. interface-name on dnsmasq.conf.add \[ working ]
+
+## PTR record on dnsmasq.d
 On Windows
 ```shell-session
 $ ipconfig /all | findstr "DNS"
@@ -13,16 +19,24 @@ $ cat /jffs/configs/dnsmasq.d/ipv6-arp.conf
 ptr-record=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.b.e.5.1.7.e.6.e.1.a.8.9.0.4.2.ip6.arpa,RT-AX86U-CE58-IPv6
 
 
-echo "2409:8a1e:6e71:5eb0::1 RT-AX86U-CE58-IPv6" >> /etc/hosts
 ```
 [[Dnsmasq-discuss] No Reverse ipv6 DNS lookups with dnsmasq?](https://dnsmasq-discuss.thekelleys.org.narkive.com/I93eSWze/no-reverse-ipv6-dns-lookups-with-dnsmasq)
 
+## Hosts record on /etc/hosts
+```bash
+echo "2409:8a1e:6e71:5eb0::1 RT-AX86U-CE58-IPv6" >> /etc/hosts
+```
+
+## interface-name on dnsmasq.conf.add
+```bash
+cat /jffs/configs/dnsmasq.conf.add
+
+# resolve self as IPv6 address when client doing DNS request  
+interface-name=RT-AX86U-CE58-IPv6,br0/6
+```
+
 [Router IPv6 hosts entries | SNBForums](https://www.snbforums.com/threads/router-ipv6-hosts-entries.60421/)
 
-History
-1. PTR record on dnsmasq.d
-2. /etc/hosts
-3. interface-name on dnsmasq.conf.add
 
 On Merlin Clash
 ```yaml
@@ -74,8 +88,4 @@ netsh interface tcp set global MaxSynRetransmissions=2
 [TCP/IP and NBT configuration parameters for Windows XP - Windows Client | Microsoft Learn](https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-and-nbt-configuration-parameters)
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxConnectRetransmissions D_WORD 1
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmissions D_WORD 1
-```
-
-```
-
 ```

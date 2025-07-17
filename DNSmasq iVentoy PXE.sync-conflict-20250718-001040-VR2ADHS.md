@@ -33,4 +33,3 @@ dhcp-boot=tag:efi64,netboot.xyz.efi
 dhcp-match=set:efiarm64,60,PXEClient:Arch:0000B
 dhcp-boot=tag:efiarm64,netboot.xyz-arm64.efi
 ```
-关于 `dhcp-match=efi64, option:client-arch, 7` 是代表 x64 还是别的什么，在 [RFC 4578](https://www.rfc-editor.org/rfc/rfc4578#section-2.1) 上居然有勘误 [Errata ID 4624](https://www.rfc-editor.org/errata_search.php?rfc=4578) https://serverfault.com/a/963302

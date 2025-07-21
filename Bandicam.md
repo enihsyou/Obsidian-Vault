@@ -15,3 +15,7 @@
 
 ~~需要 msimg32.dll~~
 需要开着 BC Reset 64-bit.exe ?
+
+
+2025-07-21
+管理员运行 "Bandicam 8.1.1.2518 (x64)\Crack-Keygen\keymaker.exe" 有效

@@ -18,3 +18,8 @@ keyboard shortcut to focus into preview panel in peek definition window
 
 在 TypeScript 中，更新 tsconfig.json 的 compilerConfig.paths 后导入元素提示 "Unsafe assignment of an error typed value" 
 https://stackoverflow.com/a/79386184/5277711  重启插件
+
+
+[The `console: internalConsole` is ineffective for `electron.cmd`, BUT works for other file names · Issue #240901 · microsoft/vscode](https://github.com/microsoft/vscode/issues/240901)
+似乎已经在 v1.101 上解决了，待测试
+https://code.visualstudio.com/updates/v1_101#_windows-shell-environment-discovery

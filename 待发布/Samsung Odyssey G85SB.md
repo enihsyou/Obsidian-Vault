@@ -12,7 +12,7 @@ Mica 好看，但不像 Arcylic 一样有 noise texture，色带非常明显，�
 
 原神 HDR
 
-## 粉边问题
+## **粉边问题**
 
 ![my image](IMG_6956.jpg#left)
 ![my image](IMG_6957.jpg#right)

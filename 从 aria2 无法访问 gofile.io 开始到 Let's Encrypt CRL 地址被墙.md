@@ -1,5 +1,1 @@
-
-
-我是发现在 Windows 上使用 aria2 从 *.gofile.io 下载文件时一直提示 `由于吊销服务器已脱机，吊销功能无法检查吊销。
-(80092013)` 错误，最终定位到因为证书上的 CRL 地址 http://e6.c.lencr.org/43.crl
- 无法访问，从而找到这里的。
+[关于 Let's Encrypt 签发的证书 Ending OCSP Support in 2025 的后续问题 - V2EX](https://www.v2ex.com/t/1144666?p=1#reply1)

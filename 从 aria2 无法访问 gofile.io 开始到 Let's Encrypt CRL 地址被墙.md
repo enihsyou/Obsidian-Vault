@@ -1,5 +1,7 @@
 [网络诊断记录 · 默默道来](https://lzim.me/2020/05/22/network-diagnostic/) 和这个错误相同，但现在不再是 OSCP 的时代了，无法访问的是 Let's Encrypt 的 CRL 地址
 
+![e6.c.lencr.org is blocked in China.png (1471×857)](https://gh-staticstorage.kokomi.me/Blog/e6.c.lencr.org%20is%20blocked%20in%20China.png)
+
 [关于 Let's Encrypt 签发的证书 Ending OCSP Support in 2025 的后续问题 - V2EX](https://www.v2ex.com/t/1144666?p=1#reply1)
 
 [怎样解决服务器证书吊销状态不可用的问题_由于吊销服务器已脱机,吊销功能无法检查吊销 解决方式-CSDN博客](https://blog.csdn.net/cnlike/article/details/188745)

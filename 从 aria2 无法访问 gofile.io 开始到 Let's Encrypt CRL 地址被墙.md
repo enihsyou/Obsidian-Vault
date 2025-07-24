@@ -1,10 +1,4 @@
-[网络诊断记录 · 默默道来](https://lzim.me/2020/05/22/network-diagnostic/) 和这个错误相同，但现在不再是 OSCP 的时代了，无法访问的是 Let's Encrypt 的 CRL 地址
-
-![e6.c.lencr.org_is_blocked_in_China.png (1471×857)](https://gh-staticstorage.kokomi.me/Blog/e6.c.lencr.org_is_blocked_in_China.png)
-
-[关于 Let's Encrypt 签发的证书 Ending OCSP Support in 2025 的后续问题 - V2EX](https://www.v2ex.com/t/1144666?p=1#reply1)
-
-[怎样解决服务器证书吊销状态不可用的问题_由于吊销服务器已脱机,吊销功能无法检查吊销 解决方式-CSDN博客](https://blog.csdn.net/cnlike/article/details/188745)
+在 Windows 上使用 aria2 从 \*.gofile.io 下载文件时一直提示 `由于吊销服务器已脱机，吊销功能无法检查吊销。(80092013)` 错误，最终定位到因为证书上的 CRL 地址 [http://e6.c.lencr.org/43.crl](http://e6.c.lencr.org/43.crl)
 
 ```
 Schannel ID 36876
@@ -13,7 +7,17 @@ Schannel ID 36876
  SSPI 客户端进程 aria2c （PID： 23880）。 
 ```
 
-手动下载并安装是个办法，但手动安装会永久保留，不是“缓存”
+[网络诊断记录 · 默默道来](https://lzim.me/2020/05/22/network-diagnostic/) 和这个错误相同，但现在不再是 OSCP 的时代了，无法访问的是 Let's Encrypt 的 CRL 地址
+
+![e6.c.lencr.org_is_blocked_in_China.png (1471×857)](https://gh-staticstorage.kokomi.me/Blog/e6.c.lencr.org_is_blocked_in_China.png)
+
+[关于 Let's Encrypt 签发的证书 Ending OCSP Support in 2025 的后续问题 - V2EX](https://www.v2ex.com/t/1144666?p=1#reply1)
+
+[怎样解决服务器证书吊销状态不可用的问题_由于吊销服务器已脱机,吊销功能无法检查吊销 解决方式-CSDN博客](https://blog.csdn.net/cnlike/article/details/188745)
+
+手动下载并安装是个办法，但手动安装会永久保留，不是“缓存”。
+最后还是选择代理下载 CRL 到缓存，之后就正常了。
+后面隔天发现源网站把资源重定向到别的服务器了，那个可以正常过证书验证
 
 用这个命令验证网站的证书，会尝试拉取 CRL，1秒后超时
 ```powershell

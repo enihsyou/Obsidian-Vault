@@ -1,3 +1,43 @@
+问题：
+```
+服务器: Unknown
+Address: 2409:8a1e:6e71:5eb0::1
+```
+
+解决效果：
+```
+$ nslookup -d2 pve.lan
+------------
+SendRequest(), len 90
+    HEADER:
+        opcode = QUERY, id = 1, rcode = NOERROR
+        header flags:  query, want recursion
+        questions = 1,  answers = 0,  authority records = 0,  additional = 0
+
+    QUESTIONS:
+        1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.b.e.5.1.7.e.6.e.1.a.8.9.0.4.2.ip6.arpa, type = PTR, class = IN
+
+------------
+------------
+Got answer (122 bytes):
+    HEADER:
+        opcode = QUERY, id = 1, rcode = NOERROR
+        header flags:  response, auth. answer, want recursion, recursion avail.
+        questions = 1,  answers = 1,  authority records = 0,  additional = 0
+
+    QUESTIONS:
+        1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.b.e.5.1.7.e.6.e.1.a.8.9.0.4.2.ip6.arpa, type = PTR, class = IN
+    ANSWERS:
+    ->  1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.b.e.5.1.7.e.6.e.1.a.8.9.0.4.2.ip6.arpa
+        type = PTR, class = IN, dlen = 20
+        name = RT-AX86U-CE58-IPv6
+        ttl = 0 (0 secs)
+
+------------
+服务器:  RT-AX86U-CE58-IPv6
+Address:  2409:8a1e:6e71:5eb0::1
+```
+
 
 History
 1. PTR record on dnsmasq.d
@@ -34,8 +74,8 @@ cat /jffs/configs/dnsmasq.conf.add
 # resolve self as IPv6 address when client doing DNS request  
 interface-name=RT-AX86U-CE58-IPv6,br0/6
 ```
-
-[Router IPv6 hosts entries | SNBForums](https://www.snbforums.com/threads/router-ipv6-hosts-entries.60421/)
+这里的 `/6` 代表 IPv6
+[Router IPv6 hosts entries | SNBForums](https://www.snbforums.com/threads/router-ipv6-hosts-entries.60421/#post-529909)
 
 
 On Merlin Clash

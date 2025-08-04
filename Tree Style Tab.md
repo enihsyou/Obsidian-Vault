@@ -1,5 +1,5 @@
 
-目标是寻找一个树状的浏览器标签页管理器
+目标是寻找一个树状的浏览器标签页管理器，最终选择 [[#Link Map]]
 
 ## Tab Tree
 Install: [Tab Tree - Chrome 应用商店](https://chromewebstore.google.com/detail/tab-tree/fkpiebfdeocdoofjfhmaidhhbkmbfgjl)
@@ -28,13 +28,14 @@ Version: 1.1.6 (2022-11-22)
 - - 不支持多窗口
 
 ## Tab Outliner
-Install:
-Version:
+Install: [Tabs Outliner - Chrome 应用商店](https://chromewebstore.google.com/detail/Tabs%20Outliner/eggkanocgddhmamlbiijnphhppkpkmkl)
+Version: 1.4.153 (2024-10-02)
 
 - 可管理多窗口，有总览视图
 - 功能很多
 - - 详细的使用指南，甚至带有吸引眼球的演示视频
 - - favicon 经常转圈加载不出来
+- - 无法恢复浏览器 TabGroup
 - - 默认暗色模式，支持亮色模式但是无法自动切换
 - - 存在收费功能，但直接改源码就能绕过
 ```diff
@@ -67,13 +68,13 @@ Install: https://linkmap.cc/
 Source: [GarinZ/link-map: Tree style tab mananger for Chrome and Edge, Tabs Outliner alternative](https://github.com/GarinZ/link-map)
 Version: v1.1.5 (2023-06-29)
 
-- 包含了 Tab Outliner 主要功能，界面更现代
+- 包含了 Tab Outliner 主要功能，界面更现代，能从 Tab Outliner 导入数据
 - + 支持亮色和暗色模式并能自动切换
 - - 有收费功能，开源版本落后于发布版，但可以加两个 return 破解
 ```javascript
 i18n.getMessage("licenseNotFound"),NETWORK_ERROR:lR().i18n.getMessage("networkError")};!function(e){let t="https://api.lemonsqueezy.com",n={headers:{"Content-Type":"application/json",Accept:"application/json"}};async function r(e){return true; try{let r=await ON.post(`${t}/v1/licenses/validate`,{license_key:e},n),i=await o(r.data);if(!i)return!1;return r.data.valid}catch(s){return a(s),!1}}async function i(e){return {"activated": true, "license_key": {"key": 123456}};try{let r=await ON.post(`${t}/v1/licenses/activate`,{license_key:e,instance_name:"test"},n),i=await o(r.data);if(!i)return null;return r.data}catch(s){return a(s),null}}
 ```
-
+- - 关闭子树需要按 Shift 键点 Trash 按钮，否则子树会上浮
 ## Forest
 Install: https://getforest.io/
 Source: None

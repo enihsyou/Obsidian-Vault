@@ -32,8 +32,35 @@ Install:
 Version:
 
 - 可管理多窗口，有总览视图
+- 功能很多
 - - 详细的使用指南，甚至带有吸引眼球的演示视频
-- - 存在收费功能
+- - favicon 经常转圈加载不出来
+- - 默认暗色模式，支持亮色模式但是无法自动切换
+- - 存在收费功能，但直接改源码就能绕过
+```diff
+diff --git a/signaturevalidator.js b/signaturevalidator.js
+index 70b5d08..0843ea8 100644
+--- a/signaturevalidator.js
++++ b/signaturevalidator.js
+@@ -73,6 +73,7 @@ var SignatureValidator = {
+ 
+     // Returns as result to then(function(result)) true or false
+     isMessageSignatureValid_promise: function(message, signature_base64) {
++        return true
+         return this._importKey_promise()
+                .then(this._verify_promise.bind(this, message, signature_base64))
+                .catch(function(err) {
+```
+```javascript
+chrome.storage.local.set( {"licenseKeys": [
+    {
+        "timestamp": 1738857600000,
+        "serial": "8385de78863928f62fb562e7c86042df255d0816",
+        "signature": "c3d1f8b2e4a5f6b7c8d9e0f1a2b3c4d5e6f7081920a1b2c3d4e5f60718293a4b5",
+        "product": "tabsoutliner"
+    }
+]})
+```
 
 ## Link Map
 Install: https://linkmap.cc/
@@ -41,7 +68,11 @@ Source: [GarinZ/link-map: Tree style tab mananger for Chrome and Edge, Tabs Outl
 Version: v1.1.5 (2023-06-29)
 
 - 包含了 Tab Outliner 主要功能，界面更现代
-- - 有收费功能，开源版本落后于发布版
+- + 支持亮色和暗色模式并能自动切换
+- - 有收费功能，开源版本落后于发布版，但可以加两个 return 破解
+```javascript
+i18n.getMessage("licenseNotFound"),NETWORK_ERROR:lR().i18n.getMessage("networkError")};!function(e){let t="https://api.lemonsqueezy.com",n={headers:{"Content-Type":"application/json",Accept:"application/json"}};async function r(e){return true; try{let r=await ON.post(`${t}/v1/licenses/validate`,{license_key:e},n),i=await o(r.data);if(!i)return!1;return r.data.valid}catch(s){return a(s),!1}}async function i(e){return {"activated": true, "license_key": {"key": 123456}};try{let r=await ON.post(`${t}/v1/licenses/activate`,{license_key:e,instance_name:"test"},n),i=await o(r.data);if(!i)return null;return r.data}catch(s){return a(s),null}}
+```
 
 ## Forest
 Install: https://getforest.io/

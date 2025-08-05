@@ -41,4 +41,5 @@ Windows Registry Editor Version 5.00
 "DwmClipBox.bottom"=dword:00000300
 ```
 ## Take Action Event Timeline
-- [ ] `2025-08-04` 重置删除 GraphicsDrivers\Configuration 等注册表
+- `2025-08-04` 重置删除 GraphicsDrivers\Configuration 等注册表
+- `2025-08-05` 唤醒一次，有效

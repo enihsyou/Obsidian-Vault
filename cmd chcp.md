@@ -1,3 +1,5 @@
+## 问题表现
+
 在使用简体中文语言的 Windows 操作系统中，把下面的内容采用 `CRLF` 为换行符，并以 `UTF-8 no-BOM` 编码保存为 `.bat` 格式的文件，放到 Windows CMD 中运行会得到错误。
 
 ```batch
@@ -6,14 +8,6 @@ chcp 65001 > nul
 echo 中
 echo 文
 ```
-
-```shellsession
-$ abc
-abc
-# dd -ddd  ddd
-lsls
-```
-
 
 把 `@echo off` 去掉看得更清楚
 
@@ -59,7 +53,7 @@ chcp 65001 > nul
 echo 中
 echo 文
 ```
-```shellsession
+```shellsession title: abc
 C:\>echo 涓?
 涓?
 
@@ -68,9 +62,11 @@ C:\>ho 鏂?
 或批处理文件。
 ```
 
-问题就是中文的“中”字
+## 问题原因
 
-解决方法
+问题就是中文的“中”字在 GB2312/GBK 下是双字节的，而在 UTF-8 中是三字节的。终端以 GBK 双字节的方式解析，遇到三字节当然就蒙了。
+
+## 解决方法
 1. 文件用 GBK 保存，只能在中文系统上用
 2. 中文字符行尾加个空格
 3. 每次都留空行
@@ -95,3 +91,5 @@ rem 后续脚本逻辑……
 pause
 
 ```
+
+

@@ -14,19 +14,20 @@ https://stackoverflow.com/a/78359672/5277711
 
 [Syntax Highlighting | Nextra](https://nextra.site/docs/guide/syntax-highlighting#ansi-highlighting) 基于 shiki 的
 
-根据 Stack Overflow 回答整理的表格，说明了不同的 Markdown 高亮工具如何处理 bash/shell 命令的语法高亮。
+根据 [How to highlight bash/shell commands in markdown? - Stack Overflow](https://stackoverflow.com/questions/20303826/how-to-highlight-bash-shell-commands-in-markdown/78359672#78359672) 整理的表格，说明了不同的 Markdown 高亮工具如何处理 bash/shell 命令的语法高亮。
 
-| Framework    | Keyword                                              | Plugin                                                            |
-| ------------ | ---------------------------------------------------- | ----------------------------------------------------------------- |
-| Rouge        | `console`                                            |                                                                   |
-| Linguist     | `ShellSession`, `bash session`, `console`            |                                                                   |
-| Prism.js     | `shell-session`, `sh-session`, `shellsession`        | [Command Line ▲ Prism](https://prismjs.com/plugins/command-line/) |
-| Chroma       | `Session`                                            |                                                                   |
-| Pygments     | `console`, `shell-session`, `pwsh-session`, `ps1con` |                                                                   |
-| Highlight.js | `shellsession`,`console`                             |                                                                   |
-| EnlighterJS  | _Unimplemented_                                      |                                                                   |
-| Torchlight   | _Unimplemented_                                      |                                                                   |
+| Framework    | Keyword                                              | Document                                                                                                                                                         |
+| ------------ | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rouge        | `console`                                            |                                                                                                                                                                  |
+| Linguist     | `ShellSession`, `bash session`, `console`            | [linguist/lib/linguist/languages.yml at main · github-linguist/linguist](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml#L7048) |
+| Prism.js     | `shell-session`, `sh-session`, `shellsession`        | [Prism](https://prismjs.com/#supported-languages)                                                                                                                |
+| Chroma       | `Session`                                            |                                                                                                                                                                  |
+| Pygments     | `console`, `shell-session`, `pwsh-session`, `ps1con` | [Languages — Pygments](https://pygments.org/languages/)                                                                                                          |
+| Highlight.js | `shellsession`,`console`                             | [highlight.js/SUPPORTED_LANGUAGES.md at main · highlightjs/highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)           |
+| Shiki        | `shellsession`,`console`                             | [语言 \| Shiki](https://shiki.tmrs.site/languages)                                                                                                                 |
 
-| Application        | Framework    | Keyword        |
-| ------------------ | ------------ | -------------- |
-| Visual Studio Code | Highlight.js | `shellsession` |
+| Application          | Framework    | Keyword        |
+| -------------------- | ------------ | -------------- |
+| Visual Studio Code   | Highlight.js | `shellsession` |
+| Obsidian (Edit Mode) | CodeMirror   | -              |
+| Obsidian (Read Mode) | Highlight.js | `shellsession` |

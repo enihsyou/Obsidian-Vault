@@ -41,5 +41,34 @@ Windows Registry Editor Version 5.00
 "DwmClipBox.bottom"=dword:00000300
 ```
 ## Take Action Event Timeline
-- `2025-08-04` 重置删除 GraphicsDrivers\Configuration 等注册表
-- `2025-08-05` 唤醒一次，有效
+- `2025-08-04` 重置删除 GraphicsDrivers\Configuration 等注册表 
+- `2025-08-05` 唤醒多次，有效。另外发现多了一个叫 `NVD00000` 的新配置，尺寸刚好是 `640 x 480 (0x280 x 0x130)`，尝试修改它的尺寸为 1280 x 960
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Configuration\NVD00000_00_0000_8C^95707DAFF1A06E57C521FD53D34292EB\00\00]
+"Flags"=dword:01830b8f
+"VideoStandard"=dword:00000001
+"ActiveSize.cx"=dword:00000280
+"ActiveSize.cy"=dword:000001e0
+"VSyncFreq.Numerator"=dword:0000003c
+"VSyncFreq.Denominator"=dword:00000001
+"HSyncFreq.Numerator"=dword:01803760
+"HSyncFreq.Denominator"=dword:00000320
+"PixelRate"=dword:01803760
+"ScanlineOrdering"=dword:00000001
+"Scaling"=dword:00000004
+"Rotation"=dword:00000001
+"VirtualRefreshRate.Numerator"=dword:0000003c
+"VirtualRefreshRate.Denominator"=dword:00000001
+"BoostRefreshRateMultiplier"=dword:00000001
+"PrimSurfSize.cx"=dword:00000280
+"PrimSurfSize.cy"=dword:000001e0
+"PixelFormat"=dword:00000015
+"DwmClipBox.left"=dword:00000000
+"DwmClipBox.top"=dword:00000000
+"DwmClipBox.right"=dword:00000280
+"DwmClipBox.bottom"=dword:000001e0
+
+
+```

@@ -1,1 +1,3 @@
+// This file is used to automatic set 'Ignore Pattern', when accepting this vault
+// from a remote device, to reference .stignore-shared file
 #include .stignore-shared

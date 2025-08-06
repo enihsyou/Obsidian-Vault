@@ -11,7 +11,13 @@ $ tar tzf /jffs/cert.tgz -C .
 $ ls etc
 cacert.pem      cakey.pem       cert.pem        key.pem
 cacert_gen.pem  cakey_gen.pem   cert_gen.pem    key_gen.pem
-$ cat > cert.pem # 
-$ cat 
+$ cat > etc/cert.pem # Paste certificate chain and press Ctrl+C
+$ cat > etc/key.pem  # Paste cert private key and press Ctrl+C
+$ cp etc/cert.pem etc/cert_gen.pem # Not necessary?
+$ cp etc/key.pem etc/key_gen.pem   # Not necessary?
+$ cp etc/* /etc/
+$ tar czf /jffs/cert.tgz etc/*
+$ service restart_httpd
 ```
 
+注意要将完整的证书链文件传上去，否则在自签名场景下，会因为只信任了自签根证书未信任自签中间证书导致站点的证书不受信任。

@@ -20,6 +20,9 @@
 # Syncthing stuff
 .stfolder/
 
+# VSCode workspace settings
+.vscode/
+
 # only record markdown file
 *.*
 !*.md

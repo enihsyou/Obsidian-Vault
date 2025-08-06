@@ -24,6 +24,14 @@
 添加文件夹时 **手动** 设置忽略模式 `#include .stignore-shared`。
 
 Synology 上开启勾选 `忽略权限` 并，取消勾选 `同步扩展属性`，因为这会在 Windows & Synology 间卡在 `file modified but not rescanned` 错误。其他平台不需要这么做
+
+#### 错误处理
+
+1. `syncing: finishing: checking existing file: file modified but not rescanned; will try again later`
+
+   这个错误通常是因为多端都修改了同一个文件（内容或属性），手动修改并保存一下就能重新触发同步。
+   重试成功后一般会伴随 `.sync-conflict-*.md` 和 `~syncthing~*.tmp` 文件，需要手动处理。
+
 ### iCloud
 
 用于在 macOS / iOS / iPadOS 设备间同步。

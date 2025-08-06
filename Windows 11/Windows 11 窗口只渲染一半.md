@@ -21,6 +21,7 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Dwm]
 "OverlayTestMode"=-
 ```
+【working】设置后证实解决了问题。
 
 结合 AutoHDR 会有更难以接受的闪屏问题，快捷键关开 HDR 能恢复正常
 ![[IMG_7148.mov]] ^7588d8

@@ -85,6 +85,7 @@ i18n.getMessage("licenseNotFound"),NETWORK_ERROR:lR().i18n.getMessage("networkEr
 ```
 
 - ➖ 关闭子树需要按 Shift 键点 Trash 按钮，否则子树会上浮
+- ➖ 需要开着插件窗口才能记忆标签层级关系？
 
 ## Forest
 

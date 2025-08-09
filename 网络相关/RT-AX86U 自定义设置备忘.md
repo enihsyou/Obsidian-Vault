@@ -4,4 +4,11 @@
 
 ## 切换自定义 TLS 证书
 
-## 
+[[ASUS Router 443 和 自定义证书]]
+## DNSmasq
+
+```shell
+
+# 重启服务
+service restart_dnsmasq
+```

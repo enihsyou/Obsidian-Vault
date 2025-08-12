@@ -30,11 +30,7 @@
 
 `ciw()<Esc>P` [Enclosing in parentheses with Vim - Stack Overflow](https://stackoverflow.com/questions/8070892/enclosing-in-parentheses-with-vim) 这里的 `P` 会当光标块处在 `"` 上时在引号前插入，刚好满足了需求
 
-`Ctrl+d` `Ctrl+u` 滚动半屏，伴随光标
-`Ctrl+e` `Ctrl+y` 滚动一行，不动光标
-
-`H` `M` `L` 在屏幕范围内放置光标
-`zz` `zt` `zb` 向光标位置移动屏幕
+`Ctrl+d` 向下滚动半屏
 
 Vim 输入法切换
 [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)

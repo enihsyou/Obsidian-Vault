@@ -28,6 +28,8 @@
 
 `cs>b` 把 Markdown 中的无名链接 `<https://>` 替换为括号包裹 `(https://)` 为下一步在前方添加方括号做准备 [Surround with angle brackets](https://github.com/tpope/vim-surround/issues/209)
 
+`ciw()<Esc>P` [Enclosing in parentheses with Vim - Stack Overflow](https://stackoverflow.com/questions/8070892/enclosing-in-parentheses-with-vim) 这里的 `P` 会当光标块处在 `"` 上时在引号前插入，刚好满足了需求
+
 Vim 输入法切换
 [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)
 

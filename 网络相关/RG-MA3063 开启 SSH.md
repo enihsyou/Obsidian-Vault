@@ -75,3 +75,9 @@ fetch("http://192.168.10.1/api/v1/lua/DevelopMode/develop_mode_set", { method: "
 ## 远程连入
 
 上面的操作开启了 SSH 和 Telnet 服务
+
+
+```
+Host 192.168.9.6 192.168.10.1
+    HostkeyAlgorithms +ssh-rsa
+```

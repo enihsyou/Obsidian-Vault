@@ -81,3 +81,7 @@ fetch("http://192.168.10.1/api/v1/lua/DevelopMode/develop_mode_set", { method: "
 Host 192.168.9.6 192.168.10.1
     HostkeyAlgorithms +ssh-rsa
 ```
+
+```shell
+ssh -o HostKeyAlgorithms=+ssh-rsa 192.168.10.1 -l admin
+```

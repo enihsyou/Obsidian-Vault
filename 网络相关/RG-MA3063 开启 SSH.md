@@ -49,7 +49,7 @@ LAN 分配到 `192.168.9.0/24` 网段，RG-MA3063 自动 DHCP 到了 `192.168.9.
        valid_lft forever preferred_lft forever
 ```
 
-> 数码罗记的文章说 *联网后会被禁止 SSH 登录* ，但实测并不会。
+> 数码罗记的文章说 *联网后会被禁止 SSH登录* ，但实测并不会。
 > 不用断网哦，连着网有问题还能问问 AI
 
 ## 进入工厂模式开启远程访问
@@ -93,7 +93,7 @@ Host 192.168.9.6 192.168.10.1
 ssh -o HostKeyAlgorithms=+ssh-rsa 192.168.10.1 -l admin
 ```
 
-```http title=/etc/shadow
+```plain title=/etc/shadow
 admin:$1$G.w1Kd/c$OxHqp4GMbBQ9UY2KRulmg/:18815:0:99999:7:::
 daemon:*:0:0:99999:7:::
 ftp:*:0:0:99999:7:::

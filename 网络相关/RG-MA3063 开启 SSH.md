@@ -53,19 +53,6 @@ LAN 分配到 `192.168.9.0/24` 网段，RG-MA3063 自动 DHCP 到了 `192.168.9.
 
 ## 进入工厂模式开启远程访问
 我知道的有三种方法，验证成功了两种
-### 一键开发者
-来自数码罗记文章，操作非常简单
-
-```shell
-curl http://192.168.10.1/__factory_verify_mode__  
-```
-返回 `{"result": "Pass"}` 就算成功，甚至都不需要去网页登录。
-### 狂点版本号
-也是来自数码罗记文章，不过我的版本太新了没成功
-- 登录路由器后台
-- 进入`系统设置 > 系统升级 > 本地升级`
-- 疯狂点击**设备型号**5次以上 - 开启强制升级！
-- 接着狂戳**当前版本**5次 - 开启开发者模式！
 
 ### 埋点脚本注入
 来自恩山论坛
@@ -73,6 +60,25 @@ curl http://192.168.10.1/__factory_verify_mode__
 ```javascript wrap frame=terminal
 fetch("http://192.168.10.1/api/v1/lua/DevelopMode/develop_mode_set", { method: "POST", body: JSON.stringify({ developMode: "1" }) });
 ```
+
+> 猜测是通过分析网页源码，找到 `./common/menuout/Develop.vue` 的 minified-JavaScript 
+
+### 狂点版本号
+也是来自数码罗记文章，不过我的版本太新了没成功
+- 登录路由器后台
+- 进入`系统设置 > 系统升级 > 本地升级`
+- 疯狂点击**设备型号**5次以上 - 开启强制升级！
+- 接着狂戳**当前版本**5次 - 开启开发者模式！
+
+### 一键开发者
+来自数码罗记文章，操作非常简单
+
+```shell
+curl http://192.168.10.1/__factory_verify_mode__  
+```
+返回 `{"result": "Pass"}` 就算成功，甚至都不需要去网页登录。
+
+> 从固件解包来看，这个路由实际是在触发由 `/eweb/api/handler.lua` 调用 `/etc/init.d/factory_mode_cfg.sh enable` 的指令
 
 ## 远程连入
 

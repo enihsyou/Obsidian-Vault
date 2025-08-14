@@ -160,4 +160,12 @@ vi /etc/config/rg_firewall
 
 在 `/etc/config/rg_firewall` 中删掉几条 `dnsv4_hijack` 的规则，详情见 [[2025-08-12#局域网 DHCP 主机名 DNS 解析时灵时不灵]]
 
+```shell
+iptables -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.10.1  
+iptables -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.10.1
+
+ebtables -t broute -D BROUTING -p IPv4 --ip-proto udp --ip-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT
+ebtables -t broute -D BROUTING -p IPv6 --ip6-proto udp --ip6-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT  
+```
+
 不过始终没有找到用于定义 DNS 服务器的 `/var/resolv.conf.auto` 是谁负责生成的

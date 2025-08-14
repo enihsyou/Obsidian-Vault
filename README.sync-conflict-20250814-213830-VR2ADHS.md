@@ -67,9 +67,7 @@ git push
 
 ## 维护同步冲突
 
-使用 SyncThing 在多设备间网络中会有冲突，特别是多级设备之间同步，有时会收到来自二级设备反向传播的旧版本。
-
 ```shell
-git -C .obsidian clone https://gist.github.com/26fe291a3de075ae8d96e1ada928fb7d.git
-uv run --script .obsidian/26fe291a3de075ae8d96e1ada928fb7d/syncthing-automerge.py
+git clone 
+uv run --script .obsidian/26fe291a3de075ae8d96e1ada928fb7d/deconflicter.py
 ```

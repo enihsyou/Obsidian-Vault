@@ -49,10 +49,12 @@ LAN 分配到 `192.168.9.0/24` 网段，RG-MA3063 自动 DHCP 到了 `192.168.9.
        valid_lft forever preferred_lft forever
 ```
 
-> 数码罗记的文章说 *联网后会被禁止 SSH登录* ，但实测并不会。
+> 数码罗记的文章说 *联网后会被禁止 SSH 登录* ，但实测并不会。
 > 不用断网哦，连着网有问题还能问问 AI
 
 ## 进入工厂模式开启远程访问
+
+B 站播放最高的视频教你如何拆机接 TTL 刷机，本着「刷机有风险」的观念，最好不刷机。好在互联网还是有简单些的方法的
 
 ### 一键开发者
 
@@ -84,16 +86,11 @@ fetch("http://192.168.10.1/api/v1/lua/DevelopMode/develop_mode_set", { method: "
 
 上面的操作开启了 SSH 和 Telnet 服务
 
-```
-Host 192.168.9.6 192.168.10.1
-    HostkeyAlgorithms +ssh-rsa
-```
-
 ```shell
 ssh -o HostKeyAlgorithms=+ssh-rsa 192.168.10.1 -l admin
 ```
 
-```plain title=/etc/shadow
+```fish title=/etc/shadow
 admin:$1$G.w1Kd/c$OxHqp4GMbBQ9UY2KRulmg/:18815:0:99999:7:::
 daemon:*:0:0:99999:7:::
 ftp:*:0:0:99999:7:::
@@ -106,6 +103,20 @@ SSH 和 Telnet 使用用户名 `admin` 密码 `wifi@cmcc`
 
 ## 进入后台
 
-
 OpenWrt LuCI 界面使用用户名 `root` 密码任意
 > [!question] 不要点击 `System > Start`  链接，会回到非开发者模式
+
+## 后续操作
+
+### 添加 SSH 密钥登录
+
+```shell
+vi /etc/dropbear/authorized_keys
+chmod 0600 /etc/dropbear/authorized_keys
+```
+
+另外也可以在 LuCI 后台操作
+
+### 停止每两分钟ping一次baidu.com
+
+爱好观察日志的我发现每隔几分钟有一个对 `www.baidu.com` 的 DNS 请求

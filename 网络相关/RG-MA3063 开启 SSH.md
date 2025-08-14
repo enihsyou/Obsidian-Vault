@@ -21,10 +21,12 @@ RT-AX86U == RG-MA3063 == AMD-9700X
 
 ## 设备信息
 
-设备型号： RG-MA3063
-硬件版本： 1.00
-软件版本： MA_2.1(3)
-
+```make title=/etc/rj_issues
+System description      : RG-MA3063-<wuhu3-cmcc-sh>
+System hardware version : 2.00
+System software version : MA_2.1(3)B6P13, Release(10211501)
+Build time              : 2023/09/15 01:04:23
+```
 ## 操作
 
 ### 连接到设备所在网络
@@ -84,4 +86,13 @@ Host 192.168.9.6 192.168.10.1
 
 ```shell
 ssh -o HostKeyAlgorithms=+ssh-rsa 192.168.10.1 -l admin
+```
+
+```http title=/etc/shadow
+admin:$1$G.w1Kd/c$OxHqp4GMbBQ9UY2KRulmg/:18815:0:99999:7:::
+daemon:*:0:0:99999:7:::
+ftp:*:0:0:99999:7:::
+network:*:0:0:99999:7:::
+nobody:*:0:0:99999:7:::
+dnsmasq:x:0:0:99999:7:::dnsmasq:x:0:0:99999:7:::
 ```

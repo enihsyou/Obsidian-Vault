@@ -1,11 +1,4 @@
-## 探索历史和引用
-
-- [锐捷MA3063 信号相当强，59元入手刷机openwrt 冲！哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1QQ4y1M7td/) 刷机教程
-- [锐捷MA3063系列中国移动定制版免拆开启ssh、删除插件、解除锁网限制(更新全版本通用)-OPENWRT专版-恩山无线论坛 - Powered by Discuz!](https://www.right.com.cn/forum/thread-8377493-1-1.html) 恩山的信息向来封闭，我没有权限访问
-- [【转载】新版锐捷MA3063开启SSH方法 - 厂商技术专区 - 通信人家园 - Powered by C114](https://www.txrjy.com/thread-1352289-1-1.html) 但好在有好人转载了，注册回帖就能下载「新版锐捷 MA3063 开启 SSH 方法」。里面详述了如何通过埋点事件 setBuryingPoint 漏洞开启开发者模式，再修改 root 密码开启 SSH。看到有写操作，我就没有执行
-- [锐捷RG-MA3063另类的 开启SSH 原机openwrt 刷机 做集客AP 拆机 交换机 - 数码罗记](https://godsun.pro/blog/rui-jie-rg-ma3063) 这里不同于恩山的内容，独立提供了进入工厂模式的新方法，一键式懒人无感开启 SSH，并且提供了核心的密码（但用户名是错误的😅）
-
-## 怪事
+## 怪事起因
 
 我在局域网用 DNSmasq 提供 DHCP 和 DNS 服务，这样可以用主机名获取 DNS 解析，但用起来时灵时不灵。
 
@@ -18,11 +11,18 @@ RT-AX86U == RG-MA3063 == AMD-9700X
 - 路由器出口会往 114.114.114.114 发 DNS 请求，可我整个链路没有设置过这个 DNS 地址
 - 路由器看到的 DNS 请求来源是不认识的 IPv6 地址，确认是中间的桥接路由器的 DNS 缓存
 
-它的几宗罪
+再细数它的几宗罪，不得不想办法调教调教了
 1. 桥接模式不关闭 DHCP 服务器
 2. 还劫持 DNS 请求到设备上的 DNSmasq
 3. 劫持就算了还额外加个 `public1.114dns.com` DNS 解析节点
+4. 还把上级网络的 DNS 后缀丢了，干扰局域网 DHCP 设备名解析
 
+## 探索历史
+
+- [锐捷MA3063 信号相当强，59元入手刷机openwrt 冲！哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1QQ4y1M7td/) 刷机教程，操作太糙了，还得买 TTL 高风险拆机刷机，Pass
+- [锐捷MA3063系列中国移动定制版免拆开启ssh、删除插件、解除锁网限制(更新全版本通用)-OPENWRT专版-恩山无线论坛 - Powered by Discuz!](https://www.right.com.cn/forum/thread-8377493-1-1.html) 恩山的信息向来封闭，我没有权限访问
+	- [【转载】新版锐捷MA3063开启SSH方法 - 厂商技术专区 - 通信人家园 - Powered by C114](https://www.txrjy.com/thread-1352289-1-1.html) 但好在有好人转载了，注册回帖就能下载「新版锐捷 MA3063 开启 SSH 方法」。里面介绍了如何往隐藏路径发请求来打开开发者模式，再修改 root 密码开启 SSH。
+- [锐捷RG-MA3063另类的 开启SSH 原机openwrt 刷机 做集客AP 拆机 交换机 - 数码罗记](https://godsun.pro/blog/rui-jie-rg-ma3063) 这里不同于恩山的内容，独立提供了进入工厂模式的新方法，一键式懒人无感开启 SSH，并且提供了解密的关键密码
 
 ## 设备信息
 
@@ -143,7 +143,7 @@ vi /etc/dropbear/authorized_keys
 chmod 0600 /etc/dropbear/authorized_keys
 ```
 
-也可以在 LuCI 后台操作，注意公钥得是 RSA 算法的。
+也可以在 OpenWrt LuCI 后台操作，注意公钥得是 RSA 算法的。
 
 ### 停止每两分钟 ping 一次 baidu.com
 
@@ -174,4 +174,20 @@ ebtables -t broute -D BROUTING -p IPv4 --ip-proto udp --ip-dport 53 -j dnat --to
 ebtables -t broute -D BROUTING -p IPv6 --ip6-proto udp --ip6-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT  
 ```
 
-不过始终没有找到用于定义 DNS 服务器的 `/var/resolv.conf.auto` 是谁负责生成的
+然而好景不长，删掉的规则定时、重启都会重新添加回来，也包括删掉的 DNS 服务器部分，肯定是有进程在动手脚。
+
+找啊找没头绪，我都跟着路径找到 `OpenWrt Chaos Calmer 15.05.1 6f77ae728+r49254` 版本的 `netifd - 2015-12-16-245527193e90906451be35c2b8e972b8712ea6ab` 包的源代码这段 [netifd/interface-ip.c at 245527193e90906451be35c2b8e972b8712ea6ab · openwrt/netifd](https://github.com/openwrt/netifd/blob/245527193e90906451be35c2b8e972b8712ea6ab/interface-ip.c#L1176)。但结合设备上的配置，OpenWrt 固件部分是没动的，代码怎么看怎么没问题。
+
+就在想要放弃转为写启动脚本删规则的时候，执行了一下 `strings /sbin/rg_mng | grep hijack` 发现很多关键字。再打开 IDA 反编译看一波逻辑，防火墙规则里 DNS 劫持的部分确实是它加的！看了下其他逻辑，我也不想要，直接就是一个禁止启动 😠
+
+```shell
+/etc/init.d/rg_mng stop
+/etc/init.d/rg_mng disable
+```
+
+> [!note]
+> 这么操作后 `/etc/config/rg_firewall` 文件内容未来不会被复写，需要再手动去把已经生成的规则删了。
+> 不过注意不要把 `web_hijack` 这条规则删了，否则会导致无法从内网访问管理页面
+
+不过始终没有找到谁往 `/var/resolv.conf.auto` 里加的 114.114.114.114，不过作为个桥接路由，不连到它的 DNS 服务器上管它呢。
+调用 `ubus call dnsmasq metrics` 看看，应该不再有新的 dns_queries 了，局域网内通过 DHCP 注册的 DNS 记录也能正常查询了 💖

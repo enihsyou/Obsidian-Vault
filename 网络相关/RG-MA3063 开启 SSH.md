@@ -18,6 +18,12 @@ RT-AX86U == RG-MA3063 == AMD-9700X
 - 路由器出口会往 114.114.114.114 发 DNS 请求，可我整个链路没有设置过这个 DNS 地址
 - 路由器看到的 DNS 请求来源是不认识的 IPv6 地址，确认是中间的桥接路由器的 DNS 缓存
 
+它的几宗罪
+1. 桥接模式不关闭 DHCP 服务器
+2. 还劫持 DNS 请求到设备上的 DNSmasq
+3. 劫持就算了还额外加个 `public1.114dns.com` DNS 解析节点
+
+
 ## 设备信息
 
 ```make title=/etc/rj_issues
@@ -161,8 +167,8 @@ vi /etc/config/rg_firewall
 在 `/etc/config/rg_firewall` 中删掉几条 `dnsv4_hijack` 的规则，详情见 [[2025-08-12#局域网 DHCP 主机名 DNS 解析时灵时不灵]]
 
 ```shell
-iptables -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.10.1  
-iptables -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.10.1
+iptables  -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.10.1  
+ip6tables -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination fe80::e25d:54ff:fe7c:7f4
 
 ebtables -t broute -D BROUTING -p IPv4 --ip-proto udp --ip-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT
 ebtables -t broute -D BROUTING -p IPv6 --ip6-proto udp --ip6-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT  

@@ -6,7 +6,7 @@
 <https://x.com/fwarashi/status/1901574720145031171>
 在后期编辑时把实际键盘输入添加到界面上
 
-`vaI` 快速选中整个if { block }  [vim-indent-object](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-indent-object)
+`vaI` 快速选中整个 if { block } [vim-indent-object](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-indent-object)
 
 `v2i"` 选中引号和引号的内容，但不包含外部的空格 [Why va" selects whitespace characters before the string? : r/vim](https://www.reddit.com/r/vim/comments/17mrnzt/why_va_selects_whitespace_characters_before_the/)
 
@@ -16,7 +16,7 @@
 
 `vin'` 选中下一个引号，不限定同一行，需要启用 [wellle/targets.vim](https://github.com/wellle/targets.vim?tab=readme-ov-file#next-and-last-pair)
 
-`veS)` `yse)` 创建函数，当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround) 
+`veS)` `yse)` 创建函数，当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround)
 
 `ea()` 在当前单词后面添加括号，变成函数
 
@@ -35,6 +35,8 @@
 
 `H` `M` `L` 在屏幕范围内放置光标
 `zz` `zt` `zb` 向光标位置移动屏幕
+
+`Ctrl+O` 在插入模式中执行一趟标准模式的指令
 
 Vim 输入法切换
 [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)

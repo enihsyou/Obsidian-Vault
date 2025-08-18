@@ -23,3 +23,8 @@ https://stackoverflow.com/a/79386184/5277711  重启插件
 [The `console: internalConsole` is ineffective for `electron.cmd`, BUT works for other file names · Issue #240901 · microsoft/vscode](https://github.com/microsoft/vscode/issues/240901)
 似乎已经在 v1.101 上解决了，待测试
 https://code.visualstudio.com/updates/v1_101#_windows-shell-environment-discovery
+
+## 聚焦回到编辑器中
+
+`Ctrl+1`，实际是回到第一个编辑组，但足够实现光标快速从侧边栏回到编辑器了。
+也同样适用于 `` Ctrl+` `` 打开终端后快速回到编辑器，不再需要按两遍开终端快捷键了。

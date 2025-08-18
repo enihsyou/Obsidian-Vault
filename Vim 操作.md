@@ -38,6 +38,8 @@
 
 `Ctrl+O` 在插入模式中执行一趟标准模式的指令
 
+`gUU` `VU` 将一整行切换为大写 [TIL: guu & gUU -- makes an entire line lowercase and uppercase : r/vim](https://www.reddit.com/r/vim/comments/3j90lv/til_guu_guu_makes_an_entire_line_lowercase_and/)
+
 Vim 输入法切换
 [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)
 

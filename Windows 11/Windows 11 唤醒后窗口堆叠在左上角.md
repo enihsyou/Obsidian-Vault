@@ -1,7 +1,10 @@
-[Windows 唤醒后窗口位移至左上角且尺寸缩小解决方案 | Sirius](https://siriusq.top/Windows%E5%94%A4%E9%86%92%E5%90%8E%E7%AA%97%E5%8F%A3%E4%BD%8D%E7%A7%BB%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html)
-[Fix: Windows moved and resized every time monitor wakes from sleep : r/Windows11](https://www.reddit.com/r/Windows11/comments/1arx6b8/fix_windows_moved_and_resized_every_time_monitor/)
-[Clear and Reset Display Cache in Windows 11 | Windows 11 Forum](https://www.elevenforum.com/t/clear-and-reset-display-cache-in-windows-11.15538/)
-两个都是同样的方法，靠清除外接显示器的配置，目前并没有解决
+- [Windows 唤醒后窗口位移至左上角且尺寸缩小解决方案 | Sirius](https://siriusq.top/Windows%E5%94%A4%E9%86%92%E5%90%8E%E7%AA%97%E5%8F%A3%E4%BD%8D%E7%A7%BB%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html)
+- [Fix: Windows moved and resized every time monitor wakes from sleep : r/Windows11](https://www.reddit.com/r/Windows11/comments/1arx6b8/fix_windows_moved_and_resized_every_time_monitor/)
+- [Clear and Reset Display Cache in Windows 11 | Windows 11 Forum](https://www.elevenforum.com/t/clear-and-reset-display-cache-in-windows-11.15538/)
+- [Resolution of 4K displays changes to 1024 X 768 when the display port goes to stand by or power off - Microsoft Q&A](https://learn.microsoft.com/en-us/answers/questions/3188124/resolution-of-4k-displays-changes-to-1024-x-768-wh)
+- [How can I stop windows re-positioning after waking from sleep? - Super User](https://superuser.com/questions/453446/how-can-i-stop-windows-re-positioning-after-waking-from-sleep)
+问题基本是设备唤醒时显示器还没醒，EDID 乱了。
+解决方式都是同样的，靠清除外接显示器的配置，目前并没有解决
 ```reg
 Windows Registry Editor Version 5.00
 
@@ -73,3 +76,4 @@ Windows Registry Editor Version 5.00
 
 ```
 - `2025-08-07` 并没有效果
+- `2025-08-21` 抓到了唤醒时仍然处在 1024 x 768 状态的现场，在设备管理器显示器被识别成 Default Monitor，从注册表里找不到名称关联项，也没有屏幕尺寸匹配的项目，看来方法不管用

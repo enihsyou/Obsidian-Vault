@@ -40,6 +40,8 @@
 
 `gUU` `VU` 将一整行切换为大写 [TIL: guu & gUU -- makes an entire line lowercase and uppercase : r/vim](https://www.reddit.com/r/vim/comments/3j90lv/til_guu_guu_makes_an_entire_line_lowercase_and/)
 
+在本行执行过一次 `:s` 替换，在下一行替换用 `j.`，想要在全文范围执行用 `:%s`。因为单独一个 s 会复用上次参数
+
 Vim 输入法切换
 [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)
 

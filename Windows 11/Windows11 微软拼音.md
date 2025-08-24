@@ -8,3 +8,5 @@
 对于 Mac 系统 [LuSrackhall/switch-input-method: 用于在mac系统的使用中, 绑定option+j幂等式的切换英文输入法, 以及绑定option+k幂等式的切换中文输入法](https://github.com/LuSrackhall/switch-input-method)
 
 [no_english_mode/src/main.rs at feat/conf-from-env · potoo0/no_english_mode](https://github.com/potoo0/no_english_mode/blob/feat/conf-from-env/src/main.rs#L199) 和 im-select 冲突
+
+[win11，使用微软自带简体中文输入法。切换应用，输入法会自动切换成“英文”输入模式，如何解决？ - 知乎](https://www.zhihu.com/question/602397490)

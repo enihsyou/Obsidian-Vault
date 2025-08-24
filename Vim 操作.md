@@ -42,6 +42,9 @@
 
 在本行执行过一次 `:s` 替换，在下一行替换用 `j.`，想要在全文范围执行用 `:%s`。因为单独一个 s 会复用上次参数
 
+`gd` 跳转到定义 [VSCodeVim/Vim: :star: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#-vscodevim-tricks)
+`gf` 跳转到光标下的文件，在 C 系的 include 部分很好用
+
 Vim 输入法切换
 [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)
 

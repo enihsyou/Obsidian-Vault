@@ -43,6 +43,8 @@ Windows Registry Editor Version 5.00
 "DwmClipBox.right"=dword:00000400
 "DwmClipBox.bottom"=dword:00000300
 ```
+
+
 ## Take Action Event Timeline
 - `2025-08-04` 重置删除 GraphicsDrivers\Configuration 等注册表 
 - `2025-08-05` 唤醒多次，有效。另外发现多了一个叫 `NVD00000` 的新配置，尺寸刚好是 `640 x 480 (0x280 x 0x130)`，尝试修改它的尺寸为 1280 x 960
@@ -77,3 +79,4 @@ Windows Registry Editor Version 5.00
 ```
 - `2025-08-07` 并没有效果
 - `2025-08-21` 抓到了唤醒时仍然处在 1024 x 768 状态的现场，在设备管理器显示器被识别成 Default Monitor，从注册表里找不到名称关联项，也没有屏幕尺寸匹配的项目，看来方法不管用
+- `2025-08-24` 我的设备设置了从睡眠中唤醒要求输入 PIN 验证，但其实有时候唤醒后并不要求输入 PIN。而且此时不会触发窗口堆叠在左上角的 BUG；与此同时，如果唤醒后要求输入 PIN，必然触发堆叠在左上角的问题。尝试设置唤醒不要求登入

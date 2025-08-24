@@ -64,7 +64,7 @@ MASQUERADE udp -- 192.168.1.0/24 anywhere udp dpt:54321
 forceMiCloudConnection=true
 ```
 
-```javascript
+```javascript title="reflect.js"
 const dgram = require('dgram');
 
 const socket = dgram.createSocket('udp4');
@@ -93,6 +93,38 @@ homebridge@enihsyou-NAS:/volume1/homebridge $ node test.js
 接收到服务器 192.168.9.52:54321 的响应: 213100200000000030fe8d55000064a9ffffffffffffffffffffffffffffffff
 ```
 
+```javascript title="iot-device-simulator.js"
+// filepath: d:\GitHub\homebridge-miot\server.js
+const dgram = require('dgram');
+
+const server = dgram.createSocket('udp4');
+const port = 54321;
+
+server.on('message', (msg, rinfo) => {
+  console.log(`服务器接收到来自 ${rinfo.address}:${rinfo.port} 的消息: ${msg.toString('hex')}`);
+
+  // 将接收到的消息原样返回给客户端
+  server.send(msg, 0, msg.length, rinfo.port, rinfo.address, (err) => {
+    if (err) {
+      console.error('发送失败:', err);
+    } else {
+      console.log(`已将消息返回给 ${rinfo.address}:${rinfo.port}`);
+    }
+  });
+});
+
+server.on('listening', () => {
+  const address = server.address();
+  console.log(`服务器监听 ${address.address}:${address.port}`);
+});
+
+server.bind(port);
+
+server.on('error', (err) => {
+  console.error('服务器发生错误:', err);
+  server.close();
+});
+```
 ---
 最终方案
 

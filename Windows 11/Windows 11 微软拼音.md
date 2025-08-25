@@ -9,4 +9,6 @@
 
 [no_english_mode/src/main.rs at feat/conf-from-env · potoo0/no_english_mode](https://github.com/potoo0/no_english_mode/blob/feat/conf-from-env/src/main.rs#L199) 和 im-select 冲突
 
-[win11，使用微软自带简体中文输入法。切换应用，输入法会自动切换成“英文”输入模式，如何解决？ - 知乎](https://www.zhihu.com/question/602397490)
+[win11，使用微软自带简体中文输入法。切换应用，输入法会自动切换成“英文”输入模式，如何解决？ - 知乎](https://www.zhihu.com/question/602397490)i
+
+[[2025-08-11#^b95233|Windows 没有 macOS 平台 InputSourcePro 的缺憾]]，但有个 [InputTip](https://inputtip.abgox.com/zh-CN/) 使用 AutoHotKey 实现的软件，试用下来体验十分不好，放弃了。

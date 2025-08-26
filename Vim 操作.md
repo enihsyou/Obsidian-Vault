@@ -46,7 +46,8 @@
 `gf` 跳转到光标下的文件，在 C 系的 include 部分很好用
 
 Vim 输入法切换
-[A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher)
+- [[im-select PR]] 模拟按键输入
+- [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher) 建议使用，它直接用的系统 API
 
 
 非常好的资源 [Moving around in Vim | irian.to](https://irian.to/blogs/moving-around-in-vim)

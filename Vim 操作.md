@@ -31,7 +31,8 @@
 
 `cs>b` 把 Markdown 中的无名链接 `<https://>` 替换为括号包裹 `(https://)` 为下一步在前方添加方括号做准备 [Surround with angle brackets](https://github.com/tpope/vim-surround/issues/209)
 
-`ciw()<Esc>P` [Enclosing in parentheses with Vim - Stack Overflow](https://stackoverflow.com/questions/8070892/enclosing-in-parentheses-with-vim) 这里的 `P` 会当光标块处在 `"` 上时在引号前插入，刚好满足了需求
+`ciw()<Esc>P` [Enclosing in parentheses with Vim - Stack Overflow](https://stackoverflow.com/questions/8070892/enclosing-in-parentheses-with-vim) 这里的 `P` 会当光标块处在 `"` 上时在引号前插入，刚好满足了需求。也是当 surround.vim 不可用时（原生 Obsidian），给文字添加引号包裹的快捷方法。
+`viws"` 配置了 [obsidian-vimrc-support](https://github.com/esm7/obsidian-vimrc-support?tab=readme-ov-file#surround-text-with-surround) 后可以可视化选择一段后按 `s"` 来添加引号。不过有 [bug](https://github.com/esm7/obsidian-vimrc-support/issues/44)，只会识别到单词的边界为止，`https://` 就不管用了
 
 `Ctrl+d` `Ctrl+u` 滚动半屏，伴随光标
 `Ctrl+e` `Ctrl+y` 滚动一行，不动光标

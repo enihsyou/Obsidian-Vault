@@ -26,5 +26,6 @@
 # only record markdown file
 *.*
 !*.md
+!LICENSE.txt
 !.gitignore
 !.stignore*

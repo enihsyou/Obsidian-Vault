@@ -58,22 +58,7 @@ Synology 上开启勾选 `忽略权限` 并，取消勾选 `同步扩展属性`�
 用于保留更新的历史记录，仓库只保留纯文本部分，不包括图片等大型文件。
 
 ```shell
-git clone "ssh://enihsyou@enihsyou.synology.me:/volume1/Storage/Obsidian Vault.git"
-```
-
-存放在 Synology 上的版本已经带有这个部分。
-
-仓库是通过以下方式初始化的
-
-```shell
-ssh enihsyou.synology.me "
-mkdir -p '/volume1/Storage/Obsidian Vault.git'
-cd '/volume1/Storage/Obsidian Vault.git'
-git init --bare
-"
-
-git remote set-url synology 'ssh://enihsyou@enihsyou.synology.me:/volume1/Storage/Obsidian Vault.git'
-git push
+git clone https://github.com/enihsyou/Obsidian-Vault.git
 ```
 
 ## 维护同步冲突

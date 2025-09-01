@@ -23,5 +23,7 @@ Windows Registry Editor Version 5.00
 ```
 【working】设置后证实解决了问题。
 
+- [(2) X 上的 九条涼果：“这半年在 #Windows11 上使用Chromium Based Application （Edge、VSCode） 切换Tab/滚动 元素重渲染只会显示一部分（截图无体现），夜晚 / 夜间模式下显示暗色内容更容易触发。 结合 AutoHDR 会有更难以接受的闪屏问题🙄 网上讨论指向了MPO，关闭确实能解决这遇到离谱问题https://t.co/W4qKeEHw3n https://t.co/DxHZbFbudM” / X](https://x.com/enihsyou/status/1934739456508219473)
+
 结合 AutoHDR 会有更难以接受的闪屏问题，快捷键关开 HDR 能恢复正常
 ![[IMG_7148.mov]] ^7588d8

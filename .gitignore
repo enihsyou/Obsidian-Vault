@@ -27,5 +27,6 @@
 *.*
 !*.md
 !LICENSE.txt
+!.obsidian.vimrc
 !.gitignore
 !.stignore*

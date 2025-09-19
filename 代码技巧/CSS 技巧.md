@@ -7,3 +7,21 @@
    scrollbar-gutter: stable both-edges;
 }
 ```
+
+## 避免 Hover 边框产生元素位移
+
+- [Add a CSS border on hover without moving the element - Stack Overflow](https://stackoverflow.com/questions/9612758/add-a-css-border-on-hover-without-moving-the-element)
+
+添加透明边框
+
+```css
+.item {
+   background: #eee;
+   border: 1px solid transparent;
+}
+
+.item:hover {
+   background: #e1e1e1;
+   border: 1px solid #d0d0d0;
+}
+```

@@ -32,7 +32,6 @@
 `cs>b` 把 Markdown 中的无名链接 `<https://>` 替换为括号包裹 `(https://)` 为下一步在前方添加方括号做准备 [Surround with angle brackets](https://github.com/tpope/vim-surround/issues/209)
 
 `ciw()<Esc>P` [Enclosing in parentheses with Vim - Stack Overflow](https://stackoverflow.com/questions/8070892/enclosing-in-parentheses-with-vim) 这里的 `P` 会当光标块处在 `"` 上时在引号前插入，刚好满足了需求。也是当 surround.vim 不可用时（原生 Obsidian），给文字添加引号包裹的快捷方法。
-`viws"` 配置了 [obsidian-vimrc-support](https://github.com/esm7/obsidian-vimrc-support?tab=readme-ov-file#surround-text-with-surround) 后可以可视化选择一段后按 `s"` 来添加引号。不过有 [bug](https://github.com/esm7/obsidian-vimrc-support/issues/44)，只会识别到单词的边界为止，`https://` 就不管用了
 
 `Ctrl+d` `Ctrl+u` 滚动半屏，伴随光标
 `Ctrl+e` `Ctrl+y` 滚动一行，不动光标
@@ -53,5 +52,29 @@ Vim 输入法切换
 - [[im-select PR]] 模拟按键输入
 - [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher) 建议使用，它直接用的系统 API
 
-
 非常好的资源 [Moving around in Vim | irian.to](https://irian.to/blogs/moving-around-in-vim)
+
+### obsidian-vimrc-support
+
+ 记录 [obsidian-vimrc-support](https://github.com/esm7/obsidian-vimrc-support?tab=readme-ov-file#surround-text-with-surround) 专有的部分技巧
+
+- `s"` 按教程配置了 surround 后，随时按 s+text object 来添加包裹。不过有 [bug](https://github.com/esm7/obsidian-vimrc-support/issues/44)，只会自动识别到单词的边界为止，类似 `w`，所以 `https://` 后面的链接就不管用了
+- `viWs"` 此时可以可视化选择一段后按 `s"` 来添加引号
+- #todo 看看 [`vimObject.defineOperator("surroundOperator"`](https://github.com/esm7/obsidian-vimrc-support/blob/master/main.ts#L541C29-L541C45) 是怎么个用法
+	- 看上去是代码有问题，按 <kbd>Alt+Y s</kbd> 后有错误
+- 目前还 [不支持](https://github.com/esm7/obsidian-vimrc-support/blob/master/main.ts#L330) 很多 Vim 控制配置，像是 `start` 来以 INSERT 模式启动
+
+
+```
+TypeError: CodeMirror.openDialog is not a function
+    at Object.eval [as surroundOperator] (plugin:obsidian-vimrc-support:1001:24)
+    at Object.evalInput (vim.js:1895:51)
+    at Object.processMotion (vim.js:1436:14)
+    at Object.processCommand (vim.js:1411:18)
+    at vim.js:910:37
+    at e.operation (app.js:1:1583204)
+    at vim.js:904:23
+    at Object.handleKey (vim.js:768:18)
+    at Object.multiSelectHandleKey (vim.js:6391:28)
+    at qi.fromClass.e.handleKey (app.js:1:1593285)
+```

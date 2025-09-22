@@ -2,6 +2,7 @@
 很多人能发现并描述问题
 - [Edge opens when waking Windows 11 PC from Sleep : r/MicrosoftEdge](https://www.reddit.com/r/MicrosoftEdge/comments/10n04ov/edge_opens_when_waking_windows_11_pc_from_sleep/)
 - [UPDATED: After I wake my computer from Sleep on Windows 11, the Calculator automatically opens on the desktop. How can I stop this? - Microsoft Q&A](https://learn.microsoft.com/en-us/answers/questions/4029265/updated-after-i-wake-my-computer-from-sleep-on-win)
+- [Windows 11 keeps starting Photos after sleep - Super User](https://superuser.com/questions/1777903/windows-11-keeps-starting-photos-after-sleep)
 
 目前没有解决，先靠把文件夹移到首位来避免启动应用
 

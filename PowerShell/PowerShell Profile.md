@@ -3,10 +3,10 @@ see also [[Oh-my-posh 加载速度]]
 Profiler
 [Easily profile your PowerShell code with the Profiler module - Daniel Schroeder’s Programming Blog](https://blog.danskingdom.com/Easily-profile-your-PowerShell-code-with-the-Profiler-module/)
 
-PSProfiler  Interactive only
+PSProfiler Interactive only
 [Optimizing your $Profile - PowerShell Team](https://devblogs.microsoft.com/powershell/optimizing-your-profile/)
 
-pwsh.exe  关闭杀软
+pwsh.exe 关闭杀软
 [加快 PowerShell 設定載入速度的方法 - WellWells](https://wellstsai.com/post/slow-powershell-profile-loading/)
 
 lazy load
@@ -19,7 +19,7 @@ fsackur/ProfileAsync
 
 Benchmark force AMD 9700X 3.0GHz
 
-```
+```log
 disable Windows Defender by exclusion
 282.3 ms -> 270.4 ms (9.6ms)
 
@@ -46,7 +46,7 @@ Time (mean ± σ): 242.8 ms ± 3.6 ms [User: 211.1 ms, System: 151.6 ms]
 Range (min … max): 236.4 ms … 248.2 ms 11 runs
 ```
 
-```
+```log
 disable WindHawk by exclusion
 305.3 ms -> 298.8 ms
 
@@ -66,9 +66,8 @@ Time (mean ± σ): 280.3 ms ± 5.9 ms [User: 251.8 ms, System: 142.7 ms]
 Range (min … max): 272.6 ms … 296.3 ms 30 runs
 ```
 
-
-```
-import module cost
+```log
+estimate cost of import module
 
 $ hyperfine 'pwsh -noprofile -c exit' 'pwsh -noprofile -c "Import-Module ProfileAsync"'
 Benchmark 1: pwsh -noprofile -c exit
@@ -84,11 +83,10 @@ Summary
     1.42 ± 0.09 times faster than pwsh -noprofile -c "Import-Module ProfileAsync"
 ```
 
-
-
-如何判断 Interactive ? 
+如何判断 Interactive ?
 调用了 $function:prompt 肯定是，但这样要处理其他 Shell Integration 在加载 PROFILE 后重写 prompt，把我们重写的 prompt 顶掉的问题
-```
+
+```powershell
 $script:_pwshInteractive = $false
 function global:prompt {
     if ($script:_pwshInteractive) {
@@ -108,18 +106,21 @@ function global:prompt {
     prompt
 }
 ```
-还有一种办法，判断要加载 PSReadLine  [PowerShell/src/Microsoft.PowerShell.ConsoleHost/host/msh/ConsoleHost.cs at master · PowerShell/PowerShell](https://github.com/PowerShell/PowerShell/blob/master/src/Microsoft.PowerShell.ConsoleHost/host/msh/ConsoleHost.cs#L263)，只要自己不主动加载 PSReadLine，PowerShell 会在 Interactive 阶段替我们主动提前加载它
-```
+
+还有一种办法，判断要加载 PSReadLine [PowerShell/src/Microsoft.PowerShell.ConsoleHost/host/msh/ConsoleHost.cs at master · PowerShell/PowerShell](https://github.com/PowerShell/PowerShell/blob/master/src/Microsoft.PowerShell.ConsoleHost/host/msh/ConsoleHost.cs#L263)，只要自己不主动加载 PSReadLine，PowerShell 会在 Interactive 阶段替我们主动提前加载它
+
+```powershell
 if ($null -ne (Get-Module -Name PSReadLine)) {
     # 初始化交互终端用到的模块
     . $env:DOTFILES\shell\pwsh\PSHelper_Interactive.ps1
 }
 ```
+
 > 还有一个办法 [PowerShellProfile/Microsoft.PowerShell_profile.ps1 at a362624850132e39ce024a889c0a611e58fbe7e4 · MatejKafka/PowerShellProfile](https://github.com/MatejKafka/PowerShellProfile/blob/a362624850132e39ce024a889c0a611e58fbe7e4/Microsoft.PowerShell_profile.ps1#L5)，性能差不多，但能避免自己 Import 的问题
 
-
 有大把时间花在加载 PSReadLine 上
-```
+
+```log
 $ hyperfine 'pwsh -noprofile -c "exit"' 'pwsh -noprofile -c "Import-Module PSReadLine"' --warmup 5  
 Benchmark 1: pwsh -noprofile -c "exit"  
 Time (mean ± σ): 310.3 ms ± 17.2 ms [User: 259.4 ms, System: 168.1 ms]  
@@ -134,11 +135,9 @@ pwsh -noprofile -c "exit" ran
 1.64 ± 0.09 times faster than pwsh -noprofile -c "Import-Module PSReadLine"
 ```
 
-
-
-
 oh-my-posh
-```
+
+```log
 disable Enable-PoshLineError
 861.1 ms -> 725.4 ms (ms)
 
@@ -180,7 +179,7 @@ Range (min … max): 489.5 ms … 526.1 ms 30 runs
 Issue
 [[MulticoreJIT] Writes to StartupProfileData-Interactive are syscall intensive · 议题 #95591 · dotnet/runtime](https://github.com/dotnet/runtime/issues/95591)，路径不能改， 134ms [PowerShell/src/System.Management.Automation/CoreCLR/CorePsPlatform.cs at master · PowerShell/PowerShell](https://github.com/PowerShell/PowerShell/blob/master/src/System.Management.Automation/CoreCLR/CorePsPlatform.cs#L170)
 
-```
+```log
 274.7 ms -> 268.5 ms (6.2ms)
 
 foreach ($pName in @(
@@ -199,8 +198,9 @@ Time (mean ± σ): 268.5 ms ± 9.2 ms [User: 227.9 ms, System: 153.8 ms]
 Range (min … max): 257.5 ms … 305.3 ms 30 runs
 ```
 
-最终效果  AMD 9700X 5.5GHz
+最终效果 AMD 9700X 5.5GHz
 分别代表了非交互式基准，交互式基准，非交互式，交互式
+
 ```shellsession
 PS C:\Users\enihsyou> hyperfine 'pwsh -NoProfile -c "exit"' 'pwsh -NoProfile' 'pwsh -c "exit"' 'pwsh' --warmup 5  
 Benchmark 1: pwsh -NoProfile -c exit  
@@ -226,13 +226,11 @@ pwsh -NoProfile -c exit ran
 3.44 ± 0.05 times faster than pwsh
 ```
 
-
 pwsh.exe will try to access ApplicationInsightsDiagnostics.json, it's a feature of Application Insights. Disable with $Env:POWERSHELL_TELEMETRY_OPTOUT
 [ApplicationInsights-dotnet/BASE/src/Microsoft.ApplicationInsights/Extensibility/TelemetryConfiguration.cs at main · microsoft/ApplicationInsights-dotnet](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/BASE/src/Microsoft.ApplicationInsights/Extensibility/TelemetryConfiguration.cs#L70)
 [PowerShell/src/System.Management.Automation/utils/Telemetry.cs at master · PowerShell/PowerShell](https://github.com/PowerShell/PowerShell/blob/master/src/System.Management.Automation/utils/Telemetry.cs#L180)
 
-
-```
+```log
 C:\Users\enihsyou\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 ReadFile 419KB 7ms
 

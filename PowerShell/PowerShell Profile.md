@@ -252,3 +252,23 @@ Range (min … max): 458.4 ms … 468.2 ms 10 runs
 ```
 
 注释 ProfileAsync 里日志的部分，-20ms
+
+### version-fox shim 会叠加一层耗时
+
+```log
+$ hyperfine 'C:\Users\enihsyou\.version-fox\shims\node.exe --version' 'C:\Users\enihsyou\.version-fox\cache\nodejs\current\node.exe --version'
+Benchmark 1: C:\Users\enihsyou\.version-fox\shims\node.exe --version
+  Time (mean ± σ):      27.2 ms ±   2.2 ms    [User: 12.1 ms, System: 14.7 ms]
+  Range (min … max):    25.0 ms …  38.9 ms    66 runs
+
+Benchmark 2: C:\Users\enihsyou\.version-fox\cache\nodejs\current\node.exe --version
+  Time (mean ± σ):      15.5 ms ±   1.0 ms    [User: 8.5 ms, System: 9.0 ms]
+  Range (min … max):    14.0 ms …  19.2 ms    121 runs
+
+Summary
+  C:\Users\enihsyou\.version-fox\cache\nodejs\current\node.exe --version ran
+    1.76 ± 0.18 times faster than C:\Users\enihsyou\.version-fox\shims\node.exe --version
+```
+
+之前 [[收集可执行文件到 PATH]] 是因为需要一个地方收集 bin 路径，所以把 shim 目录添加到 PATH 中了，但这里面的可执行文件实际是个转发器，会有两倍的执行耗时。
+对于 exe 可执行文件，既然 shim 引用的是 current 目录，那直接创建个硬链接就好。

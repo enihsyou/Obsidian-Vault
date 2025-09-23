@@ -271,4 +271,4 @@ Summary
 ```
 
 之前 [[收集可执行文件到 PATH]] 是因为需要一个地方收集 bin 路径，所以把 shim 目录添加到 PATH 中了，但这里面的可执行文件实际是个转发器，会有两倍的执行耗时。
-对于 exe 可执行文件，既然 shim 引用的是 current 目录，那直接创建个硬链接就好。
+对于 exe 可执行文件，既然 shim 引用的是 current 目录，那直接创建个软链接就好 `New-Item -ItemType SymbolicLink`。

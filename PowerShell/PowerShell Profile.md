@@ -270,6 +270,6 @@ Summary
     1.76 ± 0.18 times faster than C:\Users\enihsyou\.version-fox\shims\node.exe --version
 ```
 
-之前 [[收集可执行文件到 PATH]] 是因为需要一个地方收集 bin 路径，所以把 shim 目录添加到 PATH 中了，但这里面的可执行文件实际是个转发器，会有两倍的执行耗时。
+之前 [[收集可执行文件到 PATH]] 是因为需要一个地方收集 bin 路径，所以把 shim 目录添加到 PATH 中了，但这里面的可执行文件实际是个转发器，会有两倍的执行耗时。很可惜，这部分耗时难以省去。
 
 为什么用 shim？因为有些 exe 可执行文件，需要在特定的目录运行。比如 go，会从当前 exe 所在位置寻找 `../pkg/tool` 是否存在来决定默认的 `GOROOT` 位置。

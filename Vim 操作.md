@@ -48,6 +48,9 @@
 `gd` 跳转到定义 [VSCodeVim/Vim: :star: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#-vscodevim-tricks)
 `gf` 跳转到光标下的文件，在 C 系的 include 部分很好用
 
+`:s/\%Vred/green/g` 在可视选择的范围内替换。如果直接使用 `:'<,'>s/red/green/g` 即便选择了一段文本，也是在整行的范围内替换，非常反直觉
+`gv` 重新选中上次可视选择的内容
+
 Vim 输入法切换
 - [[im-select PR]] 模拟按键输入
 - [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher) 建议使用，它直接用的系统 API

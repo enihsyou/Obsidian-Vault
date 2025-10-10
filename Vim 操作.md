@@ -2,24 +2,20 @@
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
 <https://x.com/fwarashi/status/1901574037173911775>
-<https://x.com/fwarashi/status/1901575221359878293>
-<https://x.com/fwarashi/status/1901574720145031171>
-在后期编辑时把实际键盘输入添加到界面上
-
-`vaI` 快速选中整个 if { block } [vim-indent-object](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-indent-object)
+<https://x.com/fwarashi/status/1901575221359878293>jjhttps://x.com/fwarashi/status/1901574720145031171
+在后期编辑时把实际键盘输入添加上
+`vaI` 快速选中整个 if jj{ block } [vim-indent-object](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-indent-object)
 
 `v2i"` 选中引号和引号的内容，但不包含外部的空格 [Why va" selects whitespace characters before the string? : r/vim](https://www.reddit.com/r/vim/comments/17mrnzt/why_va_selects_whitespace_characters_before_the/)
 
-`vi'` 选中同一行光标所在的单引号；如果启用了 targets.vim `viq` 选中当前光标所在的单、双引号
-
+`vi'` 选中同一行光标所在的单引号；如果启用了 targets.vim `viq` 选中当前光标所在的单、双引j
 `via` `vib` `vi(` 类似地，都能选中光标所在的括号中的内容 [vim-textobj-arguments](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-textobj-arguments)
 
-`vin'` 选中下一个引号，不限定同一行，需要启用 [wellle/targets.vim](https://github.com/wellle/targets.vim?tab=readme-ov-file#next-and-last-pair)
+`vin'` 选中下一个引号，不限定同一行，需要启用 [wellle/targets.vim](jj)
 
 `veS)` `yse)` 创建函数，当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround)
-
-`ea()` 在当前单词后面添加括号，变成函数
-
+jj
+a()` 在当前单词后面添加括号，变成函数
 `A;` 快速在行尾添加分号
 
 `v%` 选择一大段跨行的 XML 注释 `<!-- ... -->`
@@ -50,6 +46,8 @@
 
 `:s/\%Vred/green/g` 在可视选择的范围内替换。如果直接使用 `:'<,'>s/red/green/g` 即便选择了一段文本，也是在整行的范围内替换，非常反直觉
 `gv` 重新选中上次可视选择的内容
+
+`d}` 删除到段落末尾，脚本语言中常用于删除整段 if
 
 Vim 输入法切换
 - [[im-select PR]] 模拟按键输入

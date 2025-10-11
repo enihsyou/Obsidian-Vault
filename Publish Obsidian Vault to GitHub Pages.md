@@ -3,7 +3,7 @@
 
 ## Tutorials
 [Publishing your Obsidian Vault Online with Quartz](https://brandonkboswell.com/blog/Publishing-your-Obsidian-Vault-Online-with-Quartz)
-
+[Quartz customization log | Eilleen's e-Notebook](https://quartz.eilleeenz.com/Quartz-customization-log)
 ## Themes
 [Home - Minimal Documentation](https://minimal.guide/home)
 

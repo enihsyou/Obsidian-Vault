@@ -31,5 +31,5 @@ git worktree add -b gh-pages "../Obsidian Vault.worktrees/gh-pages" --orphan
 2. 
 
 ```
-git fetch quartz v4 --depth=1 --filter=tree:0
+bun add -d https://github.com/jackyzha0/quartz.git --linker isolated
 ```

@@ -1,20 +1,24 @@
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
 <https://x.com/fwarashi/status/1901574037173911775>
-<https://x.com/fwarashi/status/1901575221359878293><jjhttps://x.com/fwarashi/status/1901574720145031171>
-在后期编辑时把实际键盘输入添加上
-`vaI` 快速选中整个 if jj{ block } [vim-indent-object](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-indent-object)
+<https://x.com/fwarashi/status/1901575221359878293>
+<https://x.com/fwarashi/status/1901574720145031171>
+在后期编辑时把实际键盘输入添加到界面上
+
+`vaI` 快速选中整个 if { block } [vim-indent-object](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-indent-object)
 
 `v2i"` 选中引号和引号的内容，但不包含外部的空格 [Why va" selects whitespace characters before the string? : r/vim](https://www.reddit.com/r/vim/comments/17mrnzt/why_va_selects_whitespace_characters_before_the/)
 
-`vi'` 选中同一行光标所在的单引号；如果启用了 targets.vim `viq` 选中当前光标所在的单、双引 j
+`vi'` 选中同一行光标所在的单引号；如果启用了 targets.vim `viq` 选中当前光标所在的单、双引号
+
 `via` `vib` `vi(` 类似地，都能选中光标所在的括号中的内容 [vim-textobj-arguments](https://github.com/VSCodeVim/Vim?tab=readme-ov-file#vim-textobj-arguments)
 
-`vin'` 选中下一个引号，不限定同一行，需要启用 [wellle/targets.vim](jj)
+`vin'` 选中下一个引号，不限定同一行，需要启用 [wellle/targets.vim](https://github.com/wellle/targets.vim?tab=readme-ov-file#next-and-last-pair)
 
 `veS)` `yse)` 创建函数，当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround)
 
-a()` 在当前单词后面添加括号，变成函数
+`ea()` 在当前单词后面添加括号，变成函数
+
 `A;` 快速在行尾添加分号
 
 `v%` 选择一大段跨行的 XML 注释 `<!-- ... -->`
@@ -49,6 +53,7 @@ a()` 在当前单词后面添加括号，变成函数
 `d}` 删除到段落末尾，脚本语言中常用于删除整段 if
 
 Vim 输入法切换
+
 - [[im-select PR]] 模拟按键输入
 - [A-23187/AIMSwitcher: AIMSwitcher, An Input Method Switcher](https://github.com/A-23187/AIMSwitcher) 建议使用，它直接用的系统 API
 
@@ -62,7 +67,7 @@ Vim 输入法切换
 - `viWs"` 此时可以可视化选择一段后按 `s"` 来添加引号 [How to Surround Text in Vim, Without Plugins | Jonathan Palardy's Blog](https://blog.jpalardy.com/posts/how-to-surround-text-in-vim-without-plugins/)
 - `noremap sd" di""_da"p` 把删除环绕符号功能绑定到 `sd"` 按键上，目前还不支持修改 surround [Replace or Delete Surround · Issue #191 · esm7/obsidian-vimrc-support](https://github.com/esm7/obsidian-vimrc-support/issues/191)，缺少插件支持的情况下，先删除再加比修改更好操作。并且我还没办法绑定到 `ds"` 上，所以只能反过来
 - #todo 看看 [`vimObject.defineOperator("surroundOperator"`](https://github.com/esm7/obsidian-vimrc-support/blob/master/main.ts#L541C29-L541C45) 是怎么个用法
-	- 看上去是代码有问题，按 <kbd>Alt+Y s</kbd> 后有错误
+  - 看上去是代码有问题，按 <kbd>Alt+Y s</kbd> 后有错误
 
 ```
 TypeError: CodeMirror.openDialog is not a function

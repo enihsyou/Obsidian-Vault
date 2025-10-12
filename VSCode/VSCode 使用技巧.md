@@ -28,3 +28,7 @@ https://code.visualstudio.com/updates/v1_101#_windows-shell-environment-discover
 
 `Ctrl+1`，实际是回到第一个编辑组，但足够实现光标快速从侧边栏回到编辑器了。
 也同样适用于 `` Ctrl+` `` 打开终端后快速回到编辑器，不再需要按两遍开终端快捷键了。
+
+### Windows 11 新版菜单扩展
+
+[[2025-10-12#^bef39e |VSCode Modern Explorer Context Menu for Windows 11+]]

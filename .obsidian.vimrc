@@ -1,5 +1,8 @@
 " Yank to system clipboard
-set clipboard=unnamed
+" set clipboard=unnamed
+
+" Maps pasteinto to Alt-p
+map <A-p> :pasteinto<SPACE>
 
 " Surround Text with surround
 " https://github.com/esm7/obsidian-vimrc-support?tab=readme-ov-file#surround-text-with-surround
@@ -27,3 +30,11 @@ map s] :surround_square_brackets<CR>
 map s{ :surround_curly_brackets<CR>
 map s} :surround_curly_brackets<CR>
 map sk :surround_kbd<CR>
+
+" Can't make :map ds working, so use 'sd' to delete surround
+noremap sd" di""_da"p
+noremap sd' di'"_da'p
+noremap sdb dib"_dabp
+noremap sd( di("_da(p
+noremap sd[ di["_da[p
+noremap sd{ di{"_da{p

@@ -32,4 +32,5 @@ git worktree add -b gh-pages "../Obsidian Vault.worktrees/gh-pages" --orphan
 
 ```
 bun add -d https://github.com/jackyzha0/quartz.git --linker isolated
+git worktree add -b content ./content enihsyou-PC
 ```

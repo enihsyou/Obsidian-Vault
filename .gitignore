@@ -12,3 +12,4 @@ quartz
 tsconfig.json
 # git worktree
 content
+public/

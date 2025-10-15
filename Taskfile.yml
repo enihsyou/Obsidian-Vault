@@ -2,21 +2,23 @@ version: "3"
 tasks:
   preview:
     cmds:
-      - docker run --rm -it -p 8080:8080
+      - docker run --rm -it -p 3000:3000
         -v ./content:/usr/src/app/content:readonly 
         -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:readonly 
         -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:readonly 
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         ghcr.io/jackyzha0/quartz:sha-b4805a1
+        npx quartz build --concurrency 4 --serve
   build:
     cmds:
       - docker run --rm -t
         -v ./content:/usr/src/app/content
         -v ./quartz.config.ts:/usr/src/app/quartz.config.ts
         -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts
+        -v ./:/usr/src/app/public
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz --help
+        npx quartz build --concurrency 4 --output public/public
 
   symlink-quartz:
     desc: 创建指向 node_modules/quartz 的符号链接

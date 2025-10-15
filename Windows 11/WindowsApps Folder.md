@@ -1,3 +1,6 @@
+---
+创建时间: 2025-03-30T21:59:19+08:00
+---
 [应用执行别名](https://learn.microsoft.com/zh-cn/sysinternals/downloads/microsoft-store#app-execution-aliases)
 
 C:\Users\enihsyou\AppData\Local\Microsoft\WindowsApps

@@ -1,13 +1,16 @@
+---
+创建时间: 2025-06-06T18:07:10+08:00
+---
 为了从 SVG 导出 PNG 我下载了两个软件
 
 为两个可执行文件创建了 shim
 shim_exec "inkscape.exe"
 shim_exec "magick.exe"
 
-然后觉得inkscape不好用，卸载了它，此时shim指向无效的地址
+然后觉得 inkscape 不好用，卸载了它，此时 shim 指向无效的地址
 
 再执行 `magick icon.svg -background none -resize 1024x1024 icon.png` 进行转换时
- magick 会尝试在一些目录（包含PATH）中寻找 inkscape.exe，然后触发错误
+ magick 会尝试在一些目录（包含 PATH）中寻找 inkscape.exe，然后触发错误
 
 ```shellsession
 PowerShell 7.5.1  
@@ -44,10 +47,9 @@ at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionConte
 at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
 ```
 
-
 原因是 **ImageMagick utilizes inkscape if its in your execution path otherwise RSVG**.
 
-https://www.imagemagick.org/discourse-server/viewtopic.php?t=23916
+<https://www.imagemagick.org/discourse-server/viewtopic.php?t=23916>
 
 
-实际上此时把 inkscape.exe 换成任意可执行文件都会被执行，比如calc.exe，很容易攻击
+实际上此时把 inkscape.exe 换成任意可执行文件都会被执行，比如 calc.exe，很容易攻击

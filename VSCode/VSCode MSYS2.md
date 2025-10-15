@@ -1,3 +1,6 @@
+---
+创建时间: 2025-03-30T14:16:51+08:00
+---
 
 MSYS2 + VSCode 的组合出现已经十年了，出问题肯定互联网上有人遇到过了，没见到只是搜索不彻底，
 
@@ -12,8 +15,7 @@ Follow vcvarsall.bat，它要求在由它启动的终端里启动 VSCode，因�
 
 [windows - Executing a script in MSYS2/MinGW - Stack Overflow](https://stackoverflow.com/questions/47438779/executing-a-script-in-msys2-mingw/79201770#79201770)
 
-IntelliSense 报错，打开主要编译文件 main.c 再打开其他文件就没问题了e
-
+IntelliSense 报错，打开主要编译文件 main.c 再打开其他文件就没问题了 e
 
 ```
 ##################################################################

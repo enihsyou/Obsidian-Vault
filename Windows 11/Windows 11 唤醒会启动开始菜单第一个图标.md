@@ -1,3 +1,6 @@
+---
+创建时间: 2025-08-04T15:41:04+08:00
+---
 
 很多人能发现并描述问题
 - [Edge opens when waking Windows 11 PC from Sleep : r/MicrosoftEdge](https://www.reddit.com/r/MicrosoftEdge/comments/10n04ov/edge_opens_when_waking_windows_11_pc_from_sleep/)

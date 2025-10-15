@@ -1,3 +1,6 @@
+---
+创建时间: 2025-04-09T15:14:44+08:00
+---
 
 ```shellsession
 $ Get-SmbClientConfiguration  
@@ -48,7 +51,6 @@ Smb2DialectMin : None
 UseOpportunisticLocking : True  
 WindowSizeThreshold : 8
 ```
-
 
 ```powershell
 Set-SmbClientConfiguration -EnableBandwidthThrottling $false

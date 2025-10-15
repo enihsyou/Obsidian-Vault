@@ -1,10 +1,15 @@
+---
+创建时间: 2025-02-25T15:49:36+08:00
+---
 问题：
+
 ```
 服务器: Unknown
 Address: 2409:8a1e:6e71:5eb0::1
 ```
 
 解决效果：
+
 ```
 $ nslookup -d2 pve.lan
 ------------
@@ -38,14 +43,15 @@ Got answer (122 bytes):
 Address:  2409:8a1e:6e71:5eb0::1
 ```
 
-
 History
 1. PTR record on dnsmasq.d
 2. /etc/hosts
 3. interface-name on dnsmasq.conf.add \[ working ]
 
 ## PTR record on dnsmasq.d
+
 On Windows
+
 ```shell-session
 $ ipconfig /all | findstr "DNS"
 
@@ -53,6 +59,7 @@ DNS 服务器 . . . . . . . . . . . : 2409:8a1e:6e71:5eb0::1
 ```
 
 On Router
+
 ```shell-session
 $ cat /jffs/configs/dnsmasq.d/ipv6-arp.conf
 
@@ -60,20 +67,24 @@ ptr-record=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.b.e.5.1.7.e.6.e.1.a.8.9.0.4.2.ip6.a
 
 
 ```
+
 [[Dnsmasq-discuss] No Reverse ipv6 DNS lookups with dnsmasq?](https://dnsmasq-discuss.thekelleys.org.narkive.com/I93eSWze/no-reverse-ipv6-dns-lookups-with-dnsmasq)
 
 ## Hosts record on /etc/hosts
+
 ```bash
 echo "2409:8a1e:6e71:5eb0::1 RT-AX86U-CE58-IPv6" >> /etc/hosts
 ```
 
 ## interface-name on dnsmasq.conf.add
+
 ```bash
 cat /jffs/configs/dnsmasq.conf.add
 
 # resolve self as IPv6 address when client doing DNS request  
 interface-name=RT-AX86U-CE58-IPv6,br0/6
 ```
+
 这里的 `/6` 代表 IPv6
 [Router IPv6 hosts entries | SNBForums](https://www.snbforums.com/threads/router-ipv6-hosts-entries.60421/#post-529909)
 
@@ -120,6 +131,7 @@ fi
 ---
 
 On Merlin Clash
+
 ```yaml
 dns:
   enable: true
@@ -135,7 +147,9 @@ dns:
   fallback:
     - 8.8.8.8
 ```
+
 [Custom config files · RMerl/asuswrt-merlin.ng Wiki](https://github.com/RMerl/asuswrt-merlin.ng/wiki/Custom-config-files)
+
 ```
 nslookup x.com
 172.66.0.227

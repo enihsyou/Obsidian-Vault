@@ -1,6 +1,9 @@
+---
+创建时间: 2025-08-07T03:45:27+08:00
+---
 
 似乎大家打成一致用 shellsession 了，别的写法还有 console，sh，shell-session, terminal
-https://stackoverflow.com/a/78359672/5277711
+<https://stackoverflow.com/a/78359672/5277711>
 
 [highlight.js/src/languages/shell.js at main · highlightjs/highlight.js](https://github.com/highlightjs/highlight.js/blob/main/src/languages/shell.js)
 [prism/components/prism-shell-session.js at master · PrismJS/prism](https://github.com/PrismJS/prism/blob/master/components/prism-shell-session.js)

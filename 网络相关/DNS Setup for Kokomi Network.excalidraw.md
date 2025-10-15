@@ -1,15 +1,14 @@
 ---
-
 excalidraw-plugin: parsed
 tags: [excalidraw]
-
+创建时间: 2025-09-18T12:20:42+08:00
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
-
+==⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
 
 # Excalidraw Data
 
 ## Text Elements
+
 Hostname: docker
 2409:8a1e:6e71:5eb0:be24:11ff:fec1:ba8d ^1DcTrKgn
 
@@ -45,13 +44,15 @@ paimon.kokomi.me ^inKjYtZ8
 
 broadcast-channel.kokomi.me ^NuHYK8co
 
-119.91.224.217        Tencent Cloud
+119.91.224.217 Tencent Cloud
 2402:4e00:c011:e00:5e3c:c1ba:c450:0 ^pjCvgm2c
 
 Tencent EdgeOne ^3ZhY4kq5
 
 %%
+
 ## Drawing
+
 ```compressed-json
 N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGAFYEmjoghH0EDihmbgBtcDBQMBKIEm4IAE1sAAlidQAOKAB1fGcAEQApABVOgFUARX0oADEAYVSSyFhECsDsKI5lYMnS
 
@@ -381,4 +382,5 @@ ASS2SRkBYhN0AUKMcS4ScqSySdiTZkLSTvQNKS74WyAjQAbJ55vfkdlIZxXIuwtC4P34eQKJIwkLLtlg
 
 pI3bkSAdZODJOpJigxJM5ATJKbQnAEPGzijPQFYGHQnXjxoGZI9By+iIANglvc8qB42blVSE213L2XxKYAFq3eJ4c03JnIAAMMMGeMS+WDJdgDYQgBAxoMMDgAKZLTJR5MzJQo1pACwFH8CAG6AxpyqEEsFhQYQGCAT5P5EwJIxg+gA1JQGAb2mdxBkBgDho35NHJ7aFwszbXLQT5MYAr5J5Ae/3AAl8B4c4QFxgIsA7AQAA
 ```
+
 %%

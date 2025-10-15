@@ -1,10 +1,13 @@
+---
+创建时间: 2025-03-20T00:54:58+08:00
+---
 Windows world
 shim batch file
 SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths
 Start-Process
 
  modifying the system path is not exactly best practice since it may slow down the system, break other applications and even create security holes.
- 也能想象，因为PATH需要的是目录
+ 也能想象，因为 PATH 需要的是目录
 
 
 Linux world
@@ -16,7 +19,6 @@ alias, function
 add to PATH bad side: restart the terminal session to get any potential path entries that have been made by an installer
 [Shims like Scoop · 议题 #361 · microsoft/winget-cli](https://github.com/microsoft/winget-cli/issues/361)
 [Chocolatey Software Docs | Executable shimming (like symlinks but better)](https://docs.chocolatey.org/en-us/features/shim/)
-
 
 > CreateProcess() on Windows will not execute a batch file (`.cmd` is an alias for `.bat`), you need to invoke `cmd.exe` to execute it.
 

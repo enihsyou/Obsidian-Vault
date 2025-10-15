@@ -1,3 +1,6 @@
+---
+创建时间: 2025-03-30T14:31:33+08:00
+---
 
 [im-select/README_CN.md at master · daipeihust/im-select](https://github.com/daipeihust/im-select/blob/master/README_CN.md)
 [解决 Windows 系统下输入法问题](https://wsdjeg.net/neovim-im-select-in-windows/) 或许 im-select-mspy 可以，~~但我没法让它工作。调试下来是 FindAll 找不到对应的按钮，没有编写相关代码的经验。~~写了 [[im-select PR]] 能用了

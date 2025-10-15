@@ -1,3 +1,6 @@
+---
+创建时间: 2025-03-17T17:14:13+08:00
+---
 
 
 [Avahi Tutorial: Configuring a Reflector (aka, mDNS repeater) | LinksysInfo.org](https://www.linksysinfo.org/index.php?threads/avahi-tutorial-configuring-a-reflector-aka-mdns-repeater.75706/)
@@ -125,7 +128,9 @@ server.on('error', (err) => {
   server.close();
 });
 ```
+
 ---
+
 最终方案
 
 ```

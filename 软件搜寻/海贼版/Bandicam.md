@@ -1,3 +1,6 @@
+---
+创建时间: 2025-04-17T00:45:10+08:00
+---
 
 [Bandicam v8.1.1.2518 (x64) | haxNode](https://haxnode.net/bandicam/)
 

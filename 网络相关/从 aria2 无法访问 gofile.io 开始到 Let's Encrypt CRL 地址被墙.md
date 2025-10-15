@@ -1,3 +1,6 @@
+---
+创建时间: 2025-07-24T17:25:00+08:00
+---
 在 Windows 上使用 aria2 从 \*.gofile.io 下载文件时一直提示 `由于吊销服务器已脱机，吊销功能无法检查吊销。(80092013)` 错误，最终定位到因为证书上的 CRL 地址 [http://e6.c.lencr.org/43.crl](http://e6.c.lencr.org/43.crl)
 
 ```
@@ -19,7 +22,8 @@ Schannel ID 36876
 最后还是选择代理下载 CRL 到缓存，之后就正常了。
 后面隔天发现源网站把资源重定向到别的服务器了，那个可以正常过证书验证
 
-用这个命令验证网站的证书，会尝试拉取 CRL，1秒后超时
+用这个命令验证网站的证书，会尝试拉取 CRL，1 秒后超时
+
 ```powershell
 $ certutil -t 1 –urlfetch -verify R:\site_certificate.crt
 
@@ -149,10 +153,12 @@ CertUtil: 由于吊销服务器已脱机，吊销功能无法检查吊销。
 
 CertUtil: -verify 命令成功完成。
 ```
+
 此时查看 `certutil -urlcache CRL` 是没有被缓存的
 
 
 添加上代理之后，
+
 ```powershell
 $ certutil -t 1 –urlfetch -verify R:\your_certificate.crt
 颁发者:

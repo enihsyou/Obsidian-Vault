@@ -1,3 +1,6 @@
+---
+创建时间: 2025-02-27T00:45:33+08:00
+---
 # 告别 GitHub 容量焦虑：从 Git LFS 退化回直接存储
 
 Git LFS（Large File Storage）曾经是管理 Git 仓库中二进制文件的好助手，尤其是对于像图片、PDF 等大型文件。然而，随着 GitHub 对免费账户的存储和流量限制日益严格，它可能不再是所有场景下的最佳选择。
@@ -8,8 +11,8 @@ Git LFS（Large File Storage）曾经是管理 Git 仓库中二进制文件的�
 
 GitHub 对免费账户的 Git LFS 有几个卡脖子的限制：
 
-- GitHub 现在对免费账户的 LFS 的[容量和流量都有限制][1]，且上限卡地很死，都只有 1GB。看着挺多，但自动化部署多 clone 几次就把流量花完了。关键是花完以后这一个月不充钱买流量就没法 clone 了
-- 删除掉的文件同样[占用容量配额][2]，想要回收只能删除仓库。但删除仓库意味着丢失所有 Star 和 Discussion 记录，对于一个打算用 [giscus] 来记录评论的本站来说是不可接受的
+- GitHub 现在对免费账户的 LFS 的 [容量和流量都有限制][1]，且上限卡地很死，都只有 1GB。看着挺多，但自动化部署多 clone 几次就把流量花完了。关键是花完以后这一个月不充钱买流量就没法 clone 了
+- 删除掉的文件同样 [占用容量配额][2]，想要回收只能删除仓库。但删除仓库意味着丢失所有 Star 和 Discussion 记录，对于一个打算用 [giscus] 来记录评论的本站来说是不可接受的
 
 这些限制让我开始反思：对于我的使用场景——个人博客仓库，仅作为多设备同步和云端部署的“网盘”，且只有一个分支，Git LFS 的复杂性和价格似乎有些多余。更重要的是，多年发布的文章历史记录对我而言价值有限，保留旧版本的二进制文件只会白白占用空间。
 
@@ -18,11 +21,11 @@ GitHub 对免费账户的 Git LFS 有几个卡脖子的限制：
 
 > 当然也想过别的方式绕过 GitHub 容量、流量双重限制，比如白嫖（别人）自建的 GitLab，但考虑到多不如少的节约思想，最终还是整体放在 GitHub。
 
-[1]: https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-storage-and-bandwidth-usage
+[1]: <https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-storage-and-bandwidth-usage>
     "About storage and bandwidth usage - GitHub Docs"
-[2]: https://docs.github.com/en/repositories/working-with-files/managing-large-files/removing-files-from-git-large-file-storage#git-lfs-objects-in-your-repository
+[2]: <https://docs.github.com/en/repositories/working-with-files/managing-large-files/removing-files-from-git-large-file-storage#git-lfs-objects-in-your-repository>
     "Removing files from Git Large File Storage - GitHub Docs"
-[giscus]: https://giscus.app/
+[giscus]: <https://giscus.app/>
     "Giscus - A comment system powered by GitHub Discussions"
 
 ## 做成什么样
@@ -37,7 +40,7 @@ GitHub 对免费账户的 Git LFS 有几个卡脖子的限制：
 
 - **方案 A：抹除旧版本信息。** 从 Commit 中彻底删除旧版本文件的信息，没添加进来当然不会占空间。问题是会丢失文件的变更历史。
 - **方案 B：让所有版本指向同一个 Blob。** 让所有提交都指向最新版本的 Blob，从而避免存储旧版本文件。然而会导致文件在首次提交后，其历史记录不再发生变化。
-- **方案 C：旧版本文件名保留但内容为空。** 通过在旧版本中保留文件名，但将其内容替换为空文件，从而保留了文件的变更记录，同时避免了存储旧版本文件。相当于只在最后一个操作该文件的提交中才把文件添加进来，在之前都是0字节的占位符
+- **方案 C：旧版本文件名保留但内容为空。** 通过在旧版本中保留文件名，但将其内容替换为空文件，从而保留了文件的变更记录，同时避免了存储旧版本文件。相当于只在最后一个操作该文件的提交中才把文件添加进来，在之前都是 0 字节的占位符
 
 因为我想要尽量保留变更记录，方案 C 最符合需求
 
@@ -64,7 +67,7 @@ o  Initinal                     o  Initinal
 
 > [!danger] 本文介绍的修改历史、清空存储等操作具有危险性、不可恢复性。
 > 请务必充分了解命令内容，预先演练，做好备份，并再三确认。
->此方案仅在单分支仓库中验证符合预期，对于包含分支合并记录的仓库，其行为未定义
+> 此方案仅在单分支仓库中验证符合预期，对于包含分支合并记录的仓库，其行为未定义
 
 ### 1. 确认仓库当前状态
 
@@ -99,13 +102,13 @@ Format: sha, unpacked size, packed size, filename(s) object stored as
 
 例如，在我们的仓库中，有两张 PNG 文件分别是原图和缩放后的版本。在这种情况下，保留最新版本就足够了。由于历史记录在文章发布后很少会被查看，因此让它们一直占用空间是不合理的。
 
-因为重写完后本地和远程仓库可以说是一点关系都没有，避免手快一组 pull-rebase-force-push 当场火葬。建议提前移除 remote，不做这个接下来工具会报个WARNING并[自动帮你做][3]
+因为重写完后本地和远程仓库可以说是一点关系都没有，避免手快一组 pull-rebase-force-push 当场火葬。建议提前移除 remote，不做这个接下来工具会报个 WARNING 并 [自动帮你做][3]
 
 ```bash
 git remote remove origin
 ```
 
-[3]: https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#_why_is_my_origin_removed
+[3]: <https://htmlpreview.github.io/?https>:<//github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#_why_is_my_origin_removed>
     "Why is my origin removed? - git-filter-repo(1)"
 
 ### 2. 卸载 Git LFS
@@ -113,7 +116,7 @@ git remote remove origin
 > [!warning]
 > 此步骤会从远程仓库拉取所有保存在 Git LFS 上的文件和历史记录。如果你的网络流量不足就悲剧了。只能花钱购买流量，或者每月逐步 `--include` 一部分文件
 
-Git LFS 带有非常友好的[一键退出命令][4] `migrate export`，根据 [StackOverflow 上的回答][5]，构造出了下面的指令
+Git LFS 带有非常友好的 [一键退出命令][4] `migrate export`，根据 [StackOverflow 上的回答][5]，构造出了下面的指令
 
 ```shell
 git lfs migrate export --include="*" --everything --verbose
@@ -145,15 +148,15 @@ rm .gitattributes
 git commit -am "Uninstall Git LFS"
 ```
 
-[4]: https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc#export
+[4]: <https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc#export>
     "EXPORT - git-lfs-migrate(1)"
-[5]: https://stackoverflow.com/questions/48699293/how-do-i-disable-git-lfs/78177562#78177562
+[5]: <https://stackoverflow.com/questions/48699293/how-do-i-disable-git-lfs/78177562#78177562>
     "How do I disable git-lfs? - Answered by Sean Lin"
 
 ### 3. 找出需保留的文件
 
 接下来才是重头戏，使用 `git-filter-repo` 工具来重写历史，把旧版本的文件都替换成空文件。
-DeekSeek 思考了 277s 之后给出了初版，我大修了修+大改了改，最终得到了下面的命令
+DeekSeek 思考了 277s 之后给出了初版，我大修了修 + 大改了改，最终得到了下面的命令
 
 ```shell
 git -c core.quotePath=false log HEAD --format='%H' --name-only --diff-filter=AM --ignore-submodules=all | \
@@ -203,7 +206,7 @@ git -c core.quotePath=false ls-tree ...
 ### 5. 重写历史
 
 万事俱备，接下来就是重写历史了，这里需要用的高级的 `--file-info-callback` 参数，可以让在它遍历每个文件时执行你的 Python 脚本。
-官方文档格式自动输出地比较乱，我这整理一下，建议直接阅读[file_info_callback的源码][6]。
+官方文档格式自动输出地比较乱，我这整理一下，建议直接阅读 [file_info_callback 的源码][6]。
 
 ```python
 def file_info_callback(filename, mode, blob_id, value):
@@ -236,7 +239,7 @@ def file_info_callback(filename, mode, blob_id, value):
     BODY
 ```
 
-[6]: https://github.com/newren/git-filter-repo/blob/5d63e44137ae1c6c1e3ed2820ab1c2b4ad81b0b9/git-filter-repo#L1876\
+[6]: <https://github.com/newren/git-filter-repo/blob/5d63e44137ae1c6c1e3ed2820ab1c2b4ad81b0b9/git-filter-repo#L1876>\
     "git-filter-repo - file_info_callback"
 
 传入的文本会用于替换 `BODY`，函数接受四个参数，需要返回一个三元元组。
@@ -293,6 +296,7 @@ filename == b'yarn.lock'
 ```
 
 - 只处理超过 1MB 的文件可以改成
+
 ```python
 value.get_size_by_identifier(blob_id) > (1 << 20)
 ```
@@ -328,8 +332,8 @@ Completely finished after 1.18 seconds.
 
 | 指标       | 优化前     | 优化后  | 降幅   |
 | -------- | ------- | ---- | ---- |
-| .git目录体积 | 171MB   | 27MB | 94%  |
-| blobs数量  | 604     | 185  | 69%  |
-| LFS流量消耗  | 800MB/月 | 0    | 100% |
+| .git 目录体积 | 171MB   | 27MB | 94%  |
+| blobs 数量  | 604     | 185  | 69%  |
+| LFS 流量消耗  | 800MB/月 | 0    | 100% |
 
 本文用来记录这个过程，以及提供一个参考方案，我从中学到了很多，希望本篇文章能为同样面临仓库空间压力的开发者提供一些参考和帮助。

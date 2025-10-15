@@ -1,3 +1,6 @@
+---
+创建时间: 2025-05-21T14:19:35+08:00
+---
 ### 跳转引用时复用 split 窗口，而不是在 current editor group 里开个新的
 
 1. "workbench.editor.revealIfOpen": true 跳转定义展示在另一个组，但并不是每次，不稳定

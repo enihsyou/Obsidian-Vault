@@ -1,3 +1,6 @@
+---
+创建时间: 2025-08-07T03:45:27+08:00
+---
 [Unable to set my port to 443 on my ASUS router : r/OpenVPN](https://www.reddit.com/r/OpenVPN/comments/13xz3jy/unable_to_set_my_port_to_443_on_my_asus_router/)
 
 虽然在更新 388 版本之后， 从 `外部网络(WAN) - DDNS` 页面可以上传自定义证书，不再需要命令行了，在 `系统管理 - 系统设置` 界面也会提示去那里修改。

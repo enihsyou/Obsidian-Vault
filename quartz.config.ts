@@ -20,7 +20,7 @@ const config: QuartzConfig = {
     },
     locale: "zh-CN",
     baseUrl: "obsidian.kokomi.me",
-    ignorePatterns: [".*"],
+    ignorePatterns: [".*", "Templates", "Excalidraw"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
@@ -58,9 +58,12 @@ const config: QuartzConfig = {
   },
   plugins: {
     transformers: [
-      Plugin.FrontMatter(),
+      Plugin.FrontMatter({
+        created_properties: ["创建时间"],
+        modified_properties: ["修改时间"],
+      }),
       Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "git", "filesystem"],
+        priority: ["frontmatter"],
       }),
       Plugin.SyntaxHighlighting({
         theme: {

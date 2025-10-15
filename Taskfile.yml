@@ -1,24 +1,45 @@
 version: "3"
 tasks:
-  preview:
-    cmds:
-      - docker run --rm -it -p 3000:3000
-        -v ./content:/usr/src/app/content:readonly 
-        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:readonly 
-        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:readonly 
-        -e NPM_CONFIG_UPDATE_NOTIFIER=false
-        ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz build --concurrency 4 --serve
-  build:
+  docker-build:
+    desc: 本地开发阶段使用 Docker 构建网站
+    deps:
+      - symlink-quartz
+      - fetch-content
     cmds:
       - docker run --rm -t
-        -v ./content:/usr/src/app/content
-        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts
-        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts
-        -v ./:/usr/src/app/public
+        -v ./content:/usr/src/app/content:ro
+        -v ./quartz:/usr/src/app/quartz
+        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
+        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
+        -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz build --concurrency 4 --output public/public
+        npx quartz build --output hostdir/public
+
+  source-build:
+    desc: 线上发布阶段在 Quartz 源码目录构建网站
+    platforms:
+      - darwin
+      - linux
+    dir: ./node_modules/@jackyzha0/quartz
+    preconditions:
+      - test -f package.json
+    deps:
+      - fetch-content
+    cmds:
+      - cp {{.ROOT_DIR}}/quartz.config.ts ./quartz.config.ts
+      - cp {{.ROOT_DIR}}/quartz.layout.ts ./quartz.layout.ts
+      - cp -r {{.ROOT_DIR}}/content/* ./content
+      - pnpm run quartz build --output {{.ROOT_DIR}}/public --verbose
+
+  fetch-content:
+    desc: 从 Obsidian Vault 同步内容
+    cmds:
+      - git remote set-branches --add origin enihsyou-PC
+      - git fetch origin enihsyou-PC
+      - git worktree remove content || true
+      - git branch -D content
+      - git worktree add -b content ./content enihsyou-PC
 
   symlink-quartz:
     desc: 创建指向 node_modules/quartz 的符号链接

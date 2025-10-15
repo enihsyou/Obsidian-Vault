@@ -1,7 +1,7 @@
 diff --git a/quartz/cfg.ts b/quartz/cfg.ts
 index 57dff5c759b23b1d11359610553465280160eb2f..5743aa1672c2e913653f53f8c479f973709f8dd5 100644
 --- a/quartz/cfg.ts
-+++ b/quartz/cfg.ts
++++ b/quartz/cfg.ts	
 @@ -18,6 +18,7 @@ export type Analytics =
        provider: "umami"
        websiteId: string
@@ -13,7 +13,7 @@ index 57dff5c759b23b1d11359610553465280160eb2f..5743aa1672c2e913653f53f8c479f973
 diff --git a/quartz/plugins/emitters/componentResources.ts b/quartz/plugins/emitters/componentResources.ts
 index f97fddec28e5265e74b249e76299f90095eb4511..9c1d2ade20b7803698e83eba3abbe05fc544316f 100644
 --- a/quartz/plugins/emitters/componentResources.ts
-+++ b/quartz/plugins/emitters/componentResources.ts
++++ b/quartz/plugins/emitters/componentResources.ts	
 @@ -126,7 +126,7 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
    } else if (cfg.analytics?.provider === "umami") {
      componentResources.afterDOMLoaded.push(`
@@ -23,3 +23,50 @@ index f97fddec28e5265e74b249e76299f90095eb4511..9c1d2ade20b7803698e83eba3abbe05f
        umamiScript.setAttribute("data-website-id", "${cfg.analytics.websiteId}");
        umamiScript.setAttribute("data-auto-track", "true");
        umamiScript.defer = true;
+diff --git a/quartz/plugins/transformers/frontmatter.ts b/quartz/plugins/transformers/frontmatter.ts
+index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a60fa0943d 100644
+--- a/quartz/plugins/transformers/frontmatter.ts
++++ b/quartz/plugins/transformers/frontmatter.ts	
+@@ -10,11 +10,17 @@ import { i18n } from "../../i18n"
+ export interface Options {
+   delimiters: string | [string, string]
+   language: "yaml" | "toml"
++  created_properties: string[]
++  modified_properties: string[]
++  published_properties: string[]
+ }
+ 
+ const defaultOptions: Options = {
+   delimiters: "---",
+   language: "yaml",
++  created_properties: ["created", "date"],
++  modified_properties: ["modified", "lastmod", "updated", "last-modified"],
++  published_properties: ["published", "publishDate", "date"],
+ }
+ 
+ function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
+@@ -100,20 +106,15 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
+ 
+             const socialImage = coalesceAliases(data, ["socialImage", "image", "cover"])
+ 
+-            const created = coalesceAliases(data, ["created", "date"])
++            const created = coalesceAliases(data, opts.created_properties)
+             if (created) {
+               data.created = created
+               data.modified ||= created // if modified is not set, use created
+             }
+-
+-            const modified = coalesceAliases(data, [
+-              "modified",
+-              "lastmod",
+-              "updated",
+-              "last-modified",
+-            ])
++            
++            const modified = coalesceAliases(data, opts.modified_properties)
+             if (modified) data.modified = modified
+-            const published = coalesceAliases(data, ["published", "publishDate", "date"])
++            const published = coalesceAliases(data, opts.published_properties)
+             if (published) data.published = published
+ 
+             if (socialImage) data.socialImage = socialImage

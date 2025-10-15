@@ -1,0 +1,6 @@
+{
+  "name": "enihsyou-obsidian",
+  "buildCommand": "./scripts/edgeone-build.sh",
+  "installCommand": "pnpm install",
+  "outputDirectory": "./public"
+}

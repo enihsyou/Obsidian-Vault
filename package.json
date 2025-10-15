@@ -6,7 +6,6 @@
     "@jackyzha0/quartz": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
-    "postinstall": "task symlink-quartz",
     "build": "task build"
   },
   "peerDependencies": {

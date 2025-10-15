@@ -1,0 +1,25 @@
+diff --git a/quartz/cfg.ts b/quartz/cfg.ts
+index 57dff5c759b23b1d11359610553465280160eb2f..5743aa1672c2e913653f53f8c479f973709f8dd5 100644
+--- a/quartz/cfg.ts
++++ b/quartz/cfg.ts
+@@ -18,6 +18,7 @@ export type Analytics =
+       provider: "umami"
+       websiteId: string
+       host?: string
++      scriptName?: string
+     }
+   | {
+       provider: "goatcounter"
+diff --git a/quartz/plugins/emitters/componentResources.ts b/quartz/plugins/emitters/componentResources.ts
+index f97fddec28e5265e74b249e76299f90095eb4511..9c1d2ade20b7803698e83eba3abbe05fc544316f 100644
+--- a/quartz/plugins/emitters/componentResources.ts
++++ b/quartz/plugins/emitters/componentResources.ts
+@@ -126,7 +126,7 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
+   } else if (cfg.analytics?.provider === "umami") {
+     componentResources.afterDOMLoaded.push(`
+       const umamiScript = document.createElement("script");
+-      umamiScript.src = "${cfg.analytics.host ?? "https://analytics.umami.is"}/script.js";
++      umamiScript.src = "${cfg.analytics.host ?? "https://analytics.umami.is"}/${cfg.analytics.scriptName ?? "script"}.js";
+       umamiScript.setAttribute("data-website-id", "${cfg.analytics.websiteId}");
+       umamiScript.setAttribute("data-auto-track", "true");
+       umamiScript.defer = true;

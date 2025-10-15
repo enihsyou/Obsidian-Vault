@@ -1,0 +1,14 @@
+{
+  "name": "gh-pages",
+  "private": true,
+  "packageManager": "pnpm@10.18.3",
+  "dependencies": {
+    "@jackyzha0/quartz": "https://github.com/jackyzha0/quartz.git"
+  },
+  "scripts": {
+    "postinstall": "task symlink-quartz"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

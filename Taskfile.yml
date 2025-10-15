@@ -1,0 +1,54 @@
+version: "3"
+tasks:
+  preview:
+    cmds:
+      - docker run --rm -it -p 8080:8080
+        -v ./content:/usr/src/app/content:readonly 
+        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:readonly 
+        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:readonly 
+        -e NPM_CONFIG_UPDATE_NOTIFIER=false
+        ghcr.io/jackyzha0/quartz:sha-b4805a1
+  build:
+    cmds:
+      - docker run --rm -t
+        -v ./content:/usr/src/app/content
+        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts
+        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts
+        -e NPM_CONFIG_UPDATE_NOTIFIER=false
+        ghcr.io/jackyzha0/quartz:sha-b4805a1
+        npx quartz --help
+
+  symlink-quartz:
+    desc: 创建指向 node_modules/quartz 的符号链接
+    summary: |
+      为处于 node_modules 中的 quartz 源代码创建符号链接。
+      因为本项目的文件用于绑定到容器运行环境中，但像是 quartz.config.ts 会依赖 quartz 源代码中的类型定义。
+      使得编译用的 quartz 源代码没有提交的必要，也就不想在仓库中直接包含。不好使用 git clone / git subtree，
+      又有 git submodule 太不合习惯，最终选择把源仓库添加到依赖中，然后必要文件通过符号链接形式从 node_modules 中引用。
+    deps:
+      - symlink-quartz-unix
+      - symlink-quartz-windows
+  symlink-quartz-windows:
+    platforms: [windows]
+    cmds:
+      - |
+        modules_root="./node_modules"
+        patches_root="./node_modules/.pnpm_patches"
+        if [ -d "$patches_root" ]; then
+          modules_root="$patches_root"
+        fi
+        pwsh -NoProfile -Command - << EOF
+          New-Item -Force -ItemType SymbolicLink -Value $modules_root/@jackyzha0/quartz/quartz        -Path quartz
+          New-Item -Force -ItemType SymbolicLink -Value $modules_root/@jackyzha0/quartz/tsconfig.json -Path tsconfig.json
+        EOF
+  symlink-quartz-unix:
+    platforms: [darwin, linux]
+    cmds:
+      - |
+        modules_root="./node_modules"
+        patches_root="./node_modules/.pnpm_patches"
+        if [ -d "$patches_root" ]; then
+          modules_root="$patches_root"
+        fi
+        ln -sf $modules_root/@jackyzha0/quartz/quartz        ./quartz
+        ln -sf $modules_root/@jackyzha0/quartz/tsconfig.json ./tsconfig.json

@@ -28,9 +28,11 @@
 git worktree add -b gh-pages "../Obsidian Vault.worktrees/gh-pages" --orphan
 ```
 
-2. 
-
 ```
 bun add -d https://github.com/jackyzha0/quartz.git --linker isolated
 git worktree add -b content ./content enihsyou-PC
 ```
+
+3. xx
+
+> `bun patch` 在 Windows 上基本不可用 [`bun patch` error on windows · 议题 #18875 · oven-sh/bun](https://github.com/oven-sh/bun/issues/18875)，并且 `bun patch` 对于非 NPM 包（直接从 GitHub 安装的包）会 Segmentation fault [Bun crash when trying to patch dependency from GitHub · Issue #22773 · oven-sh/bun](https://github.com/oven-sh/bun/issues/22773)，这下得切换到 PNPM 试试。

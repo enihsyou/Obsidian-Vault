@@ -23,12 +23,13 @@ const config: QuartzConfig = {
     ignorePatterns: [".*", "Templates", "Excalidraw"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      // we define fonts on header
+      fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Noto Sans SC",
-        body: "Noto Sans SC",
-        code: "Victor Mono",
+        header: "MiSans",
+        body: "MiSans",
+        code: "JetBrains Mono",
       },
       colors: {
         lightMode: {

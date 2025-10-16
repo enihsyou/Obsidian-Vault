@@ -10,6 +10,20 @@ index 57dff5c759b23b1d11359610553465280160eb2f..5743aa1672c2e913653f53f8c479f973
      }
    | {
        provider: "goatcounter"
+diff --git a/quartz/components/styles/listPage.scss b/quartz/components/styles/listPage.scss
+index e86c39dcb90abd3bdf6dffcecc9ddb4cb57dfc53..79fd71f4fcddb68b4392dba5fd759e4df35caffa 100644
+--- a/quartz/components/styles/listPage.scss
++++ b/quartz/components/styles/listPage.scss
+@@ -11,7 +11,8 @@ li.section-li {
+ 
+   & > .section {
+     display: grid;
+-    grid-template-columns: fit-content(8em) 3fr 1fr;
++    // 使用固定值同步列表每个元素的宽度
++    grid-template-columns: 9em 3fr 1fr;
+ 
+     @media all and ($mobile) {
+       & > .tags {
 diff --git a/quartz/plugins/emitters/componentResources.ts b/quartz/plugins/emitters/componentResources.ts
 index f97fddec28e5265e74b249e76299f90095eb4511..4535f9355d853c40ef8d938f5bbc9a88361e9dc7 100644
 --- a/quartz/plugins/emitters/componentResources.ts
@@ -23,6 +37,19 @@ index f97fddec28e5265e74b249e76299f90095eb4511..4535f9355d853c40ef8d938f5bbc9a88
        umamiScript.setAttribute("data-website-id", "${cfg.analytics.websiteId}");
        umamiScript.setAttribute("data-auto-track", "true");
        umamiScript.defer = true;
+diff --git a/quartz/plugins/emitters/ogImage.tsx b/quartz/plugins/emitters/ogImage.tsx
+index 813d9348c2ad8c131d8d8f707e70d2f25c066ace..63893c19084fab01a80218ac5d16c18b86010feb 100644
+--- a/quartz/plugins/emitters/ogImage.tsx
++++ b/quartz/plugins/emitters/ogImage.tsx
+@@ -62,7 +62,7 @@ async function generateSocialImage(
+     },
+   })
+ 
+-  return sharp(Buffer.from(svg)).webp({ quality: 40 })
++  return sharp(Buffer.from(svg)).webp({ quality: 60 })
+ }
+ 
+ async function processOgImage(
 diff --git a/quartz/plugins/transformers/frontmatter.ts b/quartz/plugins/transformers/frontmatter.ts
 index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a60fa0943d 100644
 --- a/quartz/plugins/transformers/frontmatter.ts
@@ -70,3 +97,36 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
              if (published) data.published = published
  
              if (socialImage) data.socialImage = socialImage
+diff --git a/quartz/util/og.tsx b/quartz/util/og.tsx
+index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08af4ecfd3 100644
+--- a/quartz/util/og.tsx
++++ b/quartz/util/og.tsx
+@@ -88,6 +88,15 @@ export async function fetchTtf(
+     // ignore errors and fetch font
+   }
+ 
++  let fontUrl: string;
++  if (rawFontName === "MiSans") {
++    const weightNameMap: Record<number, string> = {
++      400: "Regular",
++      700: "Bold",
++    }
++    const filename = `MiSans-${weightNameMap[weight]}.ttf`
++    fontUrl = `https://wget.la/https://github.com/dsrkafuu/misans/blob/main/raw/Normal/ttf/${filename}`
++  } else {
+   // Get css file from google fonts
+   const cssResponse = await fetch(
+     `https://fonts.googleapis.com/css2?family=${fontName}:wght@${weight}`,
+@@ -107,9 +116,11 @@ export async function fetchTtf(
+     )
+     return
+   }
++  fontUrl = match[1];
++  }
+ 
+   // fontData is an ArrayBuffer containing the .ttf file data
+-  const fontResponse = await fetch(match[1])
++  const fontResponse = await fetch(fontUrl)
+   const fontData = Buffer.from(await fontResponse.arrayBuffer())
+   await fs.mkdir(cacheDir, { recursive: true })
+   await fs.writeFile(cachePath, fontData)

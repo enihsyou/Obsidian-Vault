@@ -3,6 +3,19 @@ tasks:
   docker-preview:
     desc: 本地开发阶段使用 Docker 预览网站
     cmds:
+      - docker run --rm -it -p 3000:3000
+        -v ./content:/usr/src/app/content
+        -v ./quartz:/usr/src/app/quartz
+        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
+        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
+        -v ./:/usr/src/app/hostdir
+        -e NPM_CONFIG_UPDATE_NOTIFIER=false
+        ghcr.io/jackyzha0/quartz:sha-b4805a1
+        npx quartz build --serve --port=3000 --concurrency=4
+
+  docker-preview-watch:
+    desc: 本地开发阶段使用 Docker 预览网站并监听 content 目录文件变动
+    cmds:
       - docker run --rm -dit -p 3000:3000
         -v ./content:/usr/src/app/content
         -v ./quartz:/usr/src/app/quartz
@@ -16,7 +29,8 @@ tasks:
       - defer: docker stop obsidian-site-preview
       - docker logs -f obsidian-site-preview &
       # 使用前需安装 uv tool install https://github.com/enihsyou/docker-windows-volume-watcher.git
-      - docker-volume-watcher obsidian-site-preview
+      # 异常发生后注意及时退出以防占用系统资源
+      - docker-volume-watcher obsidian-site-preview -e .quartz-cache
 
   docker-build:
     desc: 本地开发阶段使用 Docker 构建网站
@@ -45,17 +59,17 @@ tasks:
     deps:
       - fetch-content
     cmds:
-      - cp {{.ROOT_DIR}}/quartz.config.ts ./quartz.config.ts
-      - cp {{.ROOT_DIR}}/quartz.layout.ts ./quartz.layout.ts
-      - cp -r {{.ROOT_DIR}}/content/* ./content
-      - pnpm run quartz build --output {{.ROOT_DIR}}/public --verbose
+      - cp "{{.ROOT_DIR}}/quartz.config.ts" ./quartz.config.ts
+      - cp "{{.ROOT_DIR}}/quartz.layout.ts" ./quartz.layout.ts
+      - cp -r "{{.ROOT_DIR}}/content/"* ./content
+      - pnpm run quartz build --output "{{.ROOT_DIR}}/public" --verbose
 
   fetch-content:
     desc: 从 Obsidian Vault 同步内容
     cmds:
       - git remote set-branches --add origin enihsyou-PC
       - git fetch origin enihsyou-PC
-      - git worktree remove content || true
+      - git worktree remove content --force || true
       - git branch -D content || true
       - git worktree add -b content ./content enihsyou-PC
 

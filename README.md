@@ -6,3 +6,5 @@
 所以当更新了 `quartz` 目录（对 Quartz 项目有除配置外地改动）后，记得 `pnpm patch-commit`。
 
 > 包管理器选用 `pnpm`，因为 `bun patch` 功能在 [Windows](https://github.com/oven-sh/bun/issues/18875) 以及 [GitHub 直接依赖](https://github.com/oven-sh/bun/issues/22773)中均不可用。
+
+如果希望有更完整的 Intelisense，需要把 Quartz 的依赖用 `pnpm install --shamefully-hoist` 也安装上。

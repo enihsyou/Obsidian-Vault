@@ -1,5 +1,21 @@
 version: "3"
 tasks:
+  docker-preview:
+    desc: 本地开发阶段使用 Docker 预览网站
+    cmds:
+      - docker run --rm -dit -p 3000:3000
+        -v ./content:/usr/src/app/content
+        -v ./quartz:/usr/src/app/quartz
+        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
+        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
+        -e NPM_CONFIG_UPDATE_NOTIFIER=false
+        --name obsidian-site-preview
+        ghcr.io/jackyzha0/quartz:sha-b4805a1
+        npx quartz build --serve --port=3000
+      - defer: docker stop obsidian-site-preview
+      # 使用前需安装 uv tool install https://github.com/enihsyou/docker-windows-volume-watcher.git
+      - docker-volume-watcher obsidian-site-preview
+
   docker-build:
     desc: 本地开发阶段使用 Docker 构建网站
     deps:
@@ -75,3 +91,10 @@ tasks:
         fi
         ln -sf $modules_root/@jackyzha0/quartz/quartz        ./quartz
         ln -sf $modules_root/@jackyzha0/quartz/tsconfig.json ./tsconfig.json
+
+  prepare-patch:
+    desc: 准备对 Quartz 源代码的补丁
+    cmds:
+      - pnpm patch @jackyzha0/quartz
+      # 避免运行时产生的临时文件被包含到 patch 中
+      - echo ".quartz_cache" >> node_modules/.pnpm_patches/@jackyzha0/quartz/.gitignore

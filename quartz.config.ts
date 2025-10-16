@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: 'umami',
       websiteId: 'ae900655-a5c5-4662-b01c-d938d11afad0',
-      host: 'umami.kokomi.me',
+      host: 'https://umami.kokomi.me',
       scriptName: "umami.js" // need patched version of Quartz, see patches/
     },
     locale: "zh-CN",
@@ -26,8 +26,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Noto Sans Simplified Chinese",
-        body: "Noto Serif Simplified Chinese",
+        header: "Noto Sans SC",
+        body: "Noto Sans SC",
         code: "Victor Mono",
       },
       colors: {
@@ -63,6 +63,7 @@ const config: QuartzConfig = {
         modified_properties: ["修改时间"],
       }),
       Plugin.CreatedModifiedDate({
+        // 使用 Linter Obsidian 插件自动记录创建/更新时间
         priority: ["frontmatter"],
       }),
       Plugin.SyntaxHighlighting({
@@ -73,7 +74,7 @@ const config: QuartzConfig = {
         keepBackground: false,
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
-      // Plugin.GitHubFlavoredMarkdown(),
+      Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
@@ -83,6 +84,7 @@ const config: QuartzConfig = {
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
+      Plugin.ContentIndex(),
       Plugin.ContentPage(),
       Plugin.FolderPage(),
       // Plugin.TagPage(),
@@ -95,7 +97,7 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
-      // Plugin.CustomOgImages(),
+      Plugin.CustomOgImages(),
     ],
   },
 }

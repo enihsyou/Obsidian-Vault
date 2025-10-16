@@ -8,11 +8,13 @@ tasks:
         -v ./quartz:/usr/src/app/quartz
         -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
         -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
+        -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         --name obsidian-site-preview
         ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz build --serve --port=3000
+        npx quartz build --serve --port=3000 --output hostdir/public
       - defer: docker stop obsidian-site-preview
+      - docker logs -f obsidian-site-preview &
       # 使用前需安装 uv tool install https://github.com/enihsyou/docker-windows-volume-watcher.git
       - docker-volume-watcher obsidian-site-preview
 
@@ -54,7 +56,7 @@ tasks:
       - git remote set-branches --add origin enihsyou-PC
       - git fetch origin enihsyou-PC
       - git worktree remove content || true
-      - git branch -D content
+      - git branch -D content || true
       - git worktree add -b content ./content enihsyou-PC
 
   symlink-quartz:
@@ -97,4 +99,9 @@ tasks:
     cmds:
       - pnpm patch @jackyzha0/quartz
       # 避免运行时产生的临时文件被包含到 patch 中
-      - echo ".quartz_cache" >> node_modules/.pnpm_patches/@jackyzha0/quartz/.gitignore
+      - echo ".quartz-cache" >> node_modules/.pnpm_patches/@jackyzha0/quartz/.gitignore
+
+  commit-patch:
+    desc: 提交对 Quartz 源代码的补丁
+    cmds:
+      - pnpm patch-commit "node_modules/.pnpm_patches/@jackyzha0/quartz"

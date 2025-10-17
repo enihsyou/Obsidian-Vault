@@ -1,5 +1,5 @@
 {
-  "name": "gh-pages",
+  "name": "pages",
   "private": true,
   "packageManager": "pnpm@10.18.3",
   "dependencies": {

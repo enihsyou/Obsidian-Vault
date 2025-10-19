@@ -2,5 +2,16 @@
   "name": "enihsyou-obsidian",
   "buildCommand": "./scripts/edgeone-build.sh",
   "installCommand": "pnpm install",
-  "outputDirectory": "./public"
+  "outputDirectory": "./public",
+  "headers": [
+    {
+      "source": "/static/giscus/*.css",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
 }

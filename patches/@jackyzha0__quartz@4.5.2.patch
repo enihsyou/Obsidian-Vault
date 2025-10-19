@@ -10,6 +10,18 @@ index 57dff5c759b23b1d11359610553465280160eb2f..5743aa1672c2e913653f53f8c479f973
      }
    | {
        provider: "goatcounter"
+diff --git a/quartz/components/Head.tsx b/quartz/components/Head.tsx
+index 23183ca8c23810407e2506dcd418d0f71184aa07..79f9a3f083cb9f9233e80bd3ad72eddca9a3dbc7 100644
+--- a/quartz/components/Head.tsx
++++ b/quartz/components/Head.tsx
+@@ -50,7 +50,6 @@ export default (() => {
+             )}
+           </>
+         )}
+-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+         <meta name="og:site_name" content={cfg.pageTitle}></meta>
 diff --git a/quartz/components/styles/listPage.scss b/quartz/components/styles/listPage.scss
 index e86c39dcb90abd3bdf6dffcecc9ddb4cb57dfc53..79fd71f4fcddb68b4392dba5fd759e4df35caffa 100644
 --- a/quartz/components/styles/listPage.scss
@@ -97,6 +109,45 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
              if (published) data.published = published
  
              if (socialImage) data.socialImage = socialImage
+diff --git a/quartz/plugins/transformers/htmlhead.tsx b/quartz/plugins/transformers/htmlhead.tsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..a47f5728c763a2200706d2d791857d9af43266f7
+--- /dev/null
++++ b/quartz/plugins/transformers/htmlhead.tsx
+@@ -0,0 +1,33 @@
++import { JSX } from "preact/jsx-runtime"
++import { QuartzTransformerPlugin } from "../types"
++
++interface Options {
++}
++
++function misansFontStylesheet(): JSX.Element {
++  return (
++    <link rel="stylesheet" crossorigin="anonymous"
++      href="https://cdn.jsdelivr.net/npm/misans-vf@1.0.0/lib/MiSans.min.css" />
++  )
++}
++
++function jetbrainsMonoFontStylesheet(): JSX.Element {
++  return (
++    <link rel="stylesheet" crossorigin="anonymous"
++      href="https://cdn.jsdelivr.net/npm/jetbrains-mono/css/jetbrains-mono.min.css" />
++  )
++}
++
++export const HtmlHead: QuartzTransformerPlugin<Partial<Options>> = () => {
++  return {
++    name: "HtmlHead",
++    externalResources() {
++      return {
++        additionalHead: [
++          misansFontStylesheet(),
++          jetbrainsMonoFontStylesheet()
++        ]
++      }
++    },
++  }
++}
 diff --git a/quartz/util/og.tsx b/quartz/util/og.tsx
 index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08af4ecfd3 100644
 --- a/quartz/util/og.tsx

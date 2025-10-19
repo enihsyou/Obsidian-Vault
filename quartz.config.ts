@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { HtmlHead } from "./quartz/plugins/transformers/htmlhead"
 
 /**
  * Quartz 4 Configuration
@@ -15,8 +16,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: 'umami',
       websiteId: 'ae900655-a5c5-4662-b01c-d938d11afad0',
-      host: 'https://blog.kokomi.me',
-      scriptName: "umami.js" // need patched version of Quartz, see patches/
+      host: 'https://umami.kokomi.me'
     },
     locale: "zh-CN",
     baseUrl: "obsidian.kokomi.me",
@@ -80,6 +80,8 @@ const config: QuartzConfig = {
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
+
+      HtmlHead(),
     ],
     filters: [
       Plugin.RemoveDrafts(),
@@ -100,7 +102,7 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
-      // Plugin.CustomOgImages(),
+      Plugin.CustomOgImages(),
     ],
   },
 }

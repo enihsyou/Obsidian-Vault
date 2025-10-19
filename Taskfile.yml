@@ -46,7 +46,7 @@ tasks:
         -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz build --output hostdir/public
+        npx quartz build --output hostdir/public --concurrency=4
 
   source-build:
     desc: 线上发布阶段在 Quartz 源码目录构建网站

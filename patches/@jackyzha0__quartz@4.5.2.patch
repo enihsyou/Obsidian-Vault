@@ -53,6 +53,33 @@ index 23183ca8c23810407e2506dcd418d0f71184aa07..79f9a3f083cb9f9233e80bd3ad72eddc
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  
          <meta name="og:site_name" content={cfg.pageTitle}></meta>
+diff --git a/quartz/components/RecentNotes.tsx b/quartz/components/RecentNotes.tsx
+index 2c32feadf2df77ea2ac6cfa0ddc7fd207ed0ca47..9d7ee700a5c7ecd8c6c387a1f875384e26b6de68 100644
+--- a/quartz/components/RecentNotes.tsx
++++ b/quartz/components/RecentNotes.tsx
+@@ -12,6 +12,7 @@ interface Options {
+   title?: string
+   limit: number
+   linkToMore: SimpleSlug | false
++  linkToHistory?: string
+   showTags: boolean
+   filter: (f: QuartzPluginData) => boolean
+   sort: (f1: QuartzPluginData, f2: QuartzPluginData) => number
+@@ -37,7 +38,13 @@ export default ((userOpts?: Partial<Options>) => {
+     const remaining = Math.max(0, pages.length - opts.limit)
+     return (
+       <div class={classNames(displayClass, "recent-notes")}>
+-        <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}</h3>
++        <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}
++          {opts.linkToMore && (
++            <span class="see-more">
++              <a href={opts.linkToHistory} class="external see-more">{i18n(cfg.locale).components.recentNotes.seeHistory}</a>
++            </span>
++          )}
++        </h3>
+         <ul class="recent-ul">
+           {pages.slice(0, opts.limit).map((page) => {
+             const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
 diff --git a/quartz/components/styles/listPage.scss b/quartz/components/styles/listPage.scss
 index e86c39dcb90abd3bdf6dffcecc9ddb4cb57dfc53..79fd71f4fcddb68b4392dba5fd759e4df35caffa 100644
 --- a/quartz/components/styles/listPage.scss
@@ -67,6 +94,58 @@ index e86c39dcb90abd3bdf6dffcecc9ddb4cb57dfc53..79fd71f4fcddb68b4392dba5fd759e4d
  
      @media all and ($mobile) {
        & > .tags {
+diff --git a/quartz/components/styles/recentNotes.scss b/quartz/components/styles/recentNotes.scss
+index 726767198be13cbbd02c3ac912a0f4a4dd89ad0b..e254a100befe5c0107d201d6db1f236c1fc53a09 100644
+--- a/quartz/components/styles/recentNotes.scss
++++ b/quartz/components/styles/recentNotes.scss
+@@ -21,4 +21,11 @@
+       }
+     }
+   }
++
++}
++.see-more {
++  font-size: 0.85rem;
++  opacity: 0.5;
++  white-space: pre;
++  display: inline-block;
+ }
+diff --git a/quartz/i18n/locales/definition.ts b/quartz/i18n/locales/definition.ts
+index f22538fca336b24fda0ac1d828568ee5a87e3022..2cca2c71675204489c5e5f50efb7f64c8ece23c5 100644
+--- a/quartz/i18n/locales/definition.ts
++++ b/quartz/i18n/locales/definition.ts
+@@ -47,6 +47,7 @@ export interface Translation {
+     recentNotes: {
+       title: string
+       seeRemainingMore: (variables: { remaining: number }) => string
++      seeHistory: string
+     }
+     transcludes: {
+       transcludeOf: (variables: { targetSlug: FullSlug }) => string
+diff --git a/quartz/i18n/locales/en-US.ts b/quartz/i18n/locales/en-US.ts
+index e1111e9ab1791d2ac548e279dd9ea2ead2485325..832f86e7537d41e0bc2699d5cb2234f7a95e20a0 100644
+--- a/quartz/i18n/locales/en-US.ts
++++ b/quartz/i18n/locales/en-US.ts
+@@ -44,6 +44,7 @@ export default {
+     recentNotes: {
+       title: "Recent Notes",
+       seeRemainingMore: ({ remaining }) => `See ${remaining} more →`,
++      seeHistory: "See History →",
+     },
+     transcludes: {
+       transcludeOf: ({ targetSlug }) => `Transclude of ${targetSlug}`,
+diff --git a/quartz/i18n/locales/zh-CN.ts b/quartz/i18n/locales/zh-CN.ts
+index 09951bbb31ff9bb2666854f25a4107fa6d395632..0c095ba03f1b9c3ecc94fa296444888fbc676480 100644
+--- a/quartz/i18n/locales/zh-CN.ts
++++ b/quartz/i18n/locales/zh-CN.ts
+@@ -44,6 +44,7 @@ export default {
+     recentNotes: {
+       title: "最近的笔记",
+       seeRemainingMore: ({ remaining }) => `查看更多${remaining}篇笔记 →`,
++      seeHistory: "查看历史记录 →",
+     },
+     transcludes: {
+       transcludeOf: ({ targetSlug }) => `包含${targetSlug}`,
 diff --git a/quartz/plugins/emitters/componentResources.ts b/quartz/plugins/emitters/componentResources.ts
 index f97fddec28e5265e74b249e76299f90095eb4511..4535f9355d853c40ef8d938f5bbc9a88361e9dc7 100644
 --- a/quartz/plugins/emitters/componentResources.ts
@@ -142,15 +221,12 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
              if (socialImage) data.socialImage = socialImage
 diff --git a/quartz/plugins/transformers/htmlhead.tsx b/quartz/plugins/transformers/htmlhead.tsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..7201ee91c544c1602540f794b01ceab9a2c488c7
+index 0000000000000000000000000000000000000000..17baa00be33d18577644822f7781b6ec8fdb75d6
 --- /dev/null
 +++ b/quartz/plugins/transformers/htmlhead.tsx
-@@ -0,0 +1,57 @@
+@@ -0,0 +1,54 @@
 +import { JSX } from "preact/jsx-runtime"
 +import { QuartzTransformerPlugin } from "../types"
-+
-+interface Options {
-+}
 +
 +/** 往 JSX 中添加 onload 属性 */
 +function preloadStylesheetOnloadFn() {
@@ -189,7 +265,7 @@ index 0000000000000000000000000000000000000000..7201ee91c544c1602540f794b01ceab9
 +  )
 +}
 +
-+export const HtmlHead: QuartzTransformerPlugin<Partial<Options>> = () => {
++export const HtmlHead: QuartzTransformerPlugin = () => {
 +  return {
 +    name: "HtmlHead",
 +    externalResources() {

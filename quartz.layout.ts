@@ -8,7 +8,9 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   afterBody: [
     Component.ConditionalRender({
-      component: Component.RecentNotes(),
+      component: Component.RecentNotes({
+        linkToHistory: "https://github.com/enihsyou/Obsidian-Vault/commits/enihsyou-PC?author=enihsyou",
+      }),
       condition: (page) => page.fileData.slug === "index",
     }),
     Component.ConditionalRender({

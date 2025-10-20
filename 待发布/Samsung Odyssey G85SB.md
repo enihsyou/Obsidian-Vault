@@ -1,6 +1,5 @@
 ---
 创建时间: 2025-03-23T12:06:32+08:00
-修改时间: 2025-10-20T13:56:00+08:00
 ---
 [Samsung Odyssey OLED G85SB S34BG85 Review - RTINGS.com](https://www.rtings.com/monitor/reviews/samsung/odyssey-oled-g8-g85sb-s34bg85)
 

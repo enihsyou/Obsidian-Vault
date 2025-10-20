@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-14T08:58:52+08:00
-修改时间: 2025-10-20T00:43:56+08:00
+修改时间: 2025-10-20T20:10:00+08:00
 ---
 我是如何把 Obsidian Vault 构建成静态网页的，当然不是使用 [Obsidian Publish](https://publish.obsidian.md/)，而是一个兼容 Obsidian 特性的静态站点构建工具 [Quartz 4](https://quartz.jzhao.xyz/)。
 
@@ -12,12 +12,13 @@
 
 ## 网上关于 Quartz 的教程
 
-[Publishing your Obsidian Vault Online with Quartz](https://brandonkboswell.com/blog/Publishing-your-Obsidian-Vault-Online-with-Quartz)
-[Quartz customization log | Eilleen's e-Notebook](https://quartz.eilleeenz.com/Quartz-customization-log)
+- [Publishing your Obsidian Vault Online with Quartz](https://brandonkboswell.com/blog/Publishing-your-Obsidian-Vault-Online-with-Quartz)
+- [Quartz customization log | Eilleen's e-Notebook](https://quartz.eilleeenz.com/Quartz-customization-log)
 
 我主要是想在同仓库，用单独的分支来发布站点，就像 gh-pages 的实践。但同时尽量不在仓库里记录非关键的源代码。
 
 核心是同仓库放一个新分支，只记录构建站点所需的代码，用 git worktree 引入 content，用 pnpm patch 记录对 quartz 的变更。
+
 ## Procedures
 
 > [!tldr]

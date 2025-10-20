@@ -111,27 +111,50 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
              if (socialImage) data.socialImage = socialImage
 diff --git a/quartz/plugins/transformers/htmlhead.tsx b/quartz/plugins/transformers/htmlhead.tsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..a47f5728c763a2200706d2d791857d9af43266f7
+index 0000000000000000000000000000000000000000..7201ee91c544c1602540f794b01ceab9a2c488c7
 --- /dev/null
 +++ b/quartz/plugins/transformers/htmlhead.tsx
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,57 @@
 +import { JSX } from "preact/jsx-runtime"
 +import { QuartzTransformerPlugin } from "../types"
 +
 +interface Options {
 +}
 +
++/** 往 JSX 中添加 onload 属性 */
++function preloadStylesheetOnloadFn() {
++  return { 'onload': 'this.onload=null;this.rel="stylesheet"' };
++}
++
 +function misansFontStylesheet(): JSX.Element {
 +  return (
-+    <link rel="stylesheet" crossorigin="anonymous"
-+      href="https://cdn.jsdelivr.net/npm/misans-vf@1.0.0/lib/MiSans.min.css" />
++    <>
++      <link rel="stylesheet" as="style" crossorigin="anonymous"
++        href="https://cdn.jsdelivr.net/npm/misans-vf@1.0.0/lib/MiSans.min.css" />
++    </>
 +  )
 +}
 +
 +function jetbrainsMonoFontStylesheet(): JSX.Element {
 +  return (
-+    <link rel="stylesheet" crossorigin="anonymous"
-+      href="https://cdn.jsdelivr.net/npm/jetbrains-mono/css/jetbrains-mono.min.css" />
++    <>
++      <link rel="preload" as="style" crossorigin="anonymous"
++        {...preloadStylesheetOnloadFn()}
++        href="https://cdn.jsdelivr.net/npm/jetbrains-mono/css/jetbrains-mono.min.css" />
++    </>
++  )
++}
++
++function jetbrainsMapleMonoFontStylesheet(): JSX.Element {
++  return (
++    <>
++      <link rel="preload" as="style" crossorigin="anonymous"
++        {...preloadStylesheetOnloadFn()}
++        href="https://fontsapi.zeoseven.com/521/main/result.css" />
++      <link rel="preload" as="style" crossorigin="anonymous"
++        {...preloadStylesheetOnloadFn()}
++        href="https://fontsapi.zeoseven.com/521/bold/result.css" />
++    </>
 +  )
 +}
 +
@@ -142,7 +165,8 @@ index 0000000000000000000000000000000000000000..a47f5728c763a2200706d2d791857d9a
 +      return {
 +        additionalHead: [
 +          misansFontStylesheet(),
-+          jetbrainsMonoFontStylesheet()
++          jetbrainsMonoFontStylesheet(),
++          jetbrainsMapleMonoFontStylesheet(),
 +        ]
 +      }
 +    },
@@ -181,3 +205,79 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08
    const fontData = Buffer.from(await fontResponse.arrayBuffer())
    await fs.mkdir(cacheDir, { recursive: true })
    await fs.writeFile(cachePath, fontData)
+diff --git a/quartz/util/theme.ts b/quartz/util/theme.ts
+index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..ed5f23ca173468c14c513a8e37aecee9a9557ad2 100644
+--- a/quartz/util/theme.ts
++++ b/quartz/util/theme.ts
+@@ -1,3 +1,6 @@
++import { get } from "http"
++import { escape } from "querystring"
++
+ export interface ColorScheme {
+   light: string
+   lightgray: string
+@@ -18,10 +21,11 @@ interface Colors {
+ export type FontSpecification =
+   | string
+   | {
+-      name: string
+-      weights?: number[]
+-      includeItalic?: boolean
+-    }
++    name: string
++    weights?: number[]
++    includeItalic?: boolean
++    extras?: string[]
++  }
+ 
+ export interface Theme {
+   typography: {
+@@ -49,6 +53,14 @@ export function getFontSpecificationName(spec: FontSpecification): string {
+   return spec.name
+ }
+ 
++function getFontSpecificationExtraNames(spec: FontSpecification): string[] {
++  if (typeof spec === "string") {
++    return []
++  }
++
++  return spec.extras ?? []
++}
++
+ function formatFontSpecification(
+   type: "title" | "header" | "body" | "code",
+   spec: FontSpecification,
+@@ -70,9 +82,9 @@ function formatFontSpecification(
+   if (weights.length > 1) {
+     const weightSpec = italic
+       ? weights
+-          .flatMap((w) => [`0,${w}`, `1,${w}`])
+-          .sort()
+-          .join(";")
++        .flatMap((w) => [`0,${w}`, `1,${w}`])
++        .sort()
++        .join(";")
+       : weights.join(";")
+ 
+     features.push(`wght@${weightSpec}`)
+@@ -141,6 +153,11 @@ export async function processGoogleFonts(
+ }
+ 
+ export function joinStyles(theme: Theme, ...stylesheet: string[]) {
++  const codeFonts = [
++    getFontSpecificationName(theme.typography.code),
++    ...getFontSpecificationExtraNames(theme.typography.code),
++  ].map(name => JSON.stringify(name)).join(", ")
++
+   return `
+ ${stylesheet.join("\n\n")}
+ 
+@@ -158,7 +175,7 @@ ${stylesheet.join("\n\n")}
+   --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
+   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
+   --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
+-  --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};
++  --codeFont: ${codeFonts}, ${DEFAULT_MONO};
+ }
+ 
+ :root[saved-theme="dark"] {

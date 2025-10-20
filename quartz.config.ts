@@ -20,7 +20,7 @@ const config: QuartzConfig = {
     },
     locale: "zh-CN",
     baseUrl: "obsidian.kokomi.me",
-    ignorePatterns: [".*", "Templates", "Excalidraw"],
+    ignorePatterns: [".*", "Templates", "Excalidraw", "*.excalidraw.md"],
     defaultDateType: "modified",
     theme: {
       // we define fonts on header
@@ -29,7 +29,7 @@ const config: QuartzConfig = {
       typography: {
         header: "MiSans",
         body: "MiSans",
-        code: "JetBrains Mono",
+        code: {name: "JetBrains Mono", extras: ["JetBrains Maple Mono"]},
       },
       colors: {
         lightMode: {
@@ -93,10 +93,6 @@ const config: QuartzConfig = {
       Plugin.ContentPage(),
       Plugin.FolderPage(),
       Plugin.TagPage(),
-      Plugin.ContentIndex({
-        enableSiteMap: true,
-        enableRSS: true,
-      }),
       Plugin.Assets(),
       Plugin.Static(),
       Plugin.Favicon(),

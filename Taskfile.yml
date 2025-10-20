@@ -10,6 +10,7 @@ tasks:
         -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
         -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
+        -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
         ghcr.io/jackyzha0/quartz:sha-b4805a1
         npx quartz build --serve --port=3000 --concurrency=4
 
@@ -23,6 +24,7 @@ tasks:
         -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
         -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
+        -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
         --name obsidian-site-preview
         ghcr.io/jackyzha0/quartz:sha-b4805a1
         npx quartz build --serve --port=3000 --output hostdir/public
@@ -45,6 +47,7 @@ tasks:
         -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
         -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
+        -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
         ghcr.io/jackyzha0/quartz:sha-b4805a1
         npx quartz build --output hostdir/public --concurrency=4
 

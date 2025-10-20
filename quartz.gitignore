@@ -1,0 +1,9 @@
+# 当启用 pnpm patch @jackyzha0/quartz 后，本文件应添加到 quartz 的工作目录
+
+# 避免运行时产生的临时文件被包含到 patch 中
+.quartz-cache
+
+# 从互联网下载的第三方组件
+quartz/components/FloatingButtons.tsx
+quartz/components/styles/floatingButtons.scss
+quartz/components/scripts/floatingButtons.inline.ts

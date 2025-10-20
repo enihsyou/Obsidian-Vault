@@ -62,6 +62,8 @@ tasks:
     deps:
       - fetch-content
     cmds:
+      - task: fetch-3rd-comps
+        vars: { QUARTZ_ROOT: "{{.ROOT_DIR | toSlash}}" }
       - cp "{{.ROOT_DIR}}/quartz.config.ts" ./quartz.config.ts
       - cp "{{.ROOT_DIR}}/quartz.layout.ts" ./quartz.layout.ts
       - cp -r "{{.ROOT_DIR}}/content/"* ./content
@@ -75,6 +77,17 @@ tasks:
       - git worktree remove content --force || true
       - git branch -D content || true
       - git worktree add -b content ./content enihsyou-PC
+
+  fetch-3rd-comps:
+    desc: 获取第三方组件源代码
+    summary: |
+      多数是可以直接复制粘贴，在这里说明来源引用以备将来更新时参考
+    vars:
+      QUARTZ_ROOT: '{{default "." .QUARTZ_ROOT}}'
+    cmds:
+      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/FloatingButtons.tsx               https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/FloatingButtons.tsx
+      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/styles/floatingButtons.scss       https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/styles/floatingButtons.scss
+      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/scripts/floatingButtons.inline.ts https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/scripts/floatingButtons.inline.ts
 
   symlink-quartz:
     desc: 创建指向 node_modules/quartz 的符号链接
@@ -116,10 +129,9 @@ tasks:
     cmds:
       - pnpm install --shamefully-hoist
       - pnpm patch @jackyzha0/quartz
-      # 避免运行时产生的临时文件被包含到 patch 中
-      - echo ".quartz-cache" >> node_modules/.pnpm_patches/@jackyzha0/quartz/.gitignore
 
   commit-patch:
     desc: 提交对 Quartz 源代码的补丁
     cmds:
+      - cp quartz.gitignore node_modules/.pnpm_patches/@jackyzha0/quartz/.gitignore
       - pnpm patch-commit "node_modules/.pnpm_patches/@jackyzha0/quartz"

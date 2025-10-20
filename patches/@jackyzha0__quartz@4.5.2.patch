@@ -27,6 +27,20 @@ index a7315214f35cef55292aa15f26a61506ce69da8b..a5dc7b5881487443c7487e7005c1fdc6
          data-lang={opts.options.lang ?? "en"}
        ></div>
      )
+diff --git a/quartz/components/Graph.tsx b/quartz/components/Graph.tsx
+index 907372e9375387392b45b12a7af4255a84570500..37edd51d465dced4c68898d6c0967abfce20ca5a 100644
+--- a/quartz/components/Graph.tsx
++++ b/quartz/components/Graph.tsx
+@@ -68,7 +68,8 @@ export default ((opts?: Partial<GraphOptions>) => {
+         <h3>{i18n(cfg.locale).components.graph.title}</h3>
+         <div class="graph-outer">
+           <div class="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
+-          <button class="global-graph-icon" aria-label="Global Graph">
++          {/* comply to buggy getElementById inside floatingButtons.inline.ts */}
++          <button class="global-graph-icon" id="global-graph-icon" aria-label="Global Graph">
+             <svg
+               version="1.1"
+               xmlns="http://www.w3.org/2000/svg"
 diff --git a/quartz/components/Head.tsx b/quartz/components/Head.tsx
 index 23183ca8c23810407e2506dcd418d0f71184aa07..79f9a3f083cb9f9233e80bd3ad72eddca9a3dbc7 100644
 --- a/quartz/components/Head.tsx

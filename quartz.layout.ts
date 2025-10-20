@@ -1,5 +1,6 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import FloatingButtons from "./quartz/components/FloatingButtons";
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -69,6 +70,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
+    FloatingButtons(),
   ],
 }
 

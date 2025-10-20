@@ -63,7 +63,7 @@ tasks:
       - fetch-content
     cmds:
       - task: fetch-3rd-comps
-        vars: { QUARTZ_ROOT: "{{.ROOT_DIR | toSlash}}" }
+        vars: { QUARTZ_ROOT: "{{.TASK_DIR | toSlash}}" }
       - cp "{{.ROOT_DIR}}/quartz.config.ts" ./quartz.config.ts
       - cp "{{.ROOT_DIR}}/quartz.layout.ts" ./quartz.layout.ts
       - cp -r "{{.ROOT_DIR}}/content/"* ./content
@@ -85,9 +85,9 @@ tasks:
     vars:
       QUARTZ_ROOT: '{{default "." .QUARTZ_ROOT}}'
     cmds:
-      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/FloatingButtons.tsx               https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/FloatingButtons.tsx
-      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/styles/floatingButtons.scss       https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/styles/floatingButtons.scss
-      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/scripts/floatingButtons.inline.ts https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/scripts/floatingButtons.inline.ts
+      - curl -fSL -C - -o "{{.QUARTZ_ROOT}}"/quartz/components/FloatingButtons.tsx               "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/FloatingButtons.tsx"
+      - curl -fSL -C - -o "{{.QUARTZ_ROOT}}"/quartz/components/styles/floatingButtons.scss       "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/styles/floatingButtons.scss"
+      - curl -fSL -C - -o "{{.QUARTZ_ROOT}}"/quartz/components/scripts/floatingButtons.inline.ts "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/scripts/floatingButtons.inline.ts"
 
   symlink-quartz:
     desc: 创建指向 node_modules/quartz 的符号链接

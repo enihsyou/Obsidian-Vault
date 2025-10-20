@@ -6,19 +6,29 @@ export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   afterBody: [
-    Component.Comments({
-      provider: 'giscus',
-      options: {
-        repo: 'enihsyou/Obsidian-Vault',
-        repoId: 'R_kgDOPfEx_Q',
-        category: 'Post Comments',
-        categoryId: 'DIC_kwDOPfEx_c4CwvbC',
-        lang: 'zh-CN',
-        mapping: 'title',
-        strict: true,
-        reactionsEnabled: true,
-        inputPosition: 'bottom',
-      }
+    Component.ConditionalRender({
+      component: Component.RecentNotes(),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+    Component.ConditionalRender({
+      component: Component.Comments({
+        provider: 'giscus',
+        options: {
+          repo: 'enihsyou/Obsidian-Vault',
+          repoId: 'R_kgDOPfEx_Q',
+          category: 'Post Comments',
+          categoryId: 'DIC_kwDOPfEx_c4CwvbC',
+          lang: 'zh-CN',
+          mapping: 'title',
+          strict: true,
+          reactionsEnabled: true,
+          inputPosition: 'bottom',
+        }
+      }),
+      condition: (page) => {
+        const slug = page.fileData.slug!;
+        return !["index", "404", "tags"].includes(slug) && !slug.startsWith("tags/")
+      },
     }),
   ],
   footer: Component.Footer({

@@ -114,6 +114,7 @@ tasks:
   prepare-patch:
     desc: 准备对 Quartz 源代码的补丁
     cmds:
+      - pnpm install --shamefully-hoist
       - pnpm patch @jackyzha0/quartz
       # 避免运行时产生的临时文件被包含到 patch 中
       - echo ".quartz-cache" >> node_modules/.pnpm_patches/@jackyzha0/quartz/.gitignore

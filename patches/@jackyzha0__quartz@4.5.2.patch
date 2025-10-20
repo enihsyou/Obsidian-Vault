@@ -27,6 +27,48 @@ index a7315214f35cef55292aa15f26a61506ce69da8b..a5dc7b5881487443c7487e7005c1fdc6
          data-lang={opts.options.lang ?? "en"}
        ></div>
      )
+diff --git a/quartz/components/ContentMeta.tsx b/quartz/components/ContentMeta.tsx
+index e378bcceed3958417ddb1519cbe42a362b5d2274..131b96f90c4179f77e9029126dd87b632a41d7d1 100644
+--- a/quartz/components/ContentMeta.tsx
++++ b/quartz/components/ContentMeta.tsx
+@@ -12,6 +12,7 @@ interface ContentMetaOptions {
+    */
+   showReadingTime: boolean
+   showComma: boolean
++  repoLink?: string
+ }
+ 
+ const defaultOptions: ContentMetaOptions = {
+@@ -30,7 +31,16 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
+       const segments: (string | JSX.Element)[] = []
+ 
+       if (fileData.dates) {
+-        segments.push(<Date date={getDate(cfg, fileData)!} locale={cfg.locale} />)
++        const createdDate = fileData.dates.created
++        const modifiedDate = fileData.dates.modified
++        segments.push(<>
++          {i18n(cfg.locale).components.contentMeta.created}: <Date date={createdDate} locale={cfg.locale} />
++        </>)
++        if (modifiedDate && modifiedDate.getTime() !== createdDate.getTime()) {
++          segments.push(<>
++            {i18n(cfg.locale).components.contentMeta.modified}: <Date date={modifiedDate} locale={cfg.locale} />
++          </>)
++        }
+       }
+ 
+       // Display reading time if enabled
+@@ -42,6 +52,11 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
+         segments.push(<span>{displayedTime}</span>)
+       }
+ 
++      if (options.repoLink) {
++        const pathInsideContent = fileData.filePath!.replace(/^content\//, "")
++        segments.push(<a href={`${options.repoLink}/${pathInsideContent}?plain=1`}>{i18n(cfg.locale).components.contentMeta.source}</a>)
++      }
++
+       return (
+         <p show-comma={options.showComma} class={classNames(displayClass, "content-meta")}>
+           {segments}
 diff --git a/quartz/components/Graph.tsx b/quartz/components/Graph.tsx
 index 907372e9375387392b45b12a7af4255a84570500..37edd51d465dced4c68898d6c0967abfce20ca5a 100644
 --- a/quartz/components/Graph.tsx
@@ -111,7 +153,7 @@ index 726767198be13cbbd02c3ac912a0f4a4dd89ad0b..e254a100befe5c0107d201d6db1f236c
 +  display: inline-block;
  }
 diff --git a/quartz/i18n/locales/definition.ts b/quartz/i18n/locales/definition.ts
-index f22538fca336b24fda0ac1d828568ee5a87e3022..2cca2c71675204489c5e5f50efb7f64c8ece23c5 100644
+index f22538fca336b24fda0ac1d828568ee5a87e3022..7283dae5893c248304a515b97763d07f58cf8edb 100644
 --- a/quartz/i18n/locales/definition.ts
 +++ b/quartz/i18n/locales/definition.ts
 @@ -47,6 +47,7 @@ export interface Translation {
@@ -122,8 +164,18 @@ index f22538fca336b24fda0ac1d828568ee5a87e3022..2cca2c71675204489c5e5f50efb7f64c
      }
      transcludes: {
        transcludeOf: (variables: { targetSlug: FullSlug }) => string
+@@ -61,6 +62,9 @@ export interface Translation {
+     }
+     contentMeta: {
+       readingTime: (variables: { minutes: number }) => string
++      created: string
++      modified: string
++      source: string
+     }
+   }
+   pages: {
 diff --git a/quartz/i18n/locales/en-US.ts b/quartz/i18n/locales/en-US.ts
-index e1111e9ab1791d2ac548e279dd9ea2ead2485325..832f86e7537d41e0bc2699d5cb2234f7a95e20a0 100644
+index e1111e9ab1791d2ac548e279dd9ea2ead2485325..9258be71b326ec987a67bab266de752b9c27b9ab 100644
 --- a/quartz/i18n/locales/en-US.ts
 +++ b/quartz/i18n/locales/en-US.ts
 @@ -44,6 +44,7 @@ export default {
@@ -134,8 +186,18 @@ index e1111e9ab1791d2ac548e279dd9ea2ead2485325..832f86e7537d41e0bc2699d5cb2234f7
      },
      transcludes: {
        transcludeOf: ({ targetSlug }) => `Transclude of ${targetSlug}`,
+@@ -58,6 +59,9 @@ export default {
+     },
+     contentMeta: {
+       readingTime: ({ minutes }) => `${minutes} min read`,
++      created: "Created",
++      modified: "Modified",
++      source: "Source Code",
+     },
+   },
+   pages: {
 diff --git a/quartz/i18n/locales/zh-CN.ts b/quartz/i18n/locales/zh-CN.ts
-index 09951bbb31ff9bb2666854f25a4107fa6d395632..0c095ba03f1b9c3ecc94fa296444888fbc676480 100644
+index 09951bbb31ff9bb2666854f25a4107fa6d395632..6e2e90ff26c40359636e3ff41a0e98614d1f51a5 100644
 --- a/quartz/i18n/locales/zh-CN.ts
 +++ b/quartz/i18n/locales/zh-CN.ts
 @@ -44,6 +44,7 @@ export default {
@@ -146,6 +208,16 @@ index 09951bbb31ff9bb2666854f25a4107fa6d395632..0c095ba03f1b9c3ecc94fa296444888f
      },
      transcludes: {
        transcludeOf: ({ targetSlug }) => `包含${targetSlug}`,
+@@ -58,6 +59,9 @@ export default {
+     },
+     contentMeta: {
+       readingTime: ({ minutes }) => `${minutes}分钟阅读`,
++      created: "创建于",
++      modified: "更新于",
++      source: "本页源码",
+     },
+   },
+   pages: {
 diff --git a/quartz/plugins/emitters/componentResources.ts b/quartz/plugins/emitters/componentResources.ts
 index f97fddec28e5265e74b249e76299f90095eb4511..4535f9355d853c40ef8d938f5bbc9a88361e9dc7 100644
 --- a/quartz/plugins/emitters/componentResources.ts

@@ -50,7 +50,7 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (page) => page.fileData.slug !== "index",
     }),
     Component.ArticleTitle(),
-    Component.ContentMeta(),
+    Component.ContentMeta({ repoLink: "https://github.com/enihsyou/Obsidian-Vault/tree/enihsyou-PC" }),
     Component.TagList(),
   ],
   left: [

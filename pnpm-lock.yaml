@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@jackyzha0/quartz@4.5.2':
-    hash: ade7c203744534a03493aad39b5b6141d0e881c35b8aa9d40dac07e2b0bb8cf3
+    hash: e66865c064da8977ed956b638811df2cf6a6b665af9ec9d082e6a0f55dbd94a0
     path: patches/@jackyzha0__quartz@4.5.2.patch
 
 importers:
@@ -15,7 +15,7 @@ importers:
     dependencies:
       '@jackyzha0/quartz':
         specifier: https://github.com/jackyzha0/quartz.git
-        version: https://codeload.github.com/jackyzha0/quartz/tar.gz/b4805a1031619c5fc9bb78e571310a38c53a89c8(patch_hash=ade7c203744534a03493aad39b5b6141d0e881c35b8aa9d40dac07e2b0bb8cf3)(esbuild@0.25.11)(sass-embedded@1.93.2)
+        version: https://codeload.github.com/jackyzha0/quartz/tar.gz/b4805a1031619c5fc9bb78e571310a38c53a89c8(patch_hash=e66865c064da8977ed956b638811df2cf6a6b665af9ec9d082e6a0f55dbd94a0)(esbuild@0.25.11)(sass-embedded@1.93.2)
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -2528,7 +2528,7 @@ snapshots:
     dependencies:
       '@isaacs/balanced-match': 4.0.1
 
-  '@jackyzha0/quartz@https://codeload.github.com/jackyzha0/quartz/tar.gz/b4805a1031619c5fc9bb78e571310a38c53a89c8(patch_hash=ade7c203744534a03493aad39b5b6141d0e881c35b8aa9d40dac07e2b0bb8cf3)(esbuild@0.25.11)(sass-embedded@1.93.2)':
+  '@jackyzha0/quartz@https://codeload.github.com/jackyzha0/quartz/tar.gz/b4805a1031619c5fc9bb78e571310a38c53a89c8(patch_hash=e66865c064da8977ed956b638811df2cf6a6b665af9ec9d082e6a0f55dbd94a0)(esbuild@0.25.11)(sass-embedded@1.93.2)':
     dependencies:
       '@clack/prompts': 0.11.0
       '@floating-ui/dom': 1.7.4

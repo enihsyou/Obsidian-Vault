@@ -293,33 +293,27 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
              if (socialImage) data.socialImage = socialImage
 diff --git a/quartz/plugins/transformers/htmlhead.tsx b/quartz/plugins/transformers/htmlhead.tsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..17baa00be33d18577644822f7781b6ec8fdb75d6
+index 0000000000000000000000000000000000000000..2288a38c0167de4bfa93a6afd6909673e69908d8
 --- /dev/null
 +++ b/quartz/plugins/transformers/htmlhead.tsx
-@@ -0,0 +1,54 @@
+@@ -0,0 +1,47 @@
 +import { JSX } from "preact/jsx-runtime"
 +import { QuartzTransformerPlugin } from "../types"
 +
 +/** 往 JSX 中添加 onload 属性 */
 +function preloadStylesheetOnloadFn() {
-+  return { 'onload': 'this.onload=null;this.rel="stylesheet"' };
++  return { 'onload': "this.onload=null;this.media='all'" };
 +}
 +
 +function misansFontStylesheet(): JSX.Element {
 +  return (
 +    <>
-+      <link rel="stylesheet" as="style" crossorigin="anonymous"
-+        href="https://cdn.jsdelivr.net/npm/misans-vf@1.0.0/lib/MiSans.min.css" />
-+    </>
-+  )
-+}
-+
-+function jetbrainsMonoFontStylesheet(): JSX.Element {
-+  return (
-+    <>
-+      <link rel="preload" as="style" crossorigin="anonymous"
++      <link rel="stylesheet" media="print" crossorigin="anonymous"
 +        {...preloadStylesheetOnloadFn()}
-+        href="https://cdn.jsdelivr.net/npm/jetbrains-mono/css/jetbrains-mono.min.css" />
++        href="https://registry.npmmirror.com/misans/4.1.0/files/lib/Normal/MiSans-Medium.min.css" />
++      <link rel="stylesheet" media="print" crossorigin="anonymous"
++        {...preloadStylesheetOnloadFn()}
++        href="https://registry.npmmirror.com/misans/4.1.0/files/lib/Normal/MiSans-Bold.min.css" />
 +    </>
 +  )
 +}
@@ -327,10 +321,10 @@ index 0000000000000000000000000000000000000000..17baa00be33d18577644822f7781b6ec
 +function jetbrainsMapleMonoFontStylesheet(): JSX.Element {
 +  return (
 +    <>
-+      <link rel="preload" as="style" crossorigin="anonymous"
++      <link rel="stylesheet" media="print" crossorigin="anonymous"
 +        {...preloadStylesheetOnloadFn()}
 +        href="https://fontsapi.zeoseven.com/521/main/result.css" />
-+      <link rel="preload" as="style" crossorigin="anonymous"
++      <link rel="stylesheet" media="print" crossorigin="anonymous"
 +        {...preloadStylesheetOnloadFn()}
 +        href="https://fontsapi.zeoseven.com/521/bold/result.css" />
 +    </>
@@ -344,7 +338,6 @@ index 0000000000000000000000000000000000000000..17baa00be33d18577644822f7781b6ec
 +      return {
 +        additionalHead: [
 +          misansFontStylesheet(),
-+          jetbrainsMonoFontStylesheet(),
 +          jetbrainsMapleMonoFontStylesheet(),
 +        ]
 +      }

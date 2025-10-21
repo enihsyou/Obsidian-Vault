@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-10-19T22:52:02+08:00
-修改时间: 2025-10-20T01:08:23+08:00
+修改时间: 2025-10-20T22:22:06+08:00
 ---
 本文档记录我从 [[Publish Obsidian Vault]] 设置好 Obsidian 站点发布方式之后，对 Quartz 模板仓库做了哪些改变。
 因为 patch 文件不像提交记录一样，不好记录变更版本，所以得有个 CHANGELOG，也就是这里。以后有时间了再 PR 到上游
@@ -146,7 +146,7 @@ index 813d9348c2ad8c131d8d8f707e70d2f25c066ace..63893c19084fab01a80218ac5d16c18b
  async function processOgImage(
 ```
 
-## 添加 MiSans 网络字体并让 og-image 使用上
+## 让 og-image 使用上 MiSans 网络字体
 
 `2025-10-18` og-image 默认只能使用 local 或者 google fonts，还不支持 woff2。提前下载 ttf 到本地不是我的做法，那就从网络下载
 
@@ -185,3 +185,128 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08
    await fs.mkdir(cacheDir, { recursive: true })
    await fs.writeFile(cachePath, fontData)
 ```
+
+## 添加网络字体
+
+注册自定义 HTML head 似乎不太容易？我只好写个 plugin 来添加 externalResources.additionalHead
+
+```tsx title="plugins/transformers/htmlhead.tsx"
+import { JSX } from "preact/jsx-runtime"
+import { QuartzTransformerPlugin } from "../types"
+
+/** 往 JSX 中添加 onload 属性 */
+function preloadStylesheetOnloadFn() {
+  return { 'onload': 'this.onload=null;this.rel="stylesheet"' };
+}
+
+function misansFontStylesheet(): JSX.Element {
+  return (
+    <>
+      <link rel="stylesheet" as="style" crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/misans-vf@1.0.0/lib/MiSans.min.css" />
+    </>
+  )
+}
+
+function jetbrainsMonoFontStylesheet(): JSX.Element {
+  return (
+    <>
+      <link rel="preload" as="style" crossorigin="anonymous"
+        {...preloadStylesheetOnloadFn()}
+        href="https://cdn.jsdelivr.net/npm/jetbrains-mono/css/jetbrains-mono.min.css" />
+    </>
+  )
+}
+
+function jetbrainsMapleMonoFontStylesheet(): JSX.Element {
+  return (
+    <>
+      <link rel="preload" as="style" crossorigin="anonymous"
+        {...preloadStylesheetOnloadFn()}
+        href="https://fontsapi.zeoseven.com/521/main/result.css" />
+      <link rel="preload" as="style" crossorigin="anonymous"
+        {...preloadStylesheetOnloadFn()}
+        href="https://fontsapi.zeoseven.com/521/bold/result.css" />
+    </>
+  )
+}
+
+export const HtmlHead: QuartzTransformerPlugin = () => {
+  return {
+    name: "HtmlHead",
+    externalResources() {
+      return {
+        additionalHead: [
+          misansFontStylesheet(),
+          jetbrainsMonoFontStylesheet(),
+          jetbrainsMapleMonoFontStylesheet(),
+        ]
+      }
+    },
+  }
+}
+```
+
+## 右下角的悬浮按钮
+
+提供快速滚动，快捷键等功能
+
+- [quartz-test/quartz/components/\_FloatingButtons.tsx at v4 · fanteastick/quartz-test](https://github.com/fanteastick/quartz-test/blob/v4/quartz/components/_FloatingBu\ttons.tsx) 从这里发现的
+- [catcodeme.github.io/quartz/components/FloatingButtons.tsx at v4 · CatCodeMe/catcodeme.github.io](https://github.com/CatCodeMe/catcodeme.github.io/blob/v4/quartz/components/FloatingButtons.tsx) 源码来自这里
+
+相比直接拷贝代码，记录来源会更好。我选择直接获取源码
+
+```yaml title="Taskfile.yml"
+  source-build:
+    desc: 线上发布阶段在 Quartz 源码目录构建网站
+    dir: ./node_modules/@jackyzha0/quartz
+    deps:
+      - fetch-content
+    cmds:
+      - task: fetch-3rd-comps
+        vars: { QUARTZ_ROOT: "{{.ROOT_DIR | toSlash}}" }
+      - cp "{{.ROOT_DIR}}/quartz.config.ts" ./quartz.config.ts
+      - cp "{{.ROOT_DIR}}/quartz.layout.ts" ./quartz.layout.ts
+      - cp -r "{{.ROOT_DIR}}/content/"* ./content
+      - pnpm run quartz build --output "{{.ROOT_DIR}}/public" --verbose
+
+  fetch-3rd-comps:
+    desc: 获取第三方组件源代码
+    summary: |
+      多数是可以直接复制粘贴，在这里说明来源引用以备将来更新时参考
+    vars:
+      QUARTZ_ROOT: '{{default "." .QUARTZ_ROOT}}'
+    cmds:
+      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/FloatingButtons.tsx               https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/FloatingButtons.tsx
+      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/styles/floatingButtons.scss       https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/styles/floatingButtons.scss
+      - wget -cO "{{.QUARTZ_ROOT}}"/quartz/components/scripts/floatingButtons.inline.ts https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/scripts/floatingButtons.inline.ts
+```
+
+然而它的代码还有个 bug，至少不适应当前版本。它尝试以 id 获取节点但实际上节点只有 class
+
+```diff
+diff --git a/quartz/components/Graph.tsx b/quartz/components/Graph.tsx
+index 907372e9375387392b45b12a7af4255a84570500..37edd51d465dced4c68898d6c0967abfce20ca5a 100644
+--- a/quartz/components/Graph.tsx
++++ b/quartz/components/Graph.tsx
+@@ -68,7 +68,8 @@ export default ((opts?: Partial<GraphOptions>) => {
+         <h3>{i18n(cfg.locale).components.graph.title}</h3>
+         <div class="graph-outer">
+           <div class="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
+-          <button class="global-graph-icon" aria-label="Global Graph">
++          {/* comply to buggy getElementById inside floatingButtons.inline.ts */}
++          <button class="global-graph-icon" id="global-graph-icon" aria-label="Global Graph">
+             <svg
+               version="1.1"
+               xmlns="http://www.w3.org/2000/svg"
+```
+
+## 查看仓库的最近变更历史记录
+
+基本上来自这里，做了些现代化改造
+- [Changing RecentNotes - OnlyFor, rounded border, conditional date | Eilleen's e-Notebook](https://quartz.eilleeenz.com/Quartz-customization-log#changing-recentnotes---onlyfor-rounded-border-conditional-date)
+
+## 文章源文件跳转链接
+
+基本上来自这里，做了些现代化改造
+- [Github source component into contentmeta | Eilleen's e-Notebook](https://quartz.eilleeenz.com/Quartz-customization-log#github-source-component-into-contentmeta)

@@ -28,14 +28,14 @@ index a7315214f35cef55292aa15f26a61506ce69da8b..a5dc7b5881487443c7487e7005c1fdc6
        ></div>
      )
 diff --git a/quartz/components/ContentMeta.tsx b/quartz/components/ContentMeta.tsx
-index e378bcceed3958417ddb1519cbe42a362b5d2274..131b96f90c4179f77e9029126dd87b632a41d7d1 100644
+index e378bcceed3958417ddb1519cbe42a362b5d2274..efd6be1fc4f6c104a8f6f4b49f81b3a2684b0253 100644
 --- a/quartz/components/ContentMeta.tsx
 +++ b/quartz/components/ContentMeta.tsx
 @@ -12,6 +12,7 @@ interface ContentMetaOptions {
     */
    showReadingTime: boolean
    showComma: boolean
-+  repoLink?: string
++  repoBlobLink?: string
  }
  
  const defaultOptions: ContentMetaOptions = {
@@ -61,9 +61,9 @@ index e378bcceed3958417ddb1519cbe42a362b5d2274..131b96f90c4179f77e9029126dd87b63
          segments.push(<span>{displayedTime}</span>)
        }
  
-+      if (options.repoLink) {
++      if (options.repoBlobLink) {
 +        const pathInsideContent = fileData.filePath!.replace(/^content\//, "")
-+        segments.push(<a href={`${options.repoLink}/${pathInsideContent}?plain=1`}>{i18n(cfg.locale).components.contentMeta.source}</a>)
++        segments.push(<a href={`${options.repoBlobLink}/${pathInsideContent}?plain=1`}>{i18n(cfg.locale).components.contentMeta.source}</a>)
 +      }
 +
        return (
@@ -385,7 +385,7 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08
    await fs.mkdir(cacheDir, { recursive: true })
    await fs.writeFile(cachePath, fontData)
 diff --git a/quartz/util/theme.ts b/quartz/util/theme.ts
-index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..ed5f23ca173468c14c513a8e37aecee9a9557ad2 100644
+index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..f5282e6ffd37f735b0cef56b03a963762ec2159f 100644
 --- a/quartz/util/theme.ts
 +++ b/quartz/util/theme.ts
 @@ -1,3 +1,6 @@
@@ -395,22 +395,14 @@ index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..ed5f23ca173468c14c513a8e37aecee9
  export interface ColorScheme {
    light: string
    lightgray: string
-@@ -18,10 +21,11 @@ interface Colors {
- export type FontSpecification =
-   | string
-   | {
--      name: string
--      weights?: number[]
--      includeItalic?: boolean
--    }
-+    name: string
-+    weights?: number[]
-+    includeItalic?: boolean
-+    extras?: string[]
-+  }
+@@ -21,6 +24,7 @@ export type FontSpecification =
+       name: string
+       weights?: number[]
+       includeItalic?: boolean
++      extras?: string[]
+     }
  
  export interface Theme {
-   typography: {
 @@ -49,6 +53,14 @@ export function getFontSpecificationName(spec: FontSpecification): string {
    return spec.name
  }
@@ -426,19 +418,6 @@ index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..ed5f23ca173468c14c513a8e37aecee9
  function formatFontSpecification(
    type: "title" | "header" | "body" | "code",
    spec: FontSpecification,
-@@ -70,9 +82,9 @@ function formatFontSpecification(
-   if (weights.length > 1) {
-     const weightSpec = italic
-       ? weights
--          .flatMap((w) => [`0,${w}`, `1,${w}`])
--          .sort()
--          .join(";")
-+        .flatMap((w) => [`0,${w}`, `1,${w}`])
-+        .sort()
-+        .join(";")
-       : weights.join(";")
- 
-     features.push(`wght@${weightSpec}`)
 @@ -141,6 +153,11 @@ export async function processGoogleFonts(
  }
  

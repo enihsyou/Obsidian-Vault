@@ -247,11 +247,12 @@ export const HtmlHead: QuartzTransformerPlugin = () => {
 }
 ```
 
+更多细节见 [[2025-10-20#JSX 中异步加载字体样式表]]
 ## 右下角的悬浮按钮
 
 提供快速滚动，快捷键等功能
 
-- [quartz-test/quartz/components/\_FloatingButtons.tsx at v4 · fanteastick/quartz-test](https://github.com/fanteastick/quartz-test/blob/v4/quartz/components/_FloatingBu\ttons.tsx) 从这里发现的
+- [quartz-test/quartz/components/\_FloatingButtons.tsx at v4 · fanteastick/quartz-test](https://github.com/fanteastick/quartz-test/blob/v4/quartz/components/_FloatingButtons.tsx) 从这里发现的
 - [catcodeme.github.io/quartz/components/FloatingButtons.tsx at v4 · CatCodeMe/catcodeme.github.io](https://github.com/CatCodeMe/catcodeme.github.io/blob/v4/quartz/components/FloatingButtons.tsx) 源码来自这里
 
 相比直接拷贝代码，记录来源会更好。我选择直接获取源码

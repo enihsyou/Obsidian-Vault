@@ -293,27 +293,25 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
              if (socialImage) data.socialImage = socialImage
 diff --git a/quartz/plugins/transformers/htmlhead.tsx b/quartz/plugins/transformers/htmlhead.tsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..2288a38c0167de4bfa93a6afd6909673e69908d8
+index 0000000000000000000000000000000000000000..807be8063c9b473c5c2b9624edea7b58d2add2ea
 --- /dev/null
 +++ b/quartz/plugins/transformers/htmlhead.tsx
-@@ -0,0 +1,47 @@
+@@ -0,0 +1,45 @@
 +import { JSX } from "preact/jsx-runtime"
 +import { QuartzTransformerPlugin } from "../types"
 +
 +/** 往 JSX 中添加 onload 属性 */
 +function preloadStylesheetOnloadFn() {
-+  return { 'onload': "this.onload=null;this.media='all'" };
++  return { 'onload': "this.removeAttribute('onload');this.media='all'" };
 +}
 +
 +function misansFontStylesheet(): JSX.Element {
++  // font link copied from https://www.xiaomiev.com
 +  return (
 +    <>
-+      <link rel="stylesheet" media="print" crossorigin="anonymous"
++      <link rel="stylesheet" media="print"
 +        {...preloadStylesheetOnloadFn()}
-+        href="https://registry.npmmirror.com/misans/4.1.0/files/lib/Normal/MiSans-Medium.min.css" />
-+      <link rel="stylesheet" media="print" crossorigin="anonymous"
-+        {...preloadStylesheetOnloadFn()}
-+        href="https://registry.npmmirror.com/misans/4.1.0/files/lib/Normal/MiSans-Bold.min.css" />
++        href="https://cdn-font.hyperos.mi.com/font/css?family=MiSans_VF:VF:Chinese_Simplify,Latin&display=swap" />
 +    </>
 +  )
 +}
@@ -378,7 +376,7 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08
    await fs.mkdir(cacheDir, { recursive: true })
    await fs.writeFile(cachePath, fontData)
 diff --git a/quartz/util/theme.ts b/quartz/util/theme.ts
-index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..f5282e6ffd37f735b0cef56b03a963762ec2159f 100644
+index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..c65281e69b089db57db61449271a873bfa7aabd3 100644
 --- a/quartz/util/theme.ts
 +++ b/quartz/util/theme.ts
 @@ -1,3 +1,6 @@
@@ -411,24 +409,33 @@ index ff4453b9f33d835c18a9b443ecb0ea9c336b1d57..f5282e6ffd37f735b0cef56b03a96376
  function formatFontSpecification(
    type: "title" | "header" | "body" | "code",
    spec: FontSpecification,
-@@ -141,6 +153,11 @@ export async function processGoogleFonts(
+@@ -141,6 +153,14 @@ export async function processGoogleFonts(
  }
  
  export function joinStyles(theme: Theme, ...stylesheet: string[]) {
-+  const codeFonts = [
-+    getFontSpecificationName(theme.typography.code),
-+    ...getFontSpecificationExtraNames(theme.typography.code),
-+  ].map(name => JSON.stringify(name)).join(", ")
++
++  function getFontFamily(typography: FontSpecification): string {
++    return [
++      getFontSpecificationName(typography),
++      ...getFontSpecificationExtraNames(typography),
++    ].map(name => JSON.stringify(name)).join(", ")
++  }
 +
    return `
  ${stylesheet.join("\n\n")}
  
-@@ -158,7 +175,7 @@ ${stylesheet.join("\n\n")}
-   --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
-   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
-   --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
+@@ -155,10 +175,10 @@ ${stylesheet.join("\n\n")}
+   --highlight: ${theme.colors.lightMode.highlight};
+   --textHighlight: ${theme.colors.lightMode.textHighlight};
+ 
+-  --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
+-  --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
+-  --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
 -  --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};
-+  --codeFont: ${codeFonts}, ${DEFAULT_MONO};
++  --titleFont: ${getFontFamily(theme.typography.title || theme.typography.header)}, ${DEFAULT_SANS_SERIF};
++  --headerFont: ${getFontFamily(theme.typography.header)}, ${DEFAULT_SANS_SERIF};
++  --bodyFont: ${getFontFamily(theme.typography.body)}, ${DEFAULT_SANS_SERIF};
++  --codeFont: ${getFontFamily(theme.typography.code)}, ${DEFAULT_MONO};
  }
  
  :root[saved-theme="dark"] {

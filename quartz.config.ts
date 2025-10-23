@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: 'umami',
       websiteId: 'ae900655-a5c5-4662-b01c-d938d11afad0',
-      host: 'https://umami.kokomi.me'
+      host: 'https://umami-api.kokomi.me'
     },
     locale: "zh-CN",
     baseUrl: "obsidian.kokomi.me",

@@ -12,7 +12,8 @@ tasks:
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
         ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz build --serve --port=3000 --concurrency=4
+        sh
+        #npx quartz build --serve --port=3000 --concurrency=4
 
   docker-preview-watch:
     desc: 本地开发阶段使用 Docker 预览网站并监听 content 目录文件变动

@@ -1,5 +1,6 @@
 ---
 创建时间: 2025-08-12T13:51:05+08:00
+已发布至: https://blog.kokomi.me/posts/enable-ssh-for-rg-ma3063
 ---
 ## 怪事起因
 

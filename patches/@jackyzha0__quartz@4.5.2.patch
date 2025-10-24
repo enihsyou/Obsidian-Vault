@@ -28,7 +28,7 @@ index a7315214f35cef55292aa15f26a61506ce69da8b..a5dc7b5881487443c7487e7005c1fdc6
        ></div>
      )
 diff --git a/quartz/components/ContentMeta.tsx b/quartz/components/ContentMeta.tsx
-index e378bcceed3958417ddb1519cbe42a362b5d2274..efd6be1fc4f6c104a8f6f4b49f81b3a2684b0253 100644
+index e378bcceed3958417ddb1519cbe42a362b5d2274..54cb0f52e342e0d17bf23d51e1e84af6bd91735c 100644
 --- a/quartz/components/ContentMeta.tsx
 +++ b/quartz/components/ContentMeta.tsx
 @@ -12,6 +12,7 @@ interface ContentMetaOptions {
@@ -39,16 +39,18 @@ index e378bcceed3958417ddb1519cbe42a362b5d2274..efd6be1fc4f6c104a8f6f4b49f81b3a2
  }
  
  const defaultOptions: ContentMetaOptions = {
-@@ -30,7 +31,16 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
+@@ -30,7 +31,18 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
        const segments: (string | JSX.Element)[] = []
  
        if (fileData.dates) {
 -        segments.push(<Date date={getDate(cfg, fileData)!} locale={cfg.locale} />)
 +        const createdDate = fileData.dates.created
 +        const modifiedDate = fileData.dates.modified
-+        segments.push(<>
-+          {i18n(cfg.locale).components.contentMeta.created}: <Date date={createdDate} locale={cfg.locale} />
-+        </>)
++        if (createdDate) {
++          segments.push(<>
++            {i18n(cfg.locale).components.contentMeta.created}: <Date date={createdDate} locale={cfg.locale} />
++          </>)
++        }
 +        if (modifiedDate && modifiedDate.getTime() !== createdDate.getTime()) {
 +          segments.push(<>
 +            {i18n(cfg.locale).components.contentMeta.modified}: <Date date={modifiedDate} locale={cfg.locale} />
@@ -57,7 +59,7 @@ index e378bcceed3958417ddb1519cbe42a362b5d2274..efd6be1fc4f6c104a8f6f4b49f81b3a2
        }
  
        // Display reading time if enabled
-@@ -42,6 +52,11 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
+@@ -42,6 +54,11 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
          segments.push(<span>{displayedTime}</span>)
        }
  
@@ -122,6 +124,57 @@ index 2c32feadf2df77ea2ac6cfa0ddc7fd207ed0ca47..9d7ee700a5c7ecd8c6c387a1f875384e
          <ul class="recent-ul">
            {pages.slice(0, opts.limit).map((page) => {
              const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
+diff --git a/quartz/components/RelaventLinks.tsx b/quartz/components/RelaventLinks.tsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9f082cb01e50bb1eae110d2ec25ec3a82cd43f2e
+--- /dev/null
++++ b/quartz/components/RelaventLinks.tsx
+@@ -0,0 +1,45 @@
++import {
++  QuartzComponent,
++  QuartzComponentConstructor,
++  QuartzComponentProps,
++} from "./types";
++import { classNames } from "../util/lang"
++import { i18n } from "../i18n";
++
++const RelaventLinks: QuartzComponent = ({ cfg, fileData, displayClass }: QuartzComponentProps) => {
++  const relavents = fileData.frontmatter?.relavents;
++  if (!relavents) return null;
++  return (
++    <div class={classNames(displayClass, "relavent-links")}>
++      <h3>{i18n(cfg.locale).components.relaventLink.title}</h3>
++      <ul>
++        {relavents.map((link: string) => (
++          <li>
++            <a href={link} class="relavent-link">
++              {link}
++            </a>
++          </li>
++        ))}
++      </ul>
++    </div>
++  );
++};
++
++RelaventLinks.css = `
++.relavent-links h3 {
++  margin-top: 0;
++  margin-bottom: 0.5rem;
++}
++
++.relavent-links ul {
++  list-style-type: disc;
++  padding-left: 1.5rem;
++  margin: 0;
++}
++
++.relavent-links li {
++  margin-bottom: 0.5rem;
++}
++`
++
++export default (() => RelaventLinks) satisfies QuartzComponentConstructor;
 diff --git a/quartz/components/styles/listPage.scss b/quartz/components/styles/listPage.scss
 index e86c39dcb90abd3bdf6dffcecc9ddb4cb57dfc53..79fd71f4fcddb68b4392dba5fd759e4df35caffa 100644
 --- a/quartz/components/styles/listPage.scss
@@ -153,7 +206,7 @@ index 726767198be13cbbd02c3ac912a0f4a4dd89ad0b..e254a100befe5c0107d201d6db1f236c
 +  display: inline-block;
  }
 diff --git a/quartz/i18n/locales/definition.ts b/quartz/i18n/locales/definition.ts
-index f22538fca336b24fda0ac1d828568ee5a87e3022..7283dae5893c248304a515b97763d07f58cf8edb 100644
+index f22538fca336b24fda0ac1d828568ee5a87e3022..583eeabe86e73d5aab76c5e826ec2e91a209ccb8 100644
 --- a/quartz/i18n/locales/definition.ts
 +++ b/quartz/i18n/locales/definition.ts
 @@ -47,6 +47,7 @@ export interface Translation {
@@ -164,18 +217,21 @@ index f22538fca336b24fda0ac1d828568ee5a87e3022..7283dae5893c248304a515b97763d07f
      }
      transcludes: {
        transcludeOf: (variables: { targetSlug: FullSlug }) => string
-@@ -61,6 +62,9 @@ export interface Translation {
+@@ -61,6 +62,12 @@ export interface Translation {
      }
      contentMeta: {
        readingTime: (variables: { minutes: number }) => string
 +      created: string
 +      modified: string
 +      source: string
++    }
++    relaventLink: {
++      title: string
      }
    }
    pages: {
 diff --git a/quartz/i18n/locales/en-US.ts b/quartz/i18n/locales/en-US.ts
-index e1111e9ab1791d2ac548e279dd9ea2ead2485325..9258be71b326ec987a67bab266de752b9c27b9ab 100644
+index e1111e9ab1791d2ac548e279dd9ea2ead2485325..911a8ba192151f54ea7638f00493ddbe50cb4ee5 100644
 --- a/quartz/i18n/locales/en-US.ts
 +++ b/quartz/i18n/locales/en-US.ts
 @@ -44,6 +44,7 @@ export default {
@@ -186,18 +242,21 @@ index e1111e9ab1791d2ac548e279dd9ea2ead2485325..9258be71b326ec987a67bab266de752b
      },
      transcludes: {
        transcludeOf: ({ targetSlug }) => `Transclude of ${targetSlug}`,
-@@ -58,6 +59,9 @@ export default {
+@@ -58,6 +59,12 @@ export default {
      },
      contentMeta: {
        readingTime: ({ minutes }) => `${minutes} min read`,
 +      created: "Created",
 +      modified: "Modified",
 +      source: "Source Code",
++    },
++    relaventLink: {
++      title: "Relevant Links",
      },
    },
    pages: {
 diff --git a/quartz/i18n/locales/zh-CN.ts b/quartz/i18n/locales/zh-CN.ts
-index 09951bbb31ff9bb2666854f25a4107fa6d395632..6e2e90ff26c40359636e3ff41a0e98614d1f51a5 100644
+index 09951bbb31ff9bb2666854f25a4107fa6d395632..52385863cac586ecfdf4eac3d69453cfd7b697be 100644
 --- a/quartz/i18n/locales/zh-CN.ts
 +++ b/quartz/i18n/locales/zh-CN.ts
 @@ -44,6 +44,7 @@ export default {
@@ -208,13 +267,16 @@ index 09951bbb31ff9bb2666854f25a4107fa6d395632..6e2e90ff26c40359636e3ff41a0e9861
      },
      transcludes: {
        transcludeOf: ({ targetSlug }) => `包含${targetSlug}`,
-@@ -58,6 +59,9 @@ export default {
+@@ -58,6 +59,12 @@ export default {
      },
      contentMeta: {
        readingTime: ({ minutes }) => `${minutes}分钟阅读`,
 +      created: "创建于",
 +      modified: "更新于",
 +      source: "本页源码",
++    },
++    relaventLink: {
++      title: "相关链接",
      },
    },
    pages: {
@@ -245,16 +307,17 @@ index 813d9348c2ad8c131d8d8f707e70d2f25c066ace..63893c19084fab01a80218ac5d16c18b
  
  async function processOgImage(
 diff --git a/quartz/plugins/transformers/frontmatter.ts b/quartz/plugins/transformers/frontmatter.ts
-index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a60fa0943d 100644
+index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..cff0526ecba59187957f0dee374a3fbaca36e65e 100644
 --- a/quartz/plugins/transformers/frontmatter.ts
 +++ b/quartz/plugins/transformers/frontmatter.ts
-@@ -10,11 +10,17 @@ import { i18n } from "../../i18n"
+@@ -10,11 +10,19 @@ import { i18n } from "../../i18n"
  export interface Options {
    delimiters: string | [string, string]
    language: "yaml" | "toml"
 +  created_properties: string[]
 +  modified_properties: string[]
 +  published_properties: string[]
++  relevants_properties: string[]
  }
  
  const defaultOptions: Options = {
@@ -263,10 +326,11 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
 +  created_properties: ["created", "date"],
 +  modified_properties: ["modified", "lastmod", "updated", "last-modified"],
 +  published_properties: ["published", "publishDate", "date"],
++  relevants_properties: ["relavents"],
  }
  
  function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
-@@ -100,20 +106,15 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
+@@ -100,24 +108,21 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
  
              const socialImage = coalesceAliases(data, ["socialImage", "image", "cover"])
  
@@ -291,6 +355,20 @@ index 1103900c56cd7f7dc70ba86af9ffb436d0903d13..ff79301d3e994c01c3c3848e849520a6
              if (published) data.published = published
  
              if (socialImage) data.socialImage = socialImage
+ 
++            data.relavents = coalesceAliases(data, opts.relevants_properties)
++
+             // Remove duplicate slugs
+             const uniqueSlugs = [...new Set(allSlugs)]
+             allSlugs.splice(0, allSlugs.length, ...uniqueSlugs)
+@@ -151,6 +156,7 @@ declare module "vfile" {
+         cssclasses: string[]
+         socialImage: string
+         comments: boolean | string
++        relavents: string[] // 相关链接
+       }>
+   }
+ }
 diff --git a/quartz/plugins/transformers/htmlhead.tsx b/quartz/plugins/transformers/htmlhead.tsx
 new file mode 100644
 index 0000000000000000000000000000000000000000..807be8063c9b473c5c2b9624edea7b58d2add2ea

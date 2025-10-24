@@ -3,7 +3,7 @@ tasks:
   docker-preview:
     desc: 本地开发阶段使用 Docker 预览网站
     cmds:
-      - docker run --rm -it -p 3000:3000
+      - docker run --rm -it -p 3000:3000 -p 3001:3001
         -v ./content:/usr/src/app/content
         -v ./quartz:/usr/src/app/quartz
         -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
@@ -12,13 +12,12 @@ tasks:
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
         ghcr.io/jackyzha0/quartz:sha-b4805a1
-        sh
-        #npx quartz build --serve --port=3000 --concurrency=4
+        npx quartz build --serve --port=3000 --concurrency=4
 
   docker-preview-watch:
     desc: 本地开发阶段使用 Docker 预览网站并监听 content 目录文件变动
     cmds:
-      - docker run --rm -dit -p 3000:3000
+      - docker run --rm -dit -p 3000:3000 -p 3001:3001
         -v ./content:/usr/src/app/content
         -v ./quartz:/usr/src/app/quartz
         -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro

@@ -1,6 +1,7 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import FloatingButtons from "./quartz/components/FloatingButtons";
+import RelaventLinks from "./quartz/components/RelaventLinks";
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -52,6 +53,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta({ repoBlobLink: "https://github.com/enihsyou/Obsidian-Vault/blob/enihsyou-PC" }),
     Component.TagList(),
+    RelaventLinks(),
   ],
   left: [
     Component.PageTitle(),

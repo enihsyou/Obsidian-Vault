@@ -62,6 +62,7 @@ const config: QuartzConfig = {
       Plugin.FrontMatter({
         created_properties: ["创建时间"],
         modified_properties: ["修改时间"],
+        relevants_properties: ["相关链接"]
       }),
       Plugin.CreatedModifiedDate({
         // 使用 Linter Obsidian 插件自动记录创建/更新时间
@@ -78,7 +79,7 @@ const config: QuartzConfig = {
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.HardLineBreaks(),
       Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.CrawlLinks({ markdownLinkResolution: "shortest", openLinksInNewTab: true }),
       Plugin.Description(),
 
       HtmlHead(),

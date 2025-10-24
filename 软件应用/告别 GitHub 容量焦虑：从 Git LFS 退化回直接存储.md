@@ -1,6 +1,9 @@
 ---
 创建时间: 2025-02-27T00:45:33+08:00
+相关链接:
+  - https://blog.kokomi.me/posts/moving-away-from-git-lfs
 ---
+#已发布
 # 告别 GitHub 容量焦虑：从 Git LFS 退化回直接存储
 
 Git LFS（Large File Storage）曾经是管理 Git 仓库中二进制文件的好助手，尤其是对于像图片、PDF 等大型文件。然而，随着 GitHub 对免费账户的存储和流量限制日益严格，它可能不再是所有场景下的最佳选择。

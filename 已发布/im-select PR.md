@@ -1,8 +1,10 @@
 ---
 创建时间: 2025-04-28T20:54:52+08:00
 相关链接:
-- https://github.com/elsejj/im-select-mspy/pull/4
+  - https://github.com/elsejj/im-select-mspy/pull/4
 ---
+#已发布
+
 Published at [Locate the mode toggling button on the IME toolbar when the taskbar is hidden by enihsyou · Pull Request #4 · elsejj/im-select-mspy](https://github.com/elsejj/im-select-mspy/pull/4)
 
 * 从输入法工具栏中寻找切换中英模式的按钮

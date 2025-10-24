@@ -311,3 +311,9 @@ index 907372e9375387392b45b12a7af4255a84570500..37edd51d465dced4c68898d6c0967abf
 
 基本上来自这里，做了些现代化改造
 - [Github source component into contentmeta | Eilleen's e-Notebook](https://quartz.eilleeenz.com/Quartz-customization-log#github-source-component-into-contentmeta)
+
+## 展示文章相关链接
+
+实现比较简单粗糙，就是展示 frontmatter 中的列表
+
+[文章前显示相关链接 · enihsyou/Obsidian-Vault@0c1a024](https://github.com/enihsyou/Obsidian-Vault/commit/0c1a024e1ac2a1d5dd03295a5762c6680a8e11da)

@@ -3,6 +3,7 @@
 相关链接:
 - https://blog.kokomi.me/posts/enable-ssh-for-rg-ma3063
 ---
+#已发布
 ## 怪事起因
 
 我在局域网用 DNSmasq 提供 DHCP 和 DNS 服务，这样可以用主机名获取 DNS 解析，但用起来时灵时不灵。

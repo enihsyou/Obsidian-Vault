@@ -1,6 +1,7 @@
 ---
 创建时间: 2025-08-12T13:51:05+08:00
-已发布至: https://blog.kokomi.me/posts/enable-ssh-for-rg-ma3063
+相关链接:
+- https://blog.kokomi.me/posts/enable-ssh-for-rg-ma3063
 ---
 ## 怪事起因
 
@@ -51,7 +52,7 @@ Build time              : 2023/09/15 01:04:23
 > [!tldr]- 至于为什么，剧透一下是分配了两个 IP 到同一张网卡上
 >
 > ```shellsession title="Dual IPv4 on One Interface"
-> # ip -4 addr show br-lan  
+> # ip -4 addr show br-lan
 > 13: br-lan: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
 >     inet 192.168.9.6/24 brd 192.168.9.255 scope global br-lan
 >        valid_lft forever preferred_lft forever
@@ -71,7 +72,7 @@ B 站播放最高的视频教你如何拆机接 TTL 刷机，本着「刷机有�
 来自数码罗记文章，操作非常简单
 
 ```shell
-curl http://192.168.10.1/__factory_verify_mode__  
+curl http://192.168.10.1/__factory_verify_mode__
 ```
 
 返回 `{"result": "Pass"}` 就算成功，甚至都不需要去网页登录。
@@ -171,11 +172,11 @@ vi /etc/config/rg_firewall
 在 `/etc/config/rg_firewall` 中删掉几条 `dnsv4_hijack` 的规则，详情见 [[2025-08-12#局域网 DHCP 主机名 DNS 解析时灵时不灵]]
 
 ```shell
-iptables  -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.10.1  
+iptables  -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.10.1
 ip6tables -t nat -D PREROUTING -i br-lan -p udp -m udp --dport 53 -j DNAT --to-destination fe80::e25d:54ff:fe7c:7f4
 
 ebtables -t broute -D BROUTING -p IPv4 --ip-proto udp --ip-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT
-ebtables -t broute -D BROUTING -p IPv6 --ip6-proto udp --ip6-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT  
+ebtables -t broute -D BROUTING -p IPv6 --ip6-proto udp --ip6-dport 53 -j dnat --to-dst E0:5D:54:7C:07:F4 --dnat-target ACCEPT
 ```
 
 然而好景不长，删掉的规则定时、重启都会重新添加回来，也包括删掉的 DNS 服务器部分，肯定是有进程在动手脚。

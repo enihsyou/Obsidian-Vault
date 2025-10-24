@@ -1,11 +1,12 @@
 ---
 创建时间: 2025-04-28T20:54:52+08:00
-已发布至: https://github.com/elsejj/im-select-mspy/pull/4
+相关链接:
+- https://github.com/elsejj/im-select-mspy/pull/4
 ---
 Published at [Locate the mode toggling button on the IME toolbar when the taskbar is hidden by enihsyou · Pull Request #4 · elsejj/im-select-mspy](https://github.com/elsejj/im-select-mspy/pull/4)
 
 * 从输入法工具栏中寻找切换中英模式的按钮
-* 适合作为托盘输入指示器连同任务栏一起自动隐藏的后备方案  
+* 适合作为托盘输入指示器连同任务栏一起自动隐藏的后备方案
 * 需要先启用输入法工具栏，并确保 " 中/英文 " 按钮显示在工具栏中
 
 为了多享用一些屏幕空间，避免 OLED 烧屏，我有开启自动隐藏任务栏的习惯，但隐藏状态下 UIAutomation 找不到托盘输入指示器。

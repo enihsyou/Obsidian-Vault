@@ -1,5 +1,6 @@
 ---
 创建时间: 2025-03-23T12:06:32+08:00
+修改时间: 2025-10-25T14:52:16+08:00
 ---
 [Samsung Odyssey OLED G85SB S34BG85 Review - RTINGS.com](https://www.rtings.com/monitor/reviews/samsung/odyssey-oled-g8-g85sb-s34bg85)
 
@@ -169,3 +170,6 @@ MHC2 MaxCLL: 400nits
 电源砖块我贴在桌子底下了，冬天当暖手宝
 
 [[Windows 11 窗口只渲染一半#^7588d8]]
+
+
+直到有一天我给主机插线板接上了个功率计，发现各家评测都没提到的待机功耗着实不小，即便是显示器待机黑屏状态，也吃掉 30W 的功率，一天下来就是 0.72 kWh。

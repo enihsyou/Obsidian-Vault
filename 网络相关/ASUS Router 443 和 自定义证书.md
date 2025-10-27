@@ -1,5 +1,6 @@
 ---
 创建时间: 2025-08-07T03:45:27+08:00
+修改时间: 2025-10-27T10:57:59+08:00
 ---
 [Unable to set my port to 443 on my ASUS router : r/OpenVPN](https://www.reddit.com/r/OpenVPN/comments/13xz3jy/unable_to_set_my_port_to_443_on_my_asus_router/)
 
@@ -20,4 +21,10 @@ cat > /jffs/.cert/cakey.pem  # Unencrypted CA cert private key
 service restart_httpd
 ```
 
-注意要将完整的证书链文件传上去，否则在自签名场景下，会因为只信任了自签根证书未信任自签中间证书导致站点的证书不受信任。
+注意要将完整的证书链文件传上去，否则在自签发场景下，会因为只信任了自签根证书未信任自签中间证书导致站点的证书不受信任。
+如果证书由路由器使用中间证书自动签发，可以用这个合并。
+
+```shell title="合并自动签发的证书为完整证书链"
+cat /jffs/.cert/cert_gen.pem /jffs/.cert/cacert.pem > /jffs/.cert/cert.pem
+mv /jffs/.cert/cert.pem /jffs/.cert/cert_gen.pem
+```

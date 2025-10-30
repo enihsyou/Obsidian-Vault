@@ -69,7 +69,7 @@ Vim 输入法切换
 
 - `s"` 按教程配置了 surround 后，随时按 s+text object 来添加包裹。不过有 [bug](https://github.com/esm7/obsidian-vimrc-support/issues/44)，只会自动识别到单词的边界为止，类似 `w`，所以 `https://` 后面的链接就不管用了
 - `viWs"` 此时可以可视化选择一段后按 `s"` 来添加引号 [How to Surround Text in Vim, Without Plugins | Jonathan Palardy's Blog](https://blog.jpalardy.com/posts/how-to-surround-text-in-vim-without-plugins/)
-- `noremap sd" di""_da"p` 把删除环绕符号功能绑定到 `sd"` 按键上，目前还不支持修改 surround [Replace or Delete Surround · Issue #191 · esm7/obsidian-vimrc-support](https://github.com/esm7/obsidian-vimrc-support/issues/191)，缺少插件支持的情况下，先删除再加比修改更好操作。并且我还没办法绑定到 `ds"` 上，所以只能反过来
+- `noremap sd" di""_da"P` 把删除环绕符号功能绑定到 `sd"` 按键上，目前还不支持修改 surround [Replace or Delete Surround · Issue #191 · esm7/obsidian-vimrc-support](https://github.com/esm7/obsidian-vimrc-support/issues/191)，缺少插件支持的情况下，先删除再加比修改更好操作。并且我还没办法绑定到 `ds"` 上，所以只能反过来
 - #todo 看看 [`vimObject.defineOperator("surroundOperator"`](https://github.com/esm7/obsidian-vimrc-support/blob/master/main.ts#L541C29-L541C45) 是怎么个用法
   - 看上去是代码有问题，按 <kbd>Alt+Y s</kbd> 后有错误
 

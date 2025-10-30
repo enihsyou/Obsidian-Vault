@@ -32,9 +32,9 @@ map s} :surround_curly_brackets<CR>
 map sk :surround_kbd<CR>
 
 " Can't make :map ds working, so use 'sd' to delete surround
-noremap sd" di""_da"p
-noremap sd' di'"_da'p
-noremap sdb dib"_dabp
-noremap sd( di("_da(p
-noremap sd[ di["_da[p
-noremap sd{ di{"_da{p
+noremap sd" di""_da"P
+noremap sd' di'"_da'P
+noremap sdb dib"_dabP
+noremap sd( di("_da(P
+noremap sd[ di["_da[P
+noremap sd{ di{"_da{P

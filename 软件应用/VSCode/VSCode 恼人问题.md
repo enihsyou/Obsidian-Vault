@@ -17,4 +17,4 @@
 "editor.gotoLocation.multipleReferences": "peek"
 ```
 
-关联：[[VSCode 设置调节#`editor.gotoLocation.alternativeDefinitionCommand`]]
+关联：[[VSCode 使用技巧#`editor.gotoLocation.alternativeDefinitionCommand`]]

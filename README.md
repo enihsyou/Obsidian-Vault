@@ -17,6 +17,6 @@
 
 [GitHub 仓库](https://github.com/enihsyou/Obsidian-Vault) 仅包含适合版本控制的文件，所有原创内容均采用 `CC-BY-4.0` 协议授权，标明来自此仓库/网站/「九条涼果」 即可。
 
-> [!caution] 文章超链接不稳定
+> [!caution] 不稳定的文章超链接
 > 除少数设置了 `permlink` 的文章外，绝大部分文章的 URL 会随着文件移动或者标题变更发生改变。
-> 因此，直接引用 URL/Anchor 未来可能失效。值得分享或讨论较多的内容，我会整理后发布在 [个人博客](https://blog.kokomi.me) 上。
+> 因此，直接引用的 URL/Anchor 在未来可能失效。值得分享或讨论较多的内容，我会整理后发布在 [个人博客](https://blog.kokomi.me) 上。

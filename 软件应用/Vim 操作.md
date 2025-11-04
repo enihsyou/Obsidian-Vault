@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:20:33+08:00
-修改时间: 2025-10-16T01:30:20+08:00
+修改时间: 2025-11-04T20:45:43+08:00
 ---
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
@@ -55,6 +55,9 @@
 `gv` 重新选中上次可视选择的内容
 
 `d}` 删除到段落末尾，脚本语言中常用于删除整段 if
+
+`ds)db` 删除包裹的函数 Delete surrounding function calls ，把 `a = x(y(z));` 变成 `a = y(z);` [Add surrounding function name delete/change by LeszekSwirski · 拉取请求 #118 · tpope/vim-surround](https://github.com/tpope/vim-surround/pull/118)
+`[(cb` 修改包裹的函数名 [Delete surrounding function calls the easy way : r/vim](https://www.reddit.com/r/vim/comments/bk2l3i/delete_surrounding_function_calls_the_easy_way/)
 
 Vim 输入法切换
 

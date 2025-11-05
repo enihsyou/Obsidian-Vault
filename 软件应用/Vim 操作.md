@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:20:33+08:00
-修改时间: 2025-11-04T20:45:43+08:00
+修改时间: 2025-11-05T15:13:47+08:00
 ---
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
@@ -22,6 +22,8 @@
 `veS)` `yse)` 创建函数，当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround)
 
 `ea()` 在当前单词后面添加括号，变成函数
+
+`dibv%P` 在没有 surround 插件的情况下，删除周围的括号，还挺通用的 [Poor man's Surround](https://gist.github.com/romainl/ca742f241457b8609836202fe05ee5c0)
 
 `A;` 快速在行尾添加分号
 
@@ -74,7 +76,7 @@ Vim 输入法切换
 - `viWs"` 此时可以可视化选择一段后按 `s"` 来添加引号 [How to Surround Text in Vim, Without Plugins | Jonathan Palardy's Blog](https://blog.jpalardy.com/posts/how-to-surround-text-in-vim-without-plugins/)
 - `noremap sd" di""_da"P` 把删除环绕符号功能绑定到 `sd"` 按键上，目前还不支持修改 surround [Replace or Delete Surround · Issue #191 · esm7/obsidian-vimrc-support](https://github.com/esm7/obsidian-vimrc-support/issues/191)，缺少插件支持的情况下，先删除再加比修改更好操作。并且我还没办法绑定到 `ds"` 上，所以只能反过来
 - #todo 看看 [`vimObject.defineOperator("surroundOperator"`](https://github.com/esm7/obsidian-vimrc-support/blob/master/main.ts#L541C29-L541C45) 是怎么个用法
-  - 看上去是代码有问题，按 <kbd>Alt+Y s</kbd> 后有错误
+- 看上去是代码有问题，按 <kbd>Alt+Y s</kbd> 后有错误
 
 ```
 TypeError: CodeMirror.openDialog is not a function

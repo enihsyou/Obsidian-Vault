@@ -58,7 +58,8 @@ tasks:
       - linux
     dir: ./node_modules/@jackyzha0/quartz
     preconditions:
-      - test -f package.json
+      - sh: test -f package.json
+        msg: "please run 'pnpm install' first."
     deps:
       - fetch-content
     cmds:

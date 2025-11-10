@@ -20,7 +20,7 @@ const config: QuartzConfig = {
     },
     locale: "zh-CN",
     baseUrl: "obsidian.kokomi.me",
-    ignorePatterns: [".*", "Templates", "Excalidraw", "*.excalidraw.md"],
+    ignorePatterns: ["**/.*", "Templates", "**/*.excalidraw.md"],
     defaultDateType: "modified",
     theme: {
       // we define fonts on header

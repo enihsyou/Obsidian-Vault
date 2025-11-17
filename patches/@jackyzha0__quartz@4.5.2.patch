@@ -421,10 +421,16 @@ index 0000000000000000000000000000000000000000..807be8063c9b473c5c2b9624edea7b58
 +  }
 +}
 diff --git a/quartz/util/og.tsx b/quartz/util/og.tsx
-index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08af4ecfd3 100644
+index 2afd606273e143e9ea8759bd61c4e59b3d09d420..7c8f121677fedbbcc2ec3aea5c6b3e62d3758311 100644
 --- a/quartz/util/og.tsx
 +++ b/quartz/util/og.tsx
-@@ -88,6 +88,15 @@ export async function fetchTtf(
+@@ -83,11 +83,21 @@ export async function fetchTtf(
+   // Check if font exists in cache
+   try {
+     await fs.access(cachePath)
++    console.log(styleText("gray", `Using cached font: ${rawFontName} (${cachePath})`))
+     return fs.readFile(cachePath)
+   } catch (error) {
      // ignore errors and fetch font
    }
  
@@ -440,7 +446,7 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08
    // Get css file from google fonts
    const cssResponse = await fetch(
      `https://fonts.googleapis.com/css2?family=${fontName}:wght@${weight}`,
-@@ -107,9 +116,11 @@ export async function fetchTtf(
+@@ -107,9 +117,13 @@ export async function fetchTtf(
      )
      return
    }
@@ -449,7 +455,9 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..e1527aec6aaa18edfe413ebf5deb0e08
  
    // fontData is an ArrayBuffer containing the .ttf file data
 -  const fontResponse = await fetch(match[1])
++  console.log(styleText("gray", `Fetching font: ${rawFontName} (${fontUrl})`))
 +  const fontResponse = await fetch(fontUrl)
++  console.log(fontResponse.headers)
    const fontData = Buffer.from(await fontResponse.arrayBuffer())
    await fs.mkdir(cacheDir, { recursive: true })
    await fs.writeFile(cachePath, fontData)

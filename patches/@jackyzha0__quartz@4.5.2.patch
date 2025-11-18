@@ -421,7 +421,7 @@ index 0000000000000000000000000000000000000000..807be8063c9b473c5c2b9624edea7b58
 +  }
 +}
 diff --git a/quartz/util/og.tsx b/quartz/util/og.tsx
-index 2afd606273e143e9ea8759bd61c4e59b3d09d420..7c8f121677fedbbcc2ec3aea5c6b3e62d3758311 100644
+index 2afd606273e143e9ea8759bd61c4e59b3d09d420..db7d4b91e98bd633b71ee853d920b5289ee63fb6 100644
 --- a/quartz/util/og.tsx
 +++ b/quartz/util/og.tsx
 @@ -83,11 +83,21 @@ export async function fetchTtf(
@@ -446,7 +446,7 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..7c8f121677fedbbcc2ec3aea5c6b3e62
    // Get css file from google fonts
    const cssResponse = await fetch(
      `https://fonts.googleapis.com/css2?family=${fontName}:wght@${weight}`,
-@@ -107,9 +117,13 @@ export async function fetchTtf(
+@@ -107,9 +117,18 @@ export async function fetchTtf(
      )
      return
    }
@@ -457,7 +457,12 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..7c8f121677fedbbcc2ec3aea5c6b3e62
 -  const fontResponse = await fetch(match[1])
 +  console.log(styleText("gray", `Fetching font: ${rawFontName} (${fontUrl})`))
 +  const fontResponse = await fetch(fontUrl)
-+  console.log(fontResponse.headers)
++  console.log(fontResponse.url, fontResponse.headers)
++  const contentType = fontResponse.headers.get("Content-Type");
++  if (contentType !== "application/octet-stream") {
++    console.log(styleText("yellow", `\nWarning: Unexpected Content-Type for font ${rawFontName} (${fontUrl}): ${contentType}`));
++    console.log(fontResponse);
++  }
    const fontData = Buffer.from(await fontResponse.arrayBuffer())
    await fs.mkdir(cacheDir, { recursive: true })
    await fs.writeFile(cachePath, fontData)

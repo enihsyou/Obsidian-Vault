@@ -421,7 +421,7 @@ index 0000000000000000000000000000000000000000..807be8063c9b473c5c2b9624edea7b58
 +  }
 +}
 diff --git a/quartz/util/og.tsx b/quartz/util/og.tsx
-index 2afd606273e143e9ea8759bd61c4e59b3d09d420..db7d4b91e98bd633b71ee853d920b5289ee63fb6 100644
+index 2afd606273e143e9ea8759bd61c4e59b3d09d420..27848546f0aa45968bb9421d05095a8426046681 100644
 --- a/quartz/util/og.tsx
 +++ b/quartz/util/og.tsx
 @@ -83,11 +83,21 @@ export async function fetchTtf(
@@ -441,12 +441,12 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..db7d4b91e98bd633b71ee853d920b528
 +      700: "Bold",
 +    }
 +    const filename = `MiSans-${weightNameMap[weight]}.ttf`
-+    fontUrl = `https://wget.la/https://github.com/dsrkafuu/misans/blob/main/raw/Normal/ttf/${filename}`
++    fontUrl = `https://github.com/dsrkafuu/misans/raw/refs/heads/main/raw/Normal/ttf/${filename}`
 +  } else {
    // Get css file from google fonts
    const cssResponse = await fetch(
      `https://fonts.googleapis.com/css2?family=${fontName}:wght@${weight}`,
-@@ -107,9 +117,18 @@ export async function fetchTtf(
+@@ -107,9 +117,15 @@ export async function fetchTtf(
      )
      return
    }
@@ -455,12 +455,9 @@ index 2afd606273e143e9ea8759bd61c4e59b3d09d420..db7d4b91e98bd633b71ee853d920b528
  
    // fontData is an ArrayBuffer containing the .ttf file data
 -  const fontResponse = await fetch(match[1])
-+  console.log(styleText("gray", `Fetching font: ${rawFontName} (${fontUrl})`))
 +  const fontResponse = await fetch(fontUrl)
-+  console.log(fontResponse.url, fontResponse.headers)
-+  const contentType = fontResponse.headers.get("Content-Type");
-+  if (contentType !== "application/octet-stream") {
-+    console.log(styleText("yellow", `\nWarning: Unexpected Content-Type for font ${rawFontName} (${fontUrl}): ${contentType}`));
++  if (fontResponse.status !== 200) {
++    console.log(styleText("yellow", `\nWarning: Unexpected status code for font ${rawFontName} (${fontUrl})`));
 +    console.log(fontResponse);
 +  }
    const fontData = Buffer.from(await fontResponse.arrayBuffer())

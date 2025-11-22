@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-10-30T11:56:07+08:00
-修改时间: 2025-10-30T12:35:21+08:00
+修改时间: 2025-11-22T16:26:27+08:00
 ---
 ## 提示当前函数的签名
 
@@ -21,3 +21,8 @@
 当前 Zed 0.209.7 只能用 `line ending: toggle` 动作切换，但缺少状态展示，~~看上去下一个版本就加上了~~ Zed v0.210.4 加上了 `status_bar.line_endings_button`
 - [Support CRLF / LF line-endings display and modification · 议题 #5294 · zed-industries/zed](https://github.com/zed-industries/zed/issues/5294#issuecomment-3366798444)
 - [Add line endings indicator in status bar by kitt-cat · 拉取请求 #39609 · zed-industries/zed](https://github.com/zed-industries/zed/pull/39609)
+
+## 在注释上按回车换行的下一行也是注释
+
+关掉 `extend_comment_on_newline` 设置即可。
+- [Add option to disable automatic comment continuation on newline #34047](https://github.com/zed-industries/zed/discussions/34047)

@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:20:33+08:00
-修改时间: 2025-11-05T15:13:47+08:00
+修改时间: 2025-12-03T12:29:50+08:00
 ---
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
@@ -61,6 +61,8 @@
 `ds)db` 删除包裹的函数 Delete surrounding function calls ，把 `a = x(y(z));` 变成 `a = y(z);` [Add surrounding function name delete/change by LeszekSwirski · 拉取请求 #118 · tpope/vim-surround](https://github.com/tpope/vim-surround/pull/118)
 `[(cb` 修改包裹的函数名 [Delete surrounding function calls the easy way : r/vim](https://www.reddit.com/r/vim/comments/bk2l3i/delete_surrounding_function_calls_the_easy_way/)
 
+`zcV$zo` 选择可折叠块，比如当光标位于 Python 的 if 上选择这个 if block ^f50edf
+
 Vim 输入法切换
 
 - [[im-select PR]] 模拟按键输入
@@ -93,3 +95,9 @@ TypeError: CodeMirror.openDialog is not a function
 ```
 
 - 目前还 [不支持](https://github.com/esm7/obsidian-vimrc-support/blob/master/main.ts#L330) 很多 Vim 控制配置，像是 `start` 以 INSERT 模式启动
+
+## Zed Vim
+
+Zed 集成了多家插件，使用体验相比 VSCode / Obsidian 强多了
+
+`v[x` 位于 YAML 的 object key 上时选择整个 object，[[#^f50edf | zcV$zo]] 也可以

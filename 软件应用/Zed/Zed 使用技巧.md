@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-10-30T11:56:07+08:00
-修改时间: 2025-11-22T16:26:27+08:00
+修改时间: 2025-12-03T12:28:36+08:00
 ---
 ## 提示当前函数的签名
 
@@ -26,3 +26,7 @@
 
 关掉 `extend_comment_on_newline` 设置即可。
 - [Add option to disable automatic comment continuation on newline #34047](https://github.com/zed-industries/zed/discussions/34047)
+
+## Zed Vim 使用技巧
+
+见 [[Vim 操作#Zed Vim]]

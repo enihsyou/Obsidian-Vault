@@ -30,3 +30,9 @@
 ## Zed Vim 使用技巧
 
 见 [[Vim 操作#Zed Vim]]
+
+## 选择下一个当前次
+对应 editor::SelectNext
+
+Vim 普通模式下 `gl` `ga` `g Shift+.`
+Vim 插入模式下 `Ctrl+K Ctrl+D` `Ctrl+O gl`（回退到普通模式指定）

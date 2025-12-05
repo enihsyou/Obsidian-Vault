@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:20:33+08:00
-修改时间: 2025-12-03T12:29:50+08:00
+修改时间: 2025-12-05T14:28:11+08:00
 ---
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
@@ -63,6 +63,9 @@
 
 `zcV$zo` 选择可折叠块，比如当光标位于 Python 的 if 上选择这个 if block ^f50edf
 
+`viilxV%p` 提出 if block 的内容
+
+
 Vim 输入法切换
 
 - [[im-select PR]] 模拟按键输入
@@ -100,4 +103,4 @@ TypeError: CodeMirror.openDialog is not a function
 
 Zed 集成了多家插件，使用体验相比 VSCode / Obsidian 强多了
 
-`v[x` 位于 YAML 的 object key 上时选择整个 object，[[#^f50edf | zcV$zo]] 也可以
+`v[x` 位于 YAML 的 object key 上时选择整个 object，[[#^f50edf |zcV$zo]] 也可以

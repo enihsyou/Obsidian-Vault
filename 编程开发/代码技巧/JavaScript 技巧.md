@@ -8,3 +8,5 @@
 
 - [Why can't the left-hand side of an assignment expression use optional chaining?](https://esdiscuss.org/topic/why-cant-the-left-hand-side-of-an-assignment-expression-use-optional-chaining)
 - [The left-hand side of assignment expression may not be an optional property access | bobbyhadz](https://bobbyhadz.com/blog/typescript-left-hand-side-of-assignment-not-optional)
+
+解决方法当然不是 `a!.b = c`，而是定义个函数，`a?.setB(c)`

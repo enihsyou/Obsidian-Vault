@@ -27,7 +27,7 @@
 关掉 `extend_comment_on_newline` 设置即可。
 - [Add option to disable automatic comment continuation on newline #34047](https://github.com/zed-industries/zed/discussions/34047)
 
-## Zed Vim 使用技巧
+## Zed Vim 操作技巧
 
 见 [[Vim 操作#Zed Vim]]
 
@@ -41,4 +41,7 @@ Vim 插入模式下 `Ctrl+K Ctrl+D` `Ctrl+O gl`（回退到普通模式指定）
 ## 有用的快捷键
 
 `Alt+.` 跳转到当前文件中下一个 Git 修改的位置
-`Ctrl+.` 触发快捷动作，在 Vim 中默认是 `Ctrl+x Ctrl+l` 但 x 被我改为了剪切
+`Ctrl+.` 触发快捷动作，在 Vim 中默认是 `Ctrl+x Ctrl+l` 但 x 被我改为了剪切，也可以用 `g .`
+
+`Ctrl+i` Vim 插入模式下查看函数签名
+`g h` `K` Vim 普通模式下查看快速签名，相当于鼠标 Hover 上去的效果

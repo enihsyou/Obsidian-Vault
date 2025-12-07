@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-30T17:37:51+08:00
-修改时间: 2025-11-26T16:32:29+08:00
+修改时间: 2025-12-08T00:27:49+08:00
 ---
 ## 按符号切分后每行输出
 
@@ -24,6 +24,7 @@ openssl ciphers | %{ $_ -split ':' } | Sort-Object
 想让管道工作，最好的办法是让输出程序以已知的编码输出，给输入程序指定编码。
 
 **总的来说**，需要设置这个变量，才能保证管道操作兼容 UTF-8。但副作用是，设置后如 ping、route 等系统命令会退回英文界面。
+
 ```powershell
 # $OutputEncoding is default to UTF8 by now
 # $OutputEncoding = [System.Text.Encoding]::Utf8

@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-07T03:45:27+08:00
-修改时间: 2025-10-27T10:57:59+08:00
+修改时间: 2025-12-08T00:27:48+08:00
 ---
 [Unable to set my port to 443 on my ASUS router : r/OpenVPN](https://www.reddit.com/r/OpenVPN/comments/13xz3jy/unable_to_set_my_port_to_443_on_my_asus_router/)
 
@@ -11,7 +11,7 @@
 ---
 
 但还是有个不足，系统由中间级证书自行签发的末级证书的文件不会带上中间级证书链，导致客户端得把中间级证书添加到信任。
-最终还是得回到 [How to install custom SSL certificates on an ASUS RT-N66U running asuswrt-merlin](https://gist.github.com/davidbalbert/6815258?permalink_comment_id=3354347#gistcomment-3354347) *某条评论* 中的操作流程，其他修改 /etc/cert.tgz 的已经不适用 3004.388.9_2 固件了，具体如下
+最终还是得回到 [How to install custom SSL certificates on an ASUS RT-N66U running asuswrt-merlin](https://gist.github.com/davidbalbert/6815258?permalink_comment_id=3354347#gistcomment-3354347) _某条评论_ 中的操作流程，其他修改 /etc/cert.tgz 的已经不适用 3004.388.9_2 固件了，具体如下
 
 ```shell
 cat > /jffs/.cert/cert_gen.pem # Paste certificate chain and press Ctrl+C

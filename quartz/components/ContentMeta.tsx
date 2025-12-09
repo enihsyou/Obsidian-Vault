@@ -12,6 +12,7 @@ interface ContentMetaOptions {
    */
   showReadingTime: boolean
   showComma: boolean
+  repoBlobLink?: string
 }
 
 const defaultOptions: ContentMetaOptions = {
@@ -30,7 +31,18 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
       const segments: (string | JSX.Element)[] = []
 
       if (fileData.dates) {
-        segments.push(<Date date={getDate(cfg, fileData)!} locale={cfg.locale} />)
+        const createdDate = fileData.dates.created
+        const modifiedDate = fileData.dates.modified
+        if (createdDate) {
+          segments.push(<>
+            {i18n(cfg.locale).components.contentMeta.created}: <Date date={createdDate} locale={cfg.locale} />
+          </>)
+        }
+        if (modifiedDate && modifiedDate.getTime() !== createdDate.getTime()) {
+          segments.push(<>
+            {i18n(cfg.locale).components.contentMeta.modified}: <Date date={modifiedDate} locale={cfg.locale} />
+          </>)
+        }
       }
 
       // Display reading time if enabled
@@ -40,6 +52,11 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
           minutes: Math.ceil(minutes),
         })
         segments.push(<span>{displayedTime}</span>)
+      }
+
+      if (options.repoBlobLink) {
+        const pathInsideContent = fileData.filePath!.replace(/^content\//, "")
+        segments.push(<a href={`${options.repoBlobLink}/${pathInsideContent}?plain=1`}>{i18n(cfg.locale).components.contentMeta.source}</a>)
       }
 
       return (

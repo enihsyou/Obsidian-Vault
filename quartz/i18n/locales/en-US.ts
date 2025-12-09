@@ -44,6 +44,7 @@ export default {
     recentNotes: {
       title: "Recent Notes",
       seeRemainingMore: ({ remaining }) => `See ${remaining} more →`,
+      seeHistory: "See History →",
     },
     transcludes: {
       transcludeOf: ({ targetSlug }) => `Transclude of ${targetSlug}`,
@@ -58,6 +59,12 @@ export default {
     },
     contentMeta: {
       readingTime: ({ minutes }) => `${minutes} min read`,
+      created: "Created",
+      modified: "Modified",
+      source: "Source Code",
+    },
+    relaventLink: {
+      title: "Relevant Links",
     },
   },
   pages: {

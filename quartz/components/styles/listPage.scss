@@ -11,7 +11,8 @@ li.section-li {
 
   & > .section {
     display: grid;
-    grid-template-columns: fit-content(8em) 3fr 1fr;
+    // 使用固定值同步列表每个元素的宽度
+    grid-template-columns: 9em 3fr 1fr;
 
     @media all and ($mobile) {
       & > .tags {

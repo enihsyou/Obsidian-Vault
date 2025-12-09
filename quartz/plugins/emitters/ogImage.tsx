@@ -62,7 +62,7 @@ async function generateSocialImage(
     },
   })
 
-  return sharp(Buffer.from(svg)).webp({ quality: 40 })
+  return sharp(Buffer.from(svg)).webp({ quality: 60 })
 }
 
 async function processOgImage(

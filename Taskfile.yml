@@ -11,64 +11,18 @@ tasks:
         -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
-        ghcr.io/jackyzha0/quartz:sha-b4805a1
+        ghcr.nju.edu.cn/ghcr.io/jackyzha0/quartz:sha-e6cc9ba
         npx quartz build --serve --port=3000 --concurrency=4
 
-  docker-preview-watch:
-    desc: 本地开发阶段使用 Docker 预览网站并监听 content 目录文件变动
-    cmds:
-      - docker run --rm -dit -p 3000:3000 -p 3001:3001
-        -v ./content:/usr/src/app/content
-        -v ./quartz:/usr/src/app/quartz
-        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
-        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
-        -v ./:/usr/src/app/hostdir
-        -e NPM_CONFIG_UPDATE_NOTIFIER=false
-        -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
-        --name obsidian-site-preview
-        ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz build --serve --port=3000 --output hostdir/public
-      - defer: docker stop obsidian-site-preview
-      - docker logs -f obsidian-site-preview &
-      # 使用前需安装 uv tool install https://github.com/enihsyou/docker-windows-volume-watcher.git
-      # 异常发生后注意及时退出以防占用系统资源
-      - docker-volume-watcher obsidian-site-preview -e .quartz-cache
-
-  docker-build:
-    desc: 本地开发阶段使用 Docker 构建网站
-    deps:
-      - symlink-quartz
-      - fetch-content
-    cmds:
-      - docker run --rm -t
-        -v ./content:/usr/src/app/content:ro
-        -v ./quartz:/usr/src/app/quartz
-        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
-        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
-        -v ./:/usr/src/app/hostdir
-        -e NPM_CONFIG_UPDATE_NOTIFIER=false
-        -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
-        ghcr.io/jackyzha0/quartz:sha-b4805a1
-        npx quartz build --output hostdir/public --concurrency=4
-
   source-build:
-    desc: 线上发布阶段在 Quartz 源码目录构建网站
-    platforms:
-      - darwin
-      - linux
-    dir: ./node_modules/@jackyzha0/quartz
+    desc: 从源码目录构建网站
     preconditions:
-      - sh: test -f package.json
+      - sh: test -d node_modules
         msg: "please run 'pnpm install' first."
     deps:
       - fetch-content
     cmds:
-      - task: fetch-3rd-comps
-        vars: { QUARTZ_ROOT: "{{.TASK_DIR | toSlash}}" }
-      - cp "{{.ROOT_DIR}}/quartz.config.ts" ./quartz.config.ts
-      - cp "{{.ROOT_DIR}}/quartz.layout.ts" ./quartz.layout.ts
-      - cp -r "{{.ROOT_DIR}}/content/"* ./content
-      - pnpm run quartz build --output "{{.ROOT_DIR}}/public" --verbose
+      - pnpm run quartz build --verbose
 
   fetch-content:
     desc: 从 Obsidian Vault 同步内容
@@ -83,56 +37,34 @@ tasks:
     desc: 获取第三方组件源代码
     summary: |
       多数是可以直接复制粘贴，在这里说明来源引用以备将来更新时参考
-    vars:
-      QUARTZ_ROOT: '{{default "." .QUARTZ_ROOT}}'
     cmds:
-      - curl -fSL -C - -o "{{.QUARTZ_ROOT}}"/quartz/components/FloatingButtons.tsx               "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/FloatingButtons.tsx"
-      - curl -fSL -C - -o "{{.QUARTZ_ROOT}}"/quartz/components/styles/floatingButtons.scss       "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/styles/floatingButtons.scss"
-      - curl -fSL -C - -o "{{.QUARTZ_ROOT}}"/quartz/components/scripts/floatingButtons.inline.ts "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/scripts/floatingButtons.inline.ts"
+      - curl -fSL -C - -o quartz/components/FloatingButtons.tsx               "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/FloatingButtons.tsx"
+      - curl -fSL -C - -o quartz/components/styles/floatingButtons.scss       "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/styles/floatingButtons.scss"
+      - curl -fSL -C - -o quartz/components/scripts/floatingButtons.inline.ts "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/scripts/floatingButtons.inline.ts"
 
-  symlink-quartz:
-    desc: 创建指向 node_modules/quartz 的符号链接
+  upstream-subtree-split:
+    desc: 首次从上游仓库拆分 quartz 目录为独立分支
     summary: |
-      为处于 node_modules 中的 quartz 源代码创建符号链接。
-      因为本项目的文件用于绑定到容器运行环境中，但像是 quartz.config.ts 会依赖 quartz 源代码中的类型定义。
-      使得编译用的 quartz 源代码没有提交的必要，也就不想在仓库中直接包含。不好使用 git clone / git subtree，
-      又有 git submodule 太不合习惯，最终选择把源仓库添加到依赖中，然后必要文件通过符号链接形式从 node_modules 中引用。
-    deps:
-      - symlink-quartz-unix
-      - symlink-quartz-windows
-  symlink-quartz-windows:
-    platforms: [windows]
+      只需执行一次，关于如何操作请参考
+      https://obsidian.kokomi.me/Obsidian/Publish-Obsidian-Vault
+    platforms:
+      - windows
+    cmds:
+      - wsl --cd /tmp/GitHub --
+        git clone https://github.com/jackyzha0/quartz.git quartz.git
+      - wsl --cd /tmp/GitHub/quartz.git --
+        git subtree split --prefix=quartz --branch subtree-split
+      - git subtree add --prefix=quartz '//wsl.localhost/Ubuntu/tmp/GitHub/quartz.git' subtree-split --squash
+
+  upstream-subtree-pull:
+    desc: 从 Quartz 官方仓库拉取最新更新
+    summary: |
+      这个操作依赖本地有一个 quartz 仓库的 subtree
+    platforms:
+      - windows
     cmds:
       - |
-        modules_root="./node_modules"
-        patches_root="./node_modules/.pnpm_patches"
-        if [ -d "$patches_root" ]; then
-          modules_root="$patches_root"
-        fi
-        pwsh -NoProfile -Command - << EOF
-          New-Item -Force -ItemType SymbolicLink -Value $modules_root/@jackyzha0/quartz/quartz        -Path quartz
-          New-Item -Force -ItemType SymbolicLink -Value $modules_root/@jackyzha0/quartz/tsconfig.json -Path tsconfig.json
+        wsl --cd /home/enihsyou/GitHub/quartz.git -- << EOF
+        git pull
+        git subtree split --prefix=quartz --branch subtree-split
         EOF
-  symlink-quartz-unix:
-    platforms: [darwin, linux]
-    cmds:
-      - |
-        modules_root="./node_modules"
-        patches_root="./node_modules/.pnpm_patches"
-        if [ -d "$patches_root" ]; then
-          modules_root="$patches_root"
-        fi
-        ln -sf $modules_root/@jackyzha0/quartz/quartz        ./quartz
-        ln -sf $modules_root/@jackyzha0/quartz/tsconfig.json ./tsconfig.json
-
-  prepare-patch:
-    desc: 准备对 Quartz 源代码的补丁
-    cmds:
-      - pnpm install --shamefully-hoist
-      - pnpm patch @jackyzha0/quartz
-
-  commit-patch:
-    desc: 提交对 Quartz 源代码的补丁
-    cmds:
-      - cp quartz.gitignore node_modules/.pnpm_patches/@jackyzha0/quartz/.gitignore
-      - pnpm patch-commit "node_modules/.pnpm_patches/@jackyzha0/quartz"

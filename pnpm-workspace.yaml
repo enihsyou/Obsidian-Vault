@@ -1,2 +1,4 @@
-patchedDependencies:
-  '@jackyzha0/quartz@4.5.2': patches/@jackyzha0__quartz@4.5.2.patch
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - sharp

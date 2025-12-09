@@ -12,6 +12,7 @@ interface Options {
   title?: string
   limit: number
   linkToMore: SimpleSlug | false
+  linkToHistory?: string
   showTags: boolean
   filter: (f: QuartzPluginData) => boolean
   sort: (f1: QuartzPluginData, f2: QuartzPluginData) => number
@@ -37,7 +38,13 @@ export default ((userOpts?: Partial<Options>) => {
     const remaining = Math.max(0, pages.length - opts.limit)
     return (
       <div class={classNames(displayClass, "recent-notes")}>
-        <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}</h3>
+        <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}
+          {opts.linkToMore && (
+            <span class="see-more">
+              <a href={opts.linkToHistory} class="external see-more">{i18n(cfg.locale).components.recentNotes.seeHistory}</a>
+            </span>
+          )}
+        </h3>
         <ul class="recent-ul">
           {pages.slice(0, opts.limit).map((page) => {
             const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title

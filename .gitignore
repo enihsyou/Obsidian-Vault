@@ -7,9 +7,10 @@ node_modules
 # Finder (MacOS) folder config
 .DS_Store
 
-# symlinks to node_modules
-quartz
-tsconfig.json
 # git worktree
 content
+# build output
 public/
+
+# 避免运行时产生的临时文件被包含到 patch 中
+.quartz-cache

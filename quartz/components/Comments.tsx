@@ -46,11 +46,7 @@ export default ((opts: Options) => {
         data-strict={boolToStringBool(opts.options.strict ?? true)}
         data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
         data-input-position={opts.options.inputPosition ?? "bottom"}
-        data-light-theme={opts.options.lightTheme ?? "light"}
-        data-dark-theme={opts.options.darkTheme ?? "dark"}
-        data-theme-url={
-          opts.options.themeUrl ?? `https://${cfg.baseUrl ?? "example.com"}/static/giscus`
-        }
+        data-theme="preferred_color_scheme"
         data-lang={opts.options.lang ?? "en"}
       ></div>
     )

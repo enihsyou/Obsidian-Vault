@@ -47,6 +47,7 @@ export interface Translation {
     recentNotes: {
       title: string
       seeRemainingMore: (variables: { remaining: number }) => string
+      seeHistory: string
     }
     transcludes: {
       transcludeOf: (variables: { targetSlug: FullSlug }) => string
@@ -61,6 +62,12 @@ export interface Translation {
     }
     contentMeta: {
       readingTime: (variables: { minutes: number }) => string
+      created: string
+      modified: string
+      source: string
+    }
+    relaventLink: {
+      title: string
     }
   }
   pages: {

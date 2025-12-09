@@ -1,3 +1,6 @@
+import { get } from "http"
+import { escape } from "querystring"
+
 export interface ColorScheme {
   light: string
   lightgray: string
@@ -21,6 +24,7 @@ export type FontSpecification =
       name: string
       weights?: number[]
       includeItalic?: boolean
+      extras?: string[]
     }
 
 export interface Theme {
@@ -47,6 +51,14 @@ export function getFontSpecificationName(spec: FontSpecification): string {
   }
 
   return spec.name
+}
+
+function getFontSpecificationExtraNames(spec: FontSpecification): string[] {
+  if (typeof spec === "string") {
+    return []
+  }
+
+  return spec.extras ?? []
 }
 
 function formatFontSpecification(
@@ -141,6 +153,14 @@ export async function processGoogleFonts(
 }
 
 export function joinStyles(theme: Theme, ...stylesheet: string[]) {
+
+  function getFontFamily(typography: FontSpecification): string {
+    return [
+      getFontSpecificationName(typography),
+      ...getFontSpecificationExtraNames(typography),
+    ].map(name => JSON.stringify(name)).join(", ")
+  }
+
   return `
 ${stylesheet.join("\n\n")}
 
@@ -155,10 +175,10 @@ ${stylesheet.join("\n\n")}
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
 
-  --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
-  --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
-  --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
-  --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};
+  --titleFont: ${getFontFamily(theme.typography.title || theme.typography.header)}, ${DEFAULT_SANS_SERIF};
+  --headerFont: ${getFontFamily(theme.typography.header)}, ${DEFAULT_SANS_SERIF};
+  --bodyFont: ${getFontFamily(theme.typography.body)}, ${DEFAULT_SANS_SERIF};
+  --codeFont: ${getFontFamily(theme.typography.code)}, ${DEFAULT_MONO};
 }
 
 :root[saved-theme="dark"] {

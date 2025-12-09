@@ -18,6 +18,7 @@ export type Analytics =
       provider: "umami"
       websiteId: string
       host?: string
+      scriptName?: string
     }
   | {
       provider: "goatcounter"

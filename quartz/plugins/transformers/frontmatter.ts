@@ -10,11 +10,19 @@ import { i18n } from "../../i18n"
 export interface Options {
   delimiters: string | [string, string]
   language: "yaml" | "toml"
+  created_properties: string[]
+  modified_properties: string[]
+  published_properties: string[]
+  relevants_properties: string[]
 }
 
 const defaultOptions: Options = {
   delimiters: "---",
   language: "yaml",
+  created_properties: ["created", "date"],
+  modified_properties: ["modified", "lastmod", "updated", "last-modified"],
+  published_properties: ["published", "publishDate", "date"],
+  relevants_properties: ["relavents"],
 }
 
 function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
@@ -100,21 +108,16 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
 
             const socialImage = coalesceAliases(data, ["socialImage", "image", "cover"])
 
-            const created = coalesceAliases(data, ["created", "date"])
+            const created = coalesceAliases(data, opts.created_properties)
             if (created) {
               data.created = created
             }
 
-            const modified = coalesceAliases(data, [
-              "modified",
-              "lastmod",
-              "updated",
-              "last-modified",
-            ])
+            const modified = coalesceAliases(data, opts.modified_properties)
             if (modified) data.modified = modified
             data.modified ||= created // if modified is not set, use created
 
-            const published = coalesceAliases(data, ["published", "publishDate", "date"])
+            const published = coalesceAliases(data, opts.published_properties)
             if (published) data.published = published
 
             if (socialImage) data.socialImage = socialImage
@@ -122,6 +125,8 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
             // Remove duplicate slugs
             const uniqueSlugs = [...new Set(allSlugs)]
             allSlugs.splice(0, allSlugs.length, ...uniqueSlugs)
+
+            data.relavents = coalesceAliases(data, opts.relevants_properties)
 
             // fill in frontmatter
             file.data.frontmatter = data as QuartzPluginData["frontmatter"]
@@ -152,6 +157,7 @@ declare module "vfile" {
         cssclasses: string[]
         socialImage: string
         comments: boolean | string
+        relavents: string[] // 相关链接
       }>
   }
 }

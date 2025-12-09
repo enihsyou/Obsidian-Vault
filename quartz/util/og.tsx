@@ -83,11 +83,21 @@ export async function fetchTtf(
   // Check if font exists in cache
   try {
     await fs.access(cachePath)
+    console.log(styleText("gray", `Using cached font: ${rawFontName} (${cachePath})`))
     return fs.readFile(cachePath)
   } catch (error) {
     // ignore errors and fetch font
   }
 
+  let fontUrl: string;
+  if (rawFontName === "MiSans") {
+    const weightNameMap: Record<number, string> = {
+      400: "Regular",
+      700: "Bold",
+    }
+    const filename = `MiSans-${weightNameMap[weight]}.ttf`
+    fontUrl = `https://github.com/dsrkafuu/misans/raw/refs/heads/main/raw/Normal/ttf/${filename}`
+  } else {
   // Get css file from google fonts
   const cssResponse = await fetch(
     `https://fonts.googleapis.com/css2?family=${fontName}:wght@${weight}`,
@@ -107,9 +117,15 @@ export async function fetchTtf(
     )
     return
   }
+  fontUrl = match[1];
+  }
 
   // fontData is an ArrayBuffer containing the .ttf file data
-  const fontResponse = await fetch(match[1])
+  const fontResponse = await fetch(fontUrl)
+  if (fontResponse.status !== 200) {
+    console.log(styleText("yellow", `\nWarning: Unexpected status code for font ${rawFontName} (${fontUrl})`));
+    console.log(fontResponse);
+  }
   const fontData = Buffer.from(await fontResponse.arrayBuffer())
   await fs.mkdir(cacheDir, { recursive: true })
   await fs.writeFile(cachePath, fontData)

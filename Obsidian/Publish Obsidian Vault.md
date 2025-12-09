@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-14T08:58:52+08:00
-修改时间: 2025-12-09T16:30:58+08:00
+修改时间: 2025-12-09T18:05:41+08:00
 ---
 我是如何把 Obsidian Vault 构建成静态网页的，当然不是使用 [Obsidian Publish](https://publish.obsidian.md/)，而是一个兼容 Obsidian 特性的静态站点构建工具 [Quartz 4](https://quartz.jzhao.xyz/)。
 
@@ -106,11 +106,25 @@ Linux / macOS 正常 npm 项目开发模式跑就行。
 
 相比 `git read-tree` 我更喜欢用 `git subtree` 命令，思路是在新的目录中保存 quartz 源代码，拆分出需要保留的文件，压缩合并到网页构建分支，未来需要拉取更新时直接 pull 变更就行。
 
-```shell
-git clone https://github.com/enihsyou/Obsidian-Vault.git pages -b pages
-cd pages
+subtree split 是个 IO 密集的动作，在 Windows 平台最好在 WSL 下执行，不然 cygwin Git + Windows Defender 能慢死人。
 
-git remote add quartz https://github.com/jackyzha0/quartz.git
-git fetch quartz v4
-git worktree add -b quartz ../quartz quartz/v4
+```shell title="On WSL2"
+git clone https://github.com/jackyzha0/quartz.git quartz.git
+cd quartz.git
+git subtree split --prefix=quartz --branch subtree-split
+
+# 未来有更新了就在拉取后重新来一遍
+git pull
+git subtree split --prefix=quartz --branch subtree-split
 ```
+
+这个分裂出的仓库就放在本地了， 未来拉更新还需要它
+
+```shell title="On Windows"
+git subtree add --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash
+
+# 未来有更新就把 add 换成 pull
+git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash
+```
+
+然后 quartz 仓库的 `package.json` 中定义的依赖复制过来就好了。

@@ -71,6 +71,7 @@
     "@types/d3": "^7.4.3",
     "@types/hast": "^3.0.4",
     "@types/js-yaml": "^4.0.9",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^24.10.1",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
@@ -82,7 +83,9 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "quartz": "node ./quartz/bootstrap-cli.mjs"
+    "quartz": "node ./quartz/bootstrap-cli.mjs",
+    "build": "node ./quartz/bootstrap-cli.mjs build",
+    "serve": "node ./quartz/bootstrap-cli.mjs build --serve"
   },
   "prettier": {
     "printWidth": 100,

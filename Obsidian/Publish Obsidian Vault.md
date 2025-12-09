@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-14T08:58:52+08:00
-修改时间: 2025-10-20T20:10:00+08:00
+修改时间: 2025-12-09T16:30:58+08:00
 ---
 我是如何把 Obsidian Vault 构建成静态网页的，当然不是使用 [Obsidian Publish](https://publish.obsidian.md/)，而是一个兼容 Obsidian 特性的静态站点构建工具 [Quartz 4](https://quartz.jzhao.xyz/)。
 
@@ -95,4 +95,22 @@ docker run --rm -it -p 3000:3000 \
 
 Linux / macOS 正常 npm 项目开发模式跑就行。
 
+## 支持上游更新
 
+`2025-12-09` 上述方法的好处是 quartz 的源代码在项目中 _不存在_，但坏处是难以拉取上游更新，本地开发缺少 IDE 支持，自己对 quartz 的变更也集中在一个难以管理版本记录的 patch 文件中。
+
+随着我对 quartz 源代码的改动越来越多，光一个 patch 文件就有上千行，已经超过它的能力范畴了。所以我在想是时候把源代码引入进来了，但这次要方便更新、不带历史、适配编辑环境。
+
+- [Adding subdirectory of a remote repo to a subdirectory in local repo](https://gist.github.com/tswaters/542ba147a07904b1f3f5)
+- [git-subtree(1) — git-man — Debian testing — Debian Manpages](https://manpages.debian.org/testing/git-man/git-subtree.1.en.html)
+
+相比 `git read-tree` 我更喜欢用 `git subtree` 命令，思路是在新的目录中保存 quartz 源代码，拆分出需要保留的文件，压缩合并到网页构建分支，未来需要拉取更新时直接 pull 变更就行。
+
+```shell
+git clone https://github.com/enihsyou/Obsidian-Vault.git pages -b pages
+cd pages
+
+git remote add quartz https://github.com/jackyzha0/quartz.git
+git fetch quartz v4
+git worktree add -b quartz ../quartz quartz/v4
+```

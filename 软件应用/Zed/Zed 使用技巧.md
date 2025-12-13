@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-10-30T11:56:07+08:00
-修改时间: 2025-12-09T23:28:13+08:00
+修改时间: 2025-12-13T16:46:23+08:00
 ---
 ## 提示当前函数的签名
 
@@ -33,10 +33,15 @@
 
 ## 选择下一个当前词
 
-对应 editor::SelectNext
+对应 `editor::SelectNext`
 
 Vim 普通模式下 `gl` `ga` `g Shift+.`
 Vim 插入模式下 `Ctrl+K Ctrl+D` `Ctrl+O gl`（回退到普通模式指定）
+
+## 选择当前词的所有匹配
+
+对应 `editor::SelectAllMatches`
+Vim 插入模式下 `Ctrl+F2` `Ctrl+Shift+L`
 
 ## 有用的快捷键
 

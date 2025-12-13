@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-30T17:37:51+08:00
-修改时间: 2025-12-09T21:09:27+08:00
+修改时间: 2025-12-12T21:31:00+08:00
 ---
 ## 按符号切分后每行输出
 
@@ -17,6 +17,7 @@ openssl ciphers | %{ $_ -split ':' } | Sort-Object
 ```
 
 ## 管道输出编码
+
 #字符编码
 
 从 PowerShell 7.4 开始，重定向操作符 `>` 和 `| Out-File` 之间的行为出现差异
@@ -27,9 +28,10 @@ openssl ciphers | %{ $_ -split ':' } | Sort-Object
 **总的来说**，需要设置这个变量，才能保证管道操作兼容 UTF-8。但副作用是，设置后如 ping、route 等系统命令会退回英文界面。
 
 ```powershell
-# $OutputEncoding is default to UTF8 by now
-# $OutputEncoding = [System.Text.Encoding]::Utf8
+# note that these two OutputEncoding are different instance.
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+# $OutputEncoding is default to UTF8 by now, so no need to set this line
+# $OutputEncoding = [System.Text.Encoding]::Utf8
 ```
 
 对于 `nslookup example.com | nali --gbk`
@@ -57,3 +59,7 @@ openssl ciphers | %{ $_ -split ':' } | Sort-Object
 - [Data passed through a pipe will be parsed differently in PowerShell 5.1 vs current release · Issue #17523 · PowerShell/PowerShell](https://github.com/PowerShell/PowerShell/issues/17523#issuecomment-1154271811)
 - [about_Character_Encoding - PowerShell | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_character_encoding?view=powershell-7.5)
 - [Understanding file encoding in VS Code and PowerShell - PowerShell | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/scripting/dev-cross-plat/vscode/understanding-file-encoding?view=powershell-7.5)
+
+## 避免 PowerShell 管道自动添加的换行符
+
+See [[2025-12-09#PowerShell 管道会自动加换行符]]

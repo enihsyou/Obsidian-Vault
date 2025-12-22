@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { Ping } from "./quartz/plugins/emitters/ping"
 import { HtmlHead } from "./quartz/plugins/transformers/htmlhead"
 
 /**
@@ -100,6 +101,7 @@ const config: QuartzConfig = {
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
       Plugin.CustomOgImages(),
+      Ping(),
     ],
   },
 }

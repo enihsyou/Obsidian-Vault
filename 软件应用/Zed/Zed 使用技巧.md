@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-10-30T11:56:07+08:00
-修改时间: 2025-12-13T16:46:23+08:00
+修改时间: 2026-01-17T12:47:56+08:00
 ---
 ## 提示当前函数的签名
 
@@ -27,6 +27,12 @@
 关掉 `extend_comment_on_newline` 设置即可。
 - [Add option to disable automatic comment continuation on newline #34047](https://github.com/zed-industries/zed/discussions/34047)
 
+## 连续注释下一行
+
+类似 IntelliJ 的注释快捷键行为，注释完自动把光标移动到下一行。在 VSCode 中也想念这种行为 [When commenting a line, move the cursor to the next line : r/vscode](https://www.reddit.com/r/vscode/comments/7nlp9k/when_commenting_a_line_move_the_cursor_to_the/)
+
+我会是把系统快捷键 `Ctrl+K Ctrl+C` 的设置改为 `{"advance_downwards":true}` 来实现。
+
 ## Zed Vim 操作技巧
 
 见 [[Vim 操作#Zed Vim]]
@@ -46,7 +52,9 @@ Vim 插入模式下 `Ctrl+F2` `Ctrl+Shift+L`
 ## 有用的快捷键
 
 `Alt+.` 跳转到当前文件中下一个 Git 修改的位置，接下来 `d o` 展开，`d p` 回滚，`d O` 包含
-`Ctrl+.` 触发快捷动作，在 Vim 中默认是 `Ctrl+x Ctrl+l` 但 x 被我改为了剪切，也可以用 `g .`
+`Ctrl+.` 触发快捷动作，在 Vim 中默认是 `Ctrl+X Ctrl+L` 但 x 被我改为了剪切，也可以用 `g .`
 
-`Ctrl+i` Vim 插入模式下查看函数签名
+`Ctrl+K Ctrl+R` 也能 Git 回滚当前块
+
+`Ctrl+I` Vim 插入模式下查看函数签名
 `g h` `K` Vim 普通模式下查看快速签名，相当于鼠标 Hover 上去的效果

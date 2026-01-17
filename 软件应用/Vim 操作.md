@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:20:33+08:00
-修改时间: 2025-12-05T14:28:11+08:00
+修改时间: 2026-01-16T13:13:37+08:00
 ---
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
@@ -22,6 +22,8 @@
 `veS)` `yse)` 创建函数，当光标处于 `log|theAnswer;` t 的位置时产生 `log(theAnswer);` [tpope/vim-surround](https://github.com/tpope/vim-surround)
 
 `ea()` 在当前单词后面添加括号，变成函数
+
+`yi(da(db"0P` / `di(va(obp` 解除函数调用 unwrap function call, `func(args)` 变成 `args`
 
 `dibv%P` 在没有 surround 插件的情况下，删除周围的括号，还挺通用的 [Poor man's Surround](https://gist.github.com/romainl/ca742f241457b8609836202fe05ee5c0)
 

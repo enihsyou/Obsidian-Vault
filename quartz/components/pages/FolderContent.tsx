@@ -111,6 +111,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
               {i18n(cfg.locale).pages.folderContent.itemsUnderFolder({
                 count: allPagesInFolder.length,
               })}
+              {i18n(cfg.locale).pages.folderContent.sortByModifiedDate}
             </p>
           )}
           <div>

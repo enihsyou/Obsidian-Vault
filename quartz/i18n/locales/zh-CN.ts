@@ -80,6 +80,7 @@ export default {
     folderContent: {
       folder: "文件夹",
       itemsUnderFolder: ({ count }) => `此文件夹下有${count}条笔记。`,
+      sortByModifiedDate: "按最后修改日期排序。",
     },
     tagContent: {
       tag: "标签",

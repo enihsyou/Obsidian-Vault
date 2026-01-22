@@ -83,6 +83,7 @@ export interface Translation {
     folderContent: {
       folder: string
       itemsUnderFolder: (variables: { count: number }) => string
+      sortByModifiedDate: string
     }
     tagContent: {
       tag: string

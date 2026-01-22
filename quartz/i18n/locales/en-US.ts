@@ -81,6 +81,7 @@ export default {
       folder: "Folder",
       itemsUnderFolder: ({ count }) =>
         count === 1 ? "1 item under this folder." : `${count} items under this folder.`,
+      sortByModifiedDate: "Sort by Modified Date.",
     },
     tagContent: {
       tag: "Tag",

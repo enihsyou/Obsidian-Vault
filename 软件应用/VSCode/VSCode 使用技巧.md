@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:19:35+08:00
-修改时间: 2026-01-01T15:16:14+08:00
+修改时间: 2026-02-12T18:47:20+08:00
 ---
 ### 撤销选择下一个单词
 
@@ -167,3 +167,7 @@ vim.targets.smartQuotes.aIncludesSurroundingSpaces = false
 ### 远程仓库后 rg 占用大量 CPU 资源
 
 See [[2026-01-01#VSCode & Zed 打开远程服务器根目录后持续占用 CPU]]
+
+## Windows 11 右键菜单
+
+以前需要用 [BartoszRojek/CodeModernExplorerMenu: VSCode Modern Explorer Context Menu for Windows 11+](https://github.com/BartoszRojek/CodeModernExplorerMenu)，但最近 [January 2026 (version 1.109)](https://code.visualstudio.com/updates/v1_109#_windows-11-context-menu-integration) 终于内置了。

@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:20:33+08:00
-修改时间: 2026-01-16T13:13:37+08:00
+修改时间: 2026-02-16T15:33:41+08:00
 ---
 录屏时显示 Flying Text
 <https://x.com/fwarashi/status/1901516322451927206>
@@ -106,3 +106,5 @@ TypeError: CodeMirror.openDialog is not a function
 Zed 集成了多家插件，使用体验相比 VSCode / Obsidian 强多了
 
 `v[x` 位于 YAML 的 object key 上时选择整个 object，[[#^f50edf |zcV$zo]] 也可以
+
+`ddvii<` unwrap if block in Python

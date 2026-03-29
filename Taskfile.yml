@@ -50,11 +50,11 @@ tasks:
     platforms:
       - windows
     cmds:
-      - wsl --cd /tmp/GitHub --
+      - wsl --cd /home/enihsyou/GitHub --
         git clone https://github.com/jackyzha0/quartz.git quartz.git
-      - wsl --cd /tmp/GitHub/quartz.git --
+      - wsl --cd /home/enihsyou/GitHub/quartz.git --
         git subtree split --prefix=quartz --branch subtree-split
-      - git subtree add --prefix=quartz '//wsl.localhost/Ubuntu/tmp/GitHub/quartz.git' subtree-split --squash
+      - git subtree add --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash
 
   upstream-subtree-pull:
     desc: 从 Quartz 官方仓库拉取最新更新
@@ -68,3 +68,4 @@ tasks:
         git pull
         git subtree split --prefix=quartz --branch subtree-split
         EOF
+      - git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash

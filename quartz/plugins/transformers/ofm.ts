@@ -148,6 +148,48 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
+/**
+ * Merge inlineCode nodes inside Obsidian-style wikilinks ([[...]])
+ * back into a single text node.
+ *
+ * @param tree mdast Root AST
+ */
+export function mdastMergeInlineCodeWithText(tree: Root) {
+  visit(tree, "paragraph", (node: Paragraph) => {
+    const children = node.children;
+    if (children.length === 0) return;
+
+    const first = children[0];
+    const last = children[children.length - 1];
+
+    // 必须是 text + text 包裹
+    if (!(
+      first.type === "text" &&
+      last.type === "text" &&
+      first.value.startsWith("[[") &&
+      last.value.endsWith("]]")
+    )) {
+      return;
+    }
+
+    // 合并整个 paragraph
+    const merged = children
+      .map((n) => {
+        if (n.type === "inlineCode") return `\`${n.value}\``;
+        if (n.type === "text") return n.value;
+        return "";
+      })
+      .join("");
+
+    node.children = [
+      {
+        type: "text",
+        value: merged,
+      },
+    ];
+  });
+}
+
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
@@ -218,6 +260,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
           const base = pathToRoot(file.data.slug!)
 
           if (opts.wikilinks) {
+            mdastMergeInlineCodeWithText(tree)
             replacements.push([
               wikilinkRegex,
               (value: string, ...capture: string[]) => {

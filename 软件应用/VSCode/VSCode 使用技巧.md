@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:19:35+08:00
-修改时间: 2026-02-12T18:47:20+08:00
+修改时间: 2026-04-15T17:45:17+08:00
 ---
 ### 撤销选择下一个单词
 
@@ -48,6 +48,10 @@ keyboard shortcut to focus into preview panel in peek definition window
 ### Windows 11 新版菜单扩展
 
 [[2025-10-12#^bef39e |VSCode Modern Explorer Context Menu for Windows 11+]]
+
+## Windows 11 右键菜单
+
+以前需要用 [BartoszRojek/CodeModernExplorerMenu: VSCode Modern Explorer Context Menu for Windows 11+](https://github.com/BartoszRojek/CodeModernExplorerMenu)，但最近 [January 2026 (version 1.109)](https://code.visualstudio.com/updates/v1_109#_windows-11-context-menu-integration) 终于内置了。
 
 ### 跳转引用时复用 split 窗口，而不是在 current editor group 里开个新的
 
@@ -168,6 +172,13 @@ vim.targets.smartQuotes.aIncludesSurroundingSpaces = false
 
 See [[2026-01-01#VSCode & Zed 打开远程服务器根目录后持续占用 CPU]]
 
-## Windows 11 右键菜单
+### 多标签页管理
 
-以前需要用 [BartoszRojek/CodeModernExplorerMenu: VSCode Modern Explorer Context Menu for Windows 11+](https://github.com/BartoszRojek/CodeModernExplorerMenu)，但最近 [January 2026 (version 1.109)](https://code.visualstudio.com/updates/v1_109#_windows-11-context-menu-integration) 终于内置了。
+- `Ctrl+K LeftArrow` 查看: 向左移动编辑器组 `workbench.action.moveActiveEditorGroupLeft`，可以勉强替代 VSCodeVim 缺失的 [`CTRL-W x`](https://vimhelp.org/windows.txt.html#CTRL-W_x) 功能
+- `Ctrl + \` 查看: 拆分编辑器 `workbench.action.splitEditor`
+- `Ctrl+Enter` `breadcrumbs.revealFocusedFromTreeAside` `explorer.openToSide` `openReferenceToSide`
+
+### 无标签页模式下从文件管理器选择文件
+
+- `Ctrl+0` 打开文件管理器
+- `Ctrl+Shift+E` 在文件管理器中选中当前文件

@@ -157,22 +157,27 @@ const wikilinkImageEmbedRegex = new RegExp(
 export function mdastMergeInlineCodeWithText(tree: Root) {
   visit(tree, "paragraph", (node: Paragraph) => {
     const children = node.children;
-    if (children.length === 0) return;
 
-    const first = children[0];
-    const last = children[children.length - 1];
+    // Quick check: need at least [text, inlineCode, text]
+    if (children.length < 3) return;
 
-    // 必须是 text + text 包裹
-    if (!(
-      first.type === "text" &&
-      last.type === "text" &&
-      first.value.startsWith("[[") &&
-      last.value.endsWith("]]")
-    )) {
-      return;
-    }
+    // Check if any inlineCode is inside a wikilink alias:
+    // preceded by a text node with an unclosed [[ and followed by a text node starting with ]]
+    const hasWikilinkCode = children.some((child, i) => {
+      if (child.type !== "inlineCode") return false;
+      if (i === 0 || i === children.length - 1) return false;
+      const prev = children[i - 1];
+      const next = children[i + 1];
+      if (prev.type !== "text" || next.type !== "text") return false;
+      return (
+        prev.value.includes("[[") &&
+        next.value.startsWith("]]") &&
+        (prev.value.match(/\[\[/g)?.length ?? 0) > (prev.value.match(/\]\]/g)?.length ?? 0)
+      );
+    });
 
-    // 合并整个 paragraph
+    if (!hasWikilinkCode) return;
+
     const merged = children
       .map((n) => {
         if (n.type === "inlineCode") return `\`${n.value}\``;

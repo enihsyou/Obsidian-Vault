@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:19:35+08:00
-修改时间: 2026-04-15T17:45:17+08:00
+修改时间: 2026-04-26T14:02:33+08:00
 ---
 ### 撤销选择下一个单词
 
@@ -68,9 +68,13 @@ keyboard shortcut to focus into preview panel in peek definition window
 
 ### `editor.gotoLocation.alternativeDefinitionCommand`
 
-> 设置为空，这样在 Ctrl+LMB 触发跳转动作时，如果已经在源点了，什么都不做。
-> 默认是会弹出当前符号的引用的速览窗口。但会把当前符号列在第一个找到的元素，不像 JetBrains 系列能过滤当前元素。
-> 对想要找引用的建议操作是按 Shift+F12 打开引用速览，然后按 F12 遍历元素
+设置为空，这样在 Ctrl+LMB 触发跳转动作时，如果已经在源点了，什么都不做。
+
+默认是会弹出当前符号的引用的速览窗口。但会把当前符号列在第一个找到的元素，不像 JetBrains 系列能过滤当前元素。
+
+对想要找引用的建议操作是按 Shift+F12 打开引用速览，然后按 F12 遍历元素。
+
+另见 [[VSCode 恼人问题#Ctrl+LMB 点击符号默认在预览窗口查看引用]]
 
 ### `files.simpleDialog.enable`
 

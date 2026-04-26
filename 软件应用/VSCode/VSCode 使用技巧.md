@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:19:35+08:00
-修改时间: 2026-04-26T14:02:33+08:00
+修改时间: 2026-04-26T15:14:37+08:00
 ---
 ### 撤销选择下一个单词
 
@@ -74,7 +74,7 @@ keyboard shortcut to focus into preview panel in peek definition window
 
 对想要找引用的建议操作是按 Shift+F12 打开引用速览，然后按 F12 遍历元素。
 
-另见 [[VSCode 恼人问题#Ctrl+LMB 点击符号默认在预览窗口查看引用]]
+另见 [[VSCode 恼人问题#查看引用的结果列表包含自身]]
 
 ### `files.simpleDialog.enable`
 

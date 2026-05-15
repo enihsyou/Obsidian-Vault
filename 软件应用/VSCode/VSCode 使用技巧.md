@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:19:35+08:00
-修改时间: 2026-04-26T15:14:37+08:00
+修改时间: 2026-05-15T21:24:49+08:00
 ---
 ### 撤销选择下一个单词
 
@@ -144,7 +144,7 @@ vim.targets.smartQuotes.aIncludesSurroundingSpaces = false
 "vim.highlightedyank.duration": 500
 ```
 
-### 免得光标移过去就展示，恼人。但同时搜索多文件/多栏
+### 免得光标放在单词上就触发高亮，但同时搜索多文件/多栏
 
 ```json
 "editor.occurrencesHighlight": "multiFile"
@@ -186,3 +186,8 @@ See [[2026-01-01#VSCode & Zed 打开远程服务器根目录后持续占用 CPU]
 
 - `Ctrl+0` 打开文件管理器
 - `Ctrl+Shift+E` 在文件管理器中选中当前文件
+
+## 驼峰跳词
+
+按 CamelCase 移动光标。
+有个 `cursorWordPartLeft` 命令，可以绑定到 `Ctrl+; Ctrl+Left` 上

@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-10-16T18:55:03+08:00
-修改时间: 2026-05-04T23:03:08+08:00
+修改时间: 2026-05-15T21:32:41+08:00
 ---
 ## 查看引用的结果列表包含自身
 
@@ -22,3 +22,10 @@ Code Lens 会在函数、类型符号上显示一行 `12 references`，点击会
 ```
 
 关联：[[VSCode 使用技巧#`editor.gotoLocation.alternativeDefinitionCommand`]]
+
+## 重命名符号的输入框不支持 cursorWordPartLeft 指令
+
+- [The `cursorWordPart`* commands are limited to editor text, unlike the other `cursorWord`* commands · 议题 #76762 · microsoft/vscode](https://github.com/microsoft/vscode/issues/76762)
+- [cursorWordPartLeftSelect and cursorWordPartRightSelect keyboard shortcut not working in renaming file · 议题 #68043 · microsoft/vscode](https://github.com/Microsoft/vscode/issues/68043)
+
+设置快捷键映射没有用，因为那不是 editor。只得一个个字符移动

@@ -6,12 +6,11 @@ tasks:
       - docker run --rm -it -p 3000:3000 -p 3001:3001
         -v ./content:/usr/src/app/content
         -v ./quartz:/usr/src/app/quartz
-        -v ./quartz.config.ts:/usr/src/app/quartz.config.ts:ro
-        -v ./quartz.layout.ts:/usr/src/app/quartz.layout.ts:ro
+        -v ./quartz.config.yaml:/usr/src/app/quartz.config.yaml:ro
         -v ./:/usr/src/app/hostdir
         -e NPM_CONFIG_UPDATE_NOTIFIER=false
         -e NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
-        ghcr.nju.edu.cn/ghcr.io/jackyzha0/quartz:sha-e6cc9ba
+        ghcr.nju.edu.cn/ghcr.io/jackyzha0/quartz:v5
         npx quartz build --serve --port=3000 --concurrency=4
 
   source-build:
@@ -22,6 +21,7 @@ tasks:
     deps:
       - fetch-content
     cmds:
+      - pnpm run quartz plugin install
       - pnpm run quartz build --verbose
 
   fetch-content:
@@ -32,16 +32,6 @@ tasks:
       - git worktree remove content --force || true
       - git branch -D content || true
       - git worktree add -b content ./content enihsyou-PC
-
-  fetch-3rd-comps:
-    desc: 获取第三方组件源代码
-    summary: |
-      多数是可以直接复制粘贴，在这里说明来源引用以备将来更新时参考
-    cmds:
-      - curl -fSL -C - -o quartz/components/FloatingButtons.tsx               "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/FloatingButtons.tsx"
-      - curl -fSL -C - -o quartz/components/styles/floatingButtons.scss       "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/styles/floatingButtons.scss"
-      - curl -fSL -C - -o quartz/components/scripts/floatingButtons.inline.ts "https://github.com/CatCodeMe/catcodeme.github.io/raw/refs/heads/v4/quartz/components/scripts/floatingButtons.inline.ts"
-
   upstream-subtree-split:
     desc: 首次从上游仓库拆分 quartz 目录为独立分支
     summary: |
@@ -53,8 +43,8 @@ tasks:
       - wsl --cd /home/enihsyou/GitHub --
         git clone https://github.com/jackyzha0/quartz.git quartz.git
       - wsl --cd /home/enihsyou/GitHub/quartz.git --
-        git subtree split --prefix=quartz --branch subtree-split
-      - git subtree add --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash
+        git subtree split --prefix=quartz --branch v5-split
+      - git subtree add --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' v5-split --squash
 
   upstream-subtree-pull:
     desc: 从 Quartz 官方仓库拉取最新更新
@@ -66,6 +56,6 @@ tasks:
       - |
         wsl --cd /home/enihsyou/GitHub/quartz.git -- << EOF
         git pull
-        git subtree split --prefix=quartz --branch subtree-split
+        git subtree split --prefix=quartz --branch v5-split
         EOF
-      - git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash
+      - git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' v5-split --squash

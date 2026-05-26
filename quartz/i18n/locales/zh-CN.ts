@@ -44,7 +44,6 @@ export default {
     recentNotes: {
       title: "最近的笔记",
       seeRemainingMore: ({ remaining }) => `查看更多${remaining}篇笔记 →`,
-      seeHistory: "查看历史记录 →",
     },
     transcludes: {
       transcludeOf: ({ targetSlug }) => `包含${targetSlug}`,
@@ -59,12 +58,6 @@ export default {
     },
     contentMeta: {
       readingTime: ({ minutes }) => `${minutes}分钟阅读`,
-      created: "创建于",
-      modified: "更新于",
-      source: "本页源码",
-    },
-    relaventLink: {
-      title: "相关链接",
     },
   },
   pages: {
@@ -80,7 +73,6 @@ export default {
     folderContent: {
       folder: "文件夹",
       itemsUnderFolder: ({ count }) => `此文件夹下有${count}条笔记。`,
-      sortByModifiedDate: "按最后修改日期排序。",
     },
     tagContent: {
       tag: "标签",

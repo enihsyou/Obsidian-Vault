@@ -1,0 +1,48 @@
+{
+  "name": "floating-buttons",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "peerDependencies": {
+    "preact": "^10.0.0"
+  },
+  "devDependencies": {
+    "@quartz-community/types": "github:quartz-community/types",
+    "esbuild": "^0.27.2",
+    "preact": "^10.28.2",
+    "sass": "^1.97.3",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  },
+  "quartz": {
+    "name": "floating-buttons",
+    "displayName": "Floating Buttons",
+    "description": "Adds floating navigation shortcut buttons.",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "category": ["component"],
+    "defaultEnabled": true,
+    "components": {
+      "FloatingButtons": {
+        "name": "FloatingButtons",
+        "displayName": "Floating Buttons",
+        "description": "Floating shortcut buttons.",
+        "version": "1.0.0"
+      }
+    }
+  }
+}

@@ -44,7 +44,6 @@ export default {
     recentNotes: {
       title: "Recent Notes",
       seeRemainingMore: ({ remaining }) => `See ${remaining} more →`,
-      seeHistory: "See History →",
     },
     transcludes: {
       transcludeOf: ({ targetSlug }) => `Transclude of ${targetSlug}`,
@@ -59,12 +58,6 @@ export default {
     },
     contentMeta: {
       readingTime: ({ minutes }) => `${minutes} min read`,
-      created: "Created",
-      modified: "Modified",
-      source: "Source Code",
-    },
-    relaventLink: {
-      title: "Relevant Links",
     },
   },
   pages: {
@@ -81,7 +74,6 @@ export default {
       folder: "Folder",
       itemsUnderFolder: ({ count }) =>
         count === 1 ? "1 item under this folder." : `${count} items under this folder.`,
-      sortByModifiedDate: "Sort by Modified Date.",
     },
     tagContent: {
       tag: "Tag",

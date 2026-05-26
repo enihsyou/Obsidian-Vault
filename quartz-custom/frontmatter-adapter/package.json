@@ -1,0 +1,31 @@
+{
+  "name": "frontmatter-adapter",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "@quartz-community/types": "github:quartz-community/types",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  },
+  "quartz": {
+    "name": "frontmatter-adapter",
+    "displayName": "Frontmatter Key Adapter",
+    "description": "Maps localized frontmatter keys to canonical fields used by other Quartz plugins (language-agnostic).",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "category": "transformer",
+    "defaultOrder": 5,
+    "defaultEnabled": true
+  }
+}

@@ -1,4 +1,10 @@
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - sharp
+packages:
+  - quartz-custom/*
+
+allowBuilds:
+  "@parcel/watcher": true
+  esbuild: true
+  sharp: true
+
+# as @quartz-community/types is not published to registry yet.
+blockExoticSubdeps: false

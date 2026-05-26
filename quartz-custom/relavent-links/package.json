@@ -1,0 +1,46 @@
+{
+  "name": "relavent-links",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "peerDependencies": {
+    "preact": "^10.0.0"
+  },
+  "devDependencies": {
+    "@quartz-community/types": "github:quartz-community/types",
+    "preact": "^10.28.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  },
+  "quartz": {
+    "name": "relavent-links",
+    "displayName": "Relavent Links",
+    "description": "Displays related links from Chinese frontmatter.",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "category": ["component"],
+    "defaultEnabled": true,
+    "components": {
+      "RelaventLinks": {
+        "name": "RelaventLinks",
+        "displayName": "Relavent Links",
+        "description": "Displays related links.",
+        "version": "1.0.0"
+      }
+    }
+  }
+}

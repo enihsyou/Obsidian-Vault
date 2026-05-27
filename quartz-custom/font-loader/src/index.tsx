@@ -1,7 +1,8 @@
-import type { QuartzTransformerPlugin } from "@quartz-community/types"
+import type { BuildCtx, QuartzTransformerPlugin } from "@quartz-community/types"
 import { jsx } from "preact/jsx-runtime"
 import fs from "node:fs/promises"
 import path from "node:path"
+import { styleText } from "node:util"
 
 export interface StylesheetEntry {
   /** Full URL of the CSS stylesheet to preload */
@@ -15,6 +16,17 @@ export interface FontLoaderOptions {
   stylesheets: StylesheetEntry[]
 }
 
+export interface Theme {
+  typography: {
+    title?: FontSpecification;
+    header: FontSpecification;
+    body: FontSpecification;
+    code: FontSpecification;
+  };
+}
+
+export type FontSpecification = string
+
 // MiSans weights to prefetch for og-image emitter
 const MISANS_WEIGHTS = [
   [400, "Regular"],
@@ -24,10 +36,20 @@ const MISANS_WEIGHTS = [
 // Module-level singleton: ensures prefetch runs at most once per build process
 let prefetchPromise: Promise<void> | null = null
 
-async function prefetchMiSansTtf(): Promise<void> {
+// 与 og-image emitter 协作预取 MiSans 字体文件到本地缓存
+async function prefetchMiSansTtf(ctx: BuildCtx): Promise<void> {
+  const cfg = ctx.cfg.configuration;
+  const theme = cfg.theme as Theme;
+  const headerFont = theme.typography.header;
+  // support MiSans and MiSans VF
+  if (!headerFont.startsWith("MiSans")) {
+    return
+  }
+
   const cacheDir = path.join("quartz", ".quartz-cache", "fonts")
   for (const [weight, weightName] of MISANS_WEIGHTS) {
-    const cacheKey = `MiSans-${weight}`
+    const fontNameInKey = headerFont.replaceAll(" ", "+");
+    const cacheKey = `${fontNameInKey}-${weight}`
     const cachePath = path.join(cacheDir, cacheKey)
     try {
       await fs.access(cachePath)
@@ -46,7 +68,7 @@ async function prefetchMiSansTtf(): Promise<void> {
       await fs.mkdir(cacheDir, { recursive: true })
       await fs.writeFile(cachePath, data)
     } catch (e) {
-      console.warn(`[font-loader] Failed to prefetch MiSans-${weightName}: ${e}`)
+      console.warn(`[font-loader] Failed to prefetch ${cacheKey}: ${e}`)
     }
   }
 }
@@ -63,10 +85,10 @@ const FontLoader: QuartzTransformerPlugin<FontLoaderOptions> = (opts) => {
 
   return {
     name: "FontLoader",
-    markdownPlugins() {
+    markdownPlugins(ctx: BuildCtx) {
       // Fire off MiSans TTF prefetch early in the build so og-image emitter finds fonts cached
       if (!prefetchPromise) {
-        prefetchPromise = prefetchMiSansTtf()
+        prefetchPromise = prefetchMiSansTtf(ctx)
       }
       return []
     },

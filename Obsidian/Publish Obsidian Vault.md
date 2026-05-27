@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-14T08:58:52+08:00
-修改时间: 2025-12-09T20:41:07+08:00
+修改时间: 2026-05-27T16:13:35+08:00
 ---
 我是如何把 Obsidian Vault 构建成静态网页的，当然不是使用 [Obsidian Publish](https://publish.obsidian.md/)，而是一个兼容 Obsidian 特性的静态站点构建工具 [Quartz 4](https://quartz.jzhao.xyz/)。
 
@@ -127,3 +127,5 @@ wsl --cd /home/enihsyou/GitHub/quartz.git -- `
 
 git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash
 ```
+
+`2026-05-26` 升级 v5 也是同样的路数

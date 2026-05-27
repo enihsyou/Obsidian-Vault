@@ -7,6 +7,9 @@ export default {
         }
         return `${minutes} min read`;
       },
+      created: "Created",
+      modified: "Modified",
+      source: "Source",
     },
   },
 };

@@ -7,6 +7,9 @@ export default {
           : minutes == 2
             ? `دقيقتان للقراءة`
             : `${minutes} دقائق للقراءة`,
+      created: "تاريخ الإنشاء",
+      modified: "تاريخ التعديل",
+      source: "المصدر",
     },
   },
 };

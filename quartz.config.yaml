@@ -89,7 +89,7 @@ plugins:
       openLinksInNewTab: true
     order: 60
   - source: github:quartz-community/description
-    enabled: true
+    enabled: false
     order: 70
   - source: github:quartz-community/latex
     enabled: true
@@ -162,7 +162,7 @@ plugins:
       position: beforeBody
       priority: 10
   - source: github:quartz-community/content-meta
-    enabled: true
+    enabled: false
     layout:
       position: beforeBody
       priority: 20
@@ -311,6 +311,14 @@ plugins:
     layout:
       position: right
       priority: 40
+  - source: ./quartz-custom/description
+    enabled: true
+    order: 70
+  - source: ./quartz-custom/content-meta
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 20
 layout:
   groups:
     toolbar:

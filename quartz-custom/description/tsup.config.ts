@@ -1,16 +1,25 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsup"
 
 const SINGLETON_EXTERNALS = [
-  "preact",
-  "preact/hooks",
-  "preact/jsx-runtime",
-  "preact/compat",
-  "@jackyzha0/quartz",
-  "@jackyzha0/quartz/*",
   "vfile",
   "vfile/*",
   "unified",
-];
+]
+
+export default defineConfig({
+  entry: {
+    index: "src/index.ts",
+  },
+  format: ["esm"],
+  dts: true,
+  sourcemap: true,
+  clean: true,
+  target: "es2022",
+  platform: "node",
+  noExternal: [/.*/],
+  external: SINGLETON_EXTERNALS,
+})
+
 
 export default defineConfig({
   entry: {

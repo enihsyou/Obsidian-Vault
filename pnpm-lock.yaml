@@ -148,6 +148,59 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  quartz-custom/content-meta:
+    dependencies:
+      '@quartz-community/types':
+        specifier: github:quartz-community/types
+        version: https://codeload.github.com/quartz-community/types/tar.gz/d342893db8240099cfd9d4499996333f1ca636b4(unified@11.0.5)(vfile@6.0.3)
+      '@quartz-community/utils':
+        specifier: github:quartz-community/utils
+        version: https://codeload.github.com/quartz-community/utils/tar.gz/e09d8b0bbccb46073b23c00affaf3e40a2c3b0c4(github-slugger@2.0.0)(hast-util-to-jsx-runtime@2.3.6)(preact@10.29.2)(unified@11.0.5)(vfile@6.0.3)
+      reading-time:
+        specifier: ^1.5.0
+        version: 1.5.0
+    devDependencies:
+      preact:
+        specifier: ^10.28.2
+        version: 10.29.2
+      sass:
+        specifier: ^1.97.3
+        version: 1.100.0
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.1(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  quartz-custom/description:
+    dependencies:
+      '@quartz-community/types':
+        specifier: github:quartz-community/types
+        version: https://codeload.github.com/quartz-community/types/tar.gz/d342893db8240099cfd9d4499996333f1ca636b4(unified@11.0.5)(vfile@6.0.3)
+      '@quartz-community/utils':
+        specifier: github:quartz-community/utils
+        version: https://codeload.github.com/quartz-community/utils/tar.gz/e09d8b0bbccb46073b23c00affaf3e40a2c3b0c4(github-slugger@2.0.0)(hast-util-to-jsx-runtime@2.3.6)(preact@10.29.2)(unified@11.0.5)(vfile@6.0.3)
+      hast-util-to-string:
+        specifier: ^3.0.1
+        version: 3.0.1
+      mdast-util-to-string:
+        specifier: ^4.0.0
+        version: 4.0.0
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.1.0
+    devDependencies:
+      '@types/mdast':
+        specifier: ^4.0.4
+        version: 4.0.4
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.1(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   quartz-custom/floating-buttons:
     devDependencies:
       '@quartz-community/types':
@@ -174,6 +227,9 @@ importers:
       '@quartz-community/types':
         specifier: github:quartz-community/types
         version: https://codeload.github.com/quartz-community/types/tar.gz/d342893db8240099cfd9d4499996333f1ca636b4(unified@11.0.5)(vfile@6.0.3)
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.19
       preact:
         specifier: ^10.28.2
         version: 10.29.2
@@ -1202,8 +1258,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@24.10.2':
-    resolution: {integrity: sha512-WOhQTZ4G8xZ1tjJTvKOpyEVSGgOTvJAfDK3FNFgELyaTpzhdgHVHeqW8V+UJvzF5BT+/B54T/1S2K6gd9c7bbA==}
+  '@types/node@22.19.19':
+    resolution: {integrity: sha512-dyh/xO2Fh5bYrfWaaqGrRQQGkNdmYw6AmaAUvYeUMNTWQtvb796ikLdmTchRmOlOiIJ1TDXfWgVx1QkUlQ6Hew==}
 
   '@types/node@25.9.1':
     resolution: {integrity: sha512-xfrlY7UD5rMJk3ZVJP8BNzS28J36YJg+xp+LPXV1TdWxr8uMH5A860QNxYDGQe/ylDSgjxE52Q9VnO7p75tJxg==}
@@ -1591,6 +1647,9 @@ packages:
 
   hast-util-to-jsx-runtime@2.3.6:
     resolution: {integrity: sha512-zl6s8LwNyo1P9uw+XJGvZtdFF1GdAkOg8ujOw+4Pyb76874fLps4ueHXDhXWdk6YHQ6OgUtinliG7RsYvCbbBg==}
+
+  hast-util-to-string@3.0.1:
+    resolution: {integrity: sha512-XelQVTDWvqcl3axRfI0xSeoVKzyIFPwsAGSLIsKdJKQMXDYJS4WYrBNF/8J7RdhIcFI2BOHgAifggsvsxp/3+A==}
 
   hast-util-to-text@4.0.2:
     resolution: {integrity: sha512-KK6y/BN8lbaq654j7JgBydev7wuNMcID54lkRav1P0CaE1e47P72AWWPiGKXTJU271ooYzcvTAn/Zt0REnvc7A==}
@@ -2030,6 +2089,9 @@ packages:
     resolution: {integrity: sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==}
     engines: {node: '>= 20.19.0'}
 
+  reading-time@1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
+
   remark-parse@11.0.0:
     resolution: {integrity: sha512-FCxlKLNGknS5ba/1lmpYijMUzX2esxW5xQqjWxw2eHFfS2MSdaHVINFmhjo+qN1WhZhNimq0dZATN9pH0IDrpA==}
 
@@ -2363,8 +2425,8 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  undici-types@7.16.0:
-    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
   undici-types@7.24.6:
     resolution: {integrity: sha512-WRNW+sJgj5OBN4/0JpHFqtqzhpbnV0GuB+OozA9gCL7a993SmU+1JBZCzLNxYsbMfIeDL+lTsphD5jN5N+n0zg==}
@@ -3073,9 +3135,9 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@24.10.2':
+  '@types/node@22.19.19':
     dependencies:
-      undici-types: 7.16.0
+      undici-types: 6.21.0
 
   '@types/node@25.9.1':
     dependencies:
@@ -3093,7 +3155,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 24.10.2
+      '@types/node': 25.9.1
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -3505,6 +3567,10 @@ snapshots:
       vfile-message: 4.0.3
     transitivePeerDependencies:
       - supports-color
+
+  hast-util-to-string@3.0.1:
+    dependencies:
+      '@types/hast': 3.0.4
 
   hast-util-to-text@4.0.2:
     dependencies:
@@ -4016,6 +4082,8 @@ snapshots:
 
   readdirp@5.0.0: {}
 
+  reading-time@1.5.0: {}
+
   remark-parse@11.0.0:
     dependencies:
       '@types/mdast': 4.0.4
@@ -4406,7 +4474,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  undici-types@7.16.0: {}
+  undici-types@6.21.0: {}
 
   undici-types@7.24.6: {}
 

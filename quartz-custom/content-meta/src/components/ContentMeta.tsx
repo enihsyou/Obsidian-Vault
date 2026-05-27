@@ -1,13 +1,11 @@
 import type {
   QuartzComponentConstructor,
   QuartzComponentProps,
-  QuartzPluginData,
-  ValidDateType,
 } from "@quartz-community/types";
 import readingTime from "reading-time";
 import { classNames } from "../util/lang";
 import { i18n } from "../i18n";
-import { DateComponent, getDate } from "../util/date";
+import { DateComponent } from "../util/date";
 import type { JSX } from "preact";
 import style from "./styles/contentMeta.scss";
 
@@ -17,6 +15,8 @@ export interface ContentMetaOptions {
    */
   showReadingTime: boolean;
   showComma: boolean;
+  /** URL prefix for viewing source of the file in a git repository, e.g. https://github.com/user/repo/blob/main */
+  repoBlobLink?: string;
 }
 
 const defaultOptions: ContentMetaOptions = {
@@ -36,18 +36,24 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
 
       if (fileData.dates) {
         const locale = cfg.locale || "en-US";
-        const defaultDateType =
-          (fileData.defaultDateType as ValidDateType | undefined) ??
-          (cfg.defaultDateType as ValidDateType | undefined);
-        if (defaultDateType) {
-          const dataWithDefaultDateType: QuartzPluginData = {
-            ...(fileData as QuartzPluginData),
-            defaultDateType,
-          };
-          const date = getDate(dataWithDefaultDateType);
-          if (date) {
-            segments.push(<DateComponent date={date} locale={locale} />);
-          }
+        const i18nData = i18n(locale);
+        const createdDate = fileData.dates.created;
+        const modifiedDate = fileData.dates.modified;
+        if (createdDate) {
+          segments.push(
+            <>
+              {i18nData.components.contentMeta.created}:{" "}
+              <DateComponent date={createdDate} locale={locale} />
+            </>,
+          );
+        }
+        if (modifiedDate && modifiedDate.getTime() !== createdDate?.getTime()) {
+          segments.push(
+            <>
+              {i18nData.components.contentMeta.modified}:{" "}
+              <DateComponent date={modifiedDate} locale={locale} />
+            </>,
+          );
         }
       }
 
@@ -60,6 +66,16 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
           minutes: Math.ceil(minutes),
         });
         segments.push(<span>{displayedTime}</span>);
+      }
+
+      if (options.repoBlobLink) {
+        const pathInsideContent = fileData.filePath!.replace(/^content\//, "");
+        const locale = cfg.locale || "en-US";
+        segments.push(
+          <a href={`${options.repoBlobLink}/${pathInsideContent}?plain=1`}>
+            {i18n(locale).components.contentMeta.source}
+          </a>,
+        );
       }
 
       return (

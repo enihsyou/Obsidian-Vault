@@ -88,30 +88,30 @@ plugins:
       markdownLinkResolution: shortest
       openLinksInNewTab: true
     order: 60
-  - source: github:quartz-community/description
-    enabled: false
-    order: 70
-  - source: github:quartz-community/latex
+  - source: ./quartz-custom/description
     enabled: true
-    options:
-      renderEngine: katex
-    order: 80
-  - source: github:quartz-community/citations
-    enabled: false
-    order: 85
+    order: 70
+  # - source: github:quartz-community/latex
+  #   enabled: true
+  #   options:
+  #     renderEngine: katex
+  #   order: 80
+  # - source: github:quartz-community/citations
+  #   enabled: false
+  #   order: 85
   - source: github:quartz-community/hard-line-breaks
     enabled: true
     order: 90
-  - source: github:quartz-community/ox-hugo
-    enabled: false
-    order: 91
-  - source: github:quartz-community/roam
-    enabled: false
-    order: 92
+  # - source: github:quartz-community/ox-hugo
+  #   enabled: false
+  #   order: 91
+  # - source: github:quartz-community/roam
+  #   enabled: false
+  #   order: 92
   - source: github:quartz-community/remove-draft
     enabled: true
-  - source: github:quartz-community/explicit-publish
-    enabled: false
+  # - source: github:quartz-community/explicit-publish
+  #   enabled: false
   - source: github:quartz-community/alias-redirects
     enabled: true
   - source: github:quartz-community/content-index
@@ -161,8 +161,8 @@ plugins:
     layout:
       position: beforeBody
       priority: 10
-  - source: github:quartz-community/content-meta
-    enabled: false
+  - source: ./quartz-custom/content-meta
+    enabled: true
     layout:
       position: beforeBody
       priority: 20
@@ -274,12 +274,12 @@ plugins:
       position: body
       priority: 100
       display: all
-  - source: github:quartz-community/stacked-pages
-    enabled: false
-    layout:
-      position: afterBody
-      priority: 50
-      display: all
+  # - source: github:quartz-community/stacked-pages
+  #   enabled: false
+  #   layout:
+  #     position: afterBody
+  #     priority: 50
+  #     display: all
   - source: ./quartz-custom/frontmatter-adapter
     enabled: true
     order: 5
@@ -311,14 +311,6 @@ plugins:
     layout:
       position: right
       priority: 40
-  - source: ./quartz-custom/description
-    enabled: true
-    order: 70
-  - source: ./quartz-custom/content-meta
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 20
 layout:
   groups:
     toolbar:

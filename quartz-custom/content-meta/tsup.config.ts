@@ -21,6 +21,9 @@ export default defineConfig({
   clean: true,
   target: "es2022",
   platform: "node",
+  banner: {
+    js: 'import { createRequire } from "module"; const require = createRequire(import.meta.url);',
+  },
   noExternal: [/.*/],
   external: SINGLETON_EXTERNALS,
   esbuildOptions(options) {

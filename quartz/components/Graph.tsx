@@ -68,8 +68,7 @@ export default ((opts?: Partial<GraphOptions>) => {
         <h3>{i18n(cfg.locale).components.graph.title}</h3>
         <div class="graph-outer">
           <div class="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
-          {/* comply to buggy getElementById inside floatingButtons.inline.ts */}
-          <button class="global-graph-icon" id="global-graph-icon" aria-label="Global Graph">
+          <button class="global-graph-icon" aria-label="Global Graph">
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"

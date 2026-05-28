@@ -1,5 +1,6 @@
 import {QuartzComponentConstructor, QuartzComponentProps} from "./types"
 import style from "./styles/floatingButtons.scss"
+// @ts-expect-error - bundled as a browser script string by tsup.config.ts
 import script from "./scripts/floatingButtons.inline.ts"
 import {classNames} from "../util/lang"
 
@@ -39,7 +40,7 @@ export default ((opts?: FloatingButtonsOptions) => {
             title="全局图谱"
             data-action="graph"
           >
-            <span class="floating-button-tooltip">全局图谱 ⌘ G</span>
+            <span class="floating-button-tooltip">全局图谱</span>
             <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -64,16 +65,6 @@ export default ((opts?: FloatingButtonsOptions) => {
 	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"
             />
           </svg>
-          </button>
-          <button
-            class="floating-button"
-            title="快捷键"
-            data-action="shortcuts"
-          >
-            <span class="floating-button-tooltip">快捷键</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
-              <path fill="currentColor" d="M5 12.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m6.502-4.495a.752.752 0 1 0 0-1.505a.752.752 0 0 0 0 1.505m3.753-.753a.752.752 0 1 1-1.505 0a.752.752 0 0 1 1.505 0m-9.753.753a.752.752 0 1 0 0-1.505a.752.752 0 0 0 0 1.505M7.75 9.752a.752.752 0 1 1-1.505 0a.752.752 0 0 1 1.505 0m2.252.753a.752.752 0 1 0 0-1.505a.752.752 0 0 0 0 1.505m3.757-.753a.752.752 0 1 1-1.504 0a.752.752 0 0 1 1.504 0M8.503 8.005a.752.752 0 1 0 0-1.505a.752.752 0 0 0 0 1.505M2 5.5A1.5 1.5 0 0 1 3.5 4h13A1.5 1.5 0 0 1 18 5.5v8a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 2 13.5zM3.5 5a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5z" />
-            </svg>
           </button>
         </div>
       </div>

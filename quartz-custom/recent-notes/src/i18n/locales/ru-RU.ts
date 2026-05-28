@@ -2,6 +2,7 @@ export default {
   components: {
     recentNotes: {
       title: "Недавние заметки",
+      seeHistory: "See History →",
       seeRemainingMore: ({ remaining }: { remaining: number }) =>
         `Посмотреть оставш${getForm(remaining, "уюся", "иеся", "иеся")} ${remaining} →`,
     },

@@ -2,7 +2,6 @@ import type { BuildCtx, QuartzTransformerPlugin } from "@quartz-community/types"
 import { jsx } from "preact/jsx-runtime"
 import fs from "node:fs/promises"
 import path from "node:path"
-import { styleText } from "node:util"
 
 export interface StylesheetEntry {
   /** Full URL of the CSS stylesheet to preload */
@@ -102,15 +101,23 @@ const FontLoader: QuartzTransformerPlugin<FontLoaderOptions> = (opts) => {
     },
     externalResources() {
       return {
-        additionalHead: stylesheets.map(({ href, crossorigin }) =>
-          jsx("link", {
-            rel: "stylesheet",
-            media: "print",
-            onload: "this.removeAttribute('onload');this.media='all'",
-            href,
-            ...(crossorigin !== undefined ? { crossorigin } : {}),
+        additionalHead: [
+          // 固定列表页网格列宽，与 folder-page/tag-page 的 listPage.scss 对齐
+          jsx("style", {
+            dangerouslySetInnerHTML: {
+              __html: `li.section-li>.section{grid-template-columns:9em 3fr 1fr}`,
+            },
           }),
-        ),
+          ...stylesheets.map(({ href, crossorigin }) =>
+            jsx("link", {
+              rel: "stylesheet",
+              media: "print",
+              onload: "this.removeAttribute('onload');this.media='all'",
+              href,
+              ...(crossorigin !== undefined ? { crossorigin } : {}),
+            }),
+          ),
+        ],
       }
     },
   }

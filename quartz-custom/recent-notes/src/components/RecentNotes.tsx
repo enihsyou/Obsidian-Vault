@@ -26,6 +26,7 @@ export interface RecentNotesOptions {
   title?: string;
   limit: number;
   linkToMore: string | false;
+  linkToHistory?: string;
   showTags: boolean;
   hideTagPages: boolean;
   hideFolderPages: boolean;
@@ -95,7 +96,13 @@ export default ((userOpts?: Partial<RecentNotesOptions>) => {
     const locale = cfg.locale ?? "en-US";
     return (
       <div class={classNames(displayClass, "recent-notes")}>
-        <h3>{opts.title ?? i18n(locale).components.recentNotes.title}</h3>
+        <h3>{opts.title ?? i18n(locale).components.recentNotes.title}
+          {opts.linkToMore && opts.linkToHistory && (
+            <span class="see-more">
+              <a href={opts.linkToHistory} class="external see-more">{i18n(locale).components.recentNotes.seeHistory}</a>
+            </span>
+          )}
+        </h3>
         <ul class="recent-ul">
           {pages.slice(0, opts.limit).map((page) => {
             const title = page.frontmatter?.title ?? "Untitled";

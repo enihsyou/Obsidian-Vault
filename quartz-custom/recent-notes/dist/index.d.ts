@@ -6,6 +6,7 @@ interface RecentNotesOptions {
     title?: string;
     limit: number;
     linkToMore: string | false;
+    linkToHistory?: string;
     showTags: boolean;
     hideTagPages: boolean;
     hideFolderPages: boolean;

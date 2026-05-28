@@ -163,6 +163,8 @@ plugins:
       priority: 10
   - source: ./quartz-custom/content-meta
     enabled: true
+    options:
+      repoBlobLink: "https://github.com/enihsyou/Obsidian-Vault/blob/enihsyou-PC"
     layout:
       position: beforeBody
       priority: 20
@@ -218,13 +220,14 @@ plugins:
       links:
         GitHub: https://github.com/enihsyou/Obsidian-Vault/tree/pages
         Blog: https://blog.kokomi.me
-  - source: github:quartz-community/recent-notes
+  - source: ./quartz-custom/recent-notes
     enabled: true
     options:
       limit: 3
       showTags: true
       hideTagPages: true
       hideFolderPages: true
+      linkToHistory: "https://github.com/enihsyou/Obsidian-Vault/commits/enihsyou-PC?author=enihsyou"
     layout:
       position: afterBody
       priority: 10

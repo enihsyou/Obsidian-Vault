@@ -1,4 +1,4 @@
-// node_modules/@quartz-community/utils/dist/date.js
+// ../../node_modules/.pnpm/@quartz-community+utils@htt_3a6e7c689d8e8e8bb41cb01f6d37d9c4/node_modules/@quartz-community/utils/dist/date.js
 function formatDate(d2, locale = "en-US") {
   return d2.toLocaleDateString(locale, {
     year: "numeric",
@@ -7,7 +7,7 @@ function formatDate(d2, locale = "en-US") {
   });
 }
 
-// node_modules/@quartz-community/utils/dist/sort.js
+// ../../node_modules/.pnpm/@quartz-community+utils@htt_3a6e7c689d8e8e8bb41cb01f6d37d9c4/node_modules/@quartz-community/utils/dist/sort.js
 function getDate(data) {
   const defaultDateType = data.defaultDateType;
   if (!defaultDateType) {
@@ -33,7 +33,7 @@ function byDateAndAlphabetical() {
   };
 }
 
-// node_modules/@quartz-community/utils/dist/path.js
+// ../../node_modules/.pnpm/@quartz-community+utils@htt_3a6e7c689d8e8e8bb41cb01f6d37d9c4/node_modules/@quartz-community/utils/dist/path.js
 function endsWith(s2, suffix) {
   return s2 === suffix || s2.endsWith("/" + suffix);
 }
@@ -41,7 +41,7 @@ function isFolderPath(fplike) {
   return fplike.endsWith("/") || endsWith(fplike, "index") || endsWith(fplike, "index.md") || endsWith(fplike, "index.html");
 }
 
-// node_modules/@quartz-community/utils/dist/lang.js
+// ../../node_modules/.pnpm/@quartz-community+utils@htt_3a6e7c689d8e8e8bb41cb01f6d37d9c4/node_modules/@quartz-community/utils/dist/lang.js
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -51,6 +51,7 @@ var en_US_default = {
   components: {
     recentNotes: {
       title: "Recent Notes",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `See ${remaining} more \u2192`
     }
   }
@@ -61,6 +62,7 @@ var ar_SA_default = {
   components: {
     recentNotes: {
       title: "\u0622\u062E\u0631 \u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `\u062A\u0635\u0641\u062D ${remaining} \u0623\u0643\u062B\u0631 \u2192`
     }
   }
@@ -71,6 +73,7 @@ var ca_ES_default = {
   components: {
     recentNotes: {
       title: "Notes Recents",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Vegi ${remaining} m\xE9s \u2192`
     }
   }
@@ -81,6 +84,7 @@ var cs_CZ_default = {
   components: {
     recentNotes: {
       title: "Nejnov\u011Bj\u0161\xED pozn\xE1mky",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Zobraz ${remaining} dal\u0161\xEDch \u2192`
     }
   }
@@ -91,6 +95,7 @@ var de_DE_default = {
   components: {
     recentNotes: {
       title: "Zuletzt bearbeitete Seiten",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `${remaining} weitere ansehen \u2192`
     }
   }
@@ -101,6 +106,7 @@ var en_GB_default = {
   components: {
     recentNotes: {
       title: "Recent Notes",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `See ${remaining} more \u2192`
     }
   }
@@ -111,6 +117,7 @@ var es_ES_default = {
   components: {
     recentNotes: {
       title: "Notas Recientes",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Vea ${remaining} m\xE1s \u2192`
     }
   }
@@ -121,6 +128,7 @@ var fa_IR_default = {
   components: {
     recentNotes: {
       title: "\u06CC\u0627\u062F\u062F\u0627\u0634\u062A\u200C\u0647\u0627\u06CC \u0627\u062E\u06CC\u0631",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `${remaining} \u06CC\u0627\u062F\u062F\u0627\u0634\u062A \u062F\u06CC\u06AF\u0631 \u2192`
     }
   }
@@ -131,6 +139,7 @@ var fi_FI_default = {
   components: {
     recentNotes: {
       title: "Viimeisimm\xE4t muistiinpanot",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `N\xE4yt\xE4 ${remaining} lis\xE4\xE4 \u2192`
     }
   }
@@ -141,6 +150,7 @@ var fr_FR_default = {
   components: {
     recentNotes: {
       title: "Notes R\xE9centes",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Voir ${remaining} de plus \u2192`
     }
   }
@@ -151,6 +161,7 @@ var he_IL_default = {
   components: {
     recentNotes: {
       title: "\u05D4\u05E2\u05E8\u05D5\u05EA \u05D0\u05D7\u05E8\u05D5\u05E0\u05D5\u05EA",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `\u05E2\u05D9\u05D9\u05DF \u05D1 ${remaining} \u05E0\u05D5\u05E1\u05E4\u05D9\u05DD \u2192`
     }
   }
@@ -161,6 +172,7 @@ var hu_HU_default = {
   components: {
     recentNotes: {
       title: "Legut\xF3bbi jegyzetek",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `${remaining} tov\xE1bbi megtekint\xE9se \u2192`
     }
   }
@@ -171,6 +183,7 @@ var id_ID_default = {
   components: {
     recentNotes: {
       title: "Catatan Terbaru",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Lihat ${remaining} lagi \u2192`
     }
   }
@@ -181,6 +194,7 @@ var it_IT_default = {
   components: {
     recentNotes: {
       title: "Note recenti",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => remaining === 1 ? "Vedi 1 altra \u2192" : `Vedi altre ${remaining} \u2192`
     }
   }
@@ -191,6 +205,7 @@ var ja_JP_default = {
   components: {
     recentNotes: {
       title: "\u6700\u8FD1\u306E\u8A18\u4E8B",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `\u3055\u3089\u306B${remaining}\u4EF6 \u2192`
     }
   }
@@ -201,6 +216,7 @@ var kk_KZ_default = {
   components: {
     recentNotes: {
       title: "\u0421\u043E\u04A3\u0493\u044B \u0436\u0430\u0437\u0431\u0430\u043B\u0430\u0440",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `\u0422\u0430\u0493\u044B ${remaining} \u0436\u0430\u0437\u0431\u0430\u043D\u044B \u049B\u0430\u0440\u0430\u0443 \u2192`
     }
   }
@@ -211,6 +227,7 @@ var ko_KR_default = {
   components: {
     recentNotes: {
       title: "\uCD5C\uADFC \uAC8C\uC2DC\uAE00",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `${remaining}\uAC74 \uB354\uBCF4\uAE30 \u2192`
     }
   }
@@ -221,6 +238,7 @@ var lt_LT_default = {
   components: {
     recentNotes: {
       title: "Naujausi U\u017Era\u0161ai",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Per\u017Ei\u016Br\u0117ti dar ${remaining} \u2192`
     }
   }
@@ -231,6 +249,7 @@ var nb_NO_default = {
   components: {
     recentNotes: {
       title: "Nylige notater",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Se ${remaining} til \u2192`
     }
   }
@@ -241,6 +260,7 @@ var nl_NL_default = {
   components: {
     recentNotes: {
       title: "Recente notities",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Zie ${remaining} meer \u2192`
     }
   }
@@ -251,6 +271,7 @@ var pl_PL_default = {
   components: {
     recentNotes: {
       title: "Najnowsze notatki",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Zobacz ${remaining} nastepnych \u2192`
     }
   }
@@ -261,6 +282,7 @@ var pt_BR_default = {
   components: {
     recentNotes: {
       title: "Notas recentes",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Veja mais ${remaining} \u2192`
     }
   }
@@ -271,6 +293,7 @@ var ro_RO_default = {
   components: {
     recentNotes: {
       title: "Noti\u021Be recente",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Vezi \xEEnc\u0103 ${remaining} \u2192`
     }
   }
@@ -281,6 +304,7 @@ var ru_RU_default = {
   components: {
     recentNotes: {
       title: "\u041D\u0435\u0434\u0430\u0432\u043D\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u043E\u0441\u0442\u0430\u0432\u0448${getForm(remaining, "\u0443\u044E\u0441\u044F", "\u0438\u0435\u0441\u044F", "\u0438\u0435\u0441\u044F")} ${remaining} \u2192`
     }
   }
@@ -299,6 +323,7 @@ var th_TH_default = {
   components: {
     recentNotes: {
       title: "\u0E1A\u0E31\u0E19\u0E17\u0E36\u0E01\u0E25\u0E48\u0E32\u0E2A\u0E38\u0E14",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `\u0E14\u0E39\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E35\u0E01 ${remaining} \u0E23\u0E32\u0E22\u0E01\u0E32\u0E23 \u2192`
     }
   }
@@ -309,6 +334,7 @@ var tr_TR_default = {
   components: {
     recentNotes: {
       title: "Son Notlar",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `${remaining} tane daha g\xF6r \u2192`
     }
   }
@@ -319,6 +345,7 @@ var uk_UA_default = {
   components: {
     recentNotes: {
       title: "\u041E\u0441\u0442\u0430\u043D\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `\u041F\u0435\u0440\u0435\u0433\u043B\u044F\u043D\u0443\u0442\u0438 \u0449\u0435 ${remaining} \u2192`
     }
   }
@@ -329,6 +356,7 @@ var vi_VN_default = {
   components: {
     recentNotes: {
       title: "Ghi ch\xFA g\u1EA7n \u0111\xE2y",
+      seeHistory: "See History \u2192",
       seeRemainingMore: ({ remaining }) => `Xem th\xEAm ${remaining} ghi ch\xFA \u2192`
     }
   }
@@ -339,6 +367,7 @@ var zh_CN_default = {
   components: {
     recentNotes: {
       title: "\u6700\u8FD1\u7684\u7B14\u8BB0",
+      seeHistory: "\u67E5\u770B\u5386\u53F2\u8BB0\u5F55 \u2192",
       seeRemainingMore: ({ remaining }) => `\u67E5\u770B\u66F4\u591A${remaining}\u7BC7\u7B14\u8BB0 \u2192`
     }
   }
@@ -349,6 +378,7 @@ var zh_TW_default = {
   components: {
     recentNotes: {
       title: "\u6700\u8FD1\u7684\u7B46\u8A18",
+      seeHistory: "\u67E5\u770B\u6B77\u53F2\u8A18\u9304 \u2192",
       seeRemainingMore: ({ remaining }) => `\u67E5\u770B\u66F4\u591A ${remaining} \u7BC7\u7B46\u8A18 \u2192`
     }
   }
@@ -400,7 +430,7 @@ l = { __e: function(n2, l2, u3, t2) {
   throw n2;
 } }, "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, Math.random().toString(8);
 
-// node_modules/preact/jsx-runtime/dist/jsxRuntime.mjs
+// ../../node_modules/.pnpm/preact@10.29.2/node_modules/preact/jsx-runtime/dist/jsxRuntime.mjs
 var f2 = 0;
 function u2(e2, t2, n2, o2, i2, u3) {
   t2 || (t2 = {});
@@ -411,7 +441,7 @@ function u2(e2, t2, n2, o2, i2, u3) {
   return l.vnode && l.vnode(l2), l2;
 }
 
-// node_modules/@quartz-community/utils/dist/index.js
+// ../../node_modules/.pnpm/@quartz-community+utils@htt_3a6e7c689d8e8e8bb41cb01f6d37d9c4/node_modules/@quartz-community/utils/dist/index.js
 function simplifySlug(fp) {
   const res = stripSlashes(trimSuffix(fp, "index"), true);
   return res.length === 0 ? "/" : res;
@@ -516,7 +546,10 @@ var RecentNotes_default = ((userOpts) => {
     const slug2 = fileData.slug;
     const locale = cfg.locale ?? "en-US";
     return /* @__PURE__ */ u2("div", { class: classNames(displayClass, "recent-notes"), children: [
-      /* @__PURE__ */ u2("h3", { children: opts.title ?? i18n(locale).components.recentNotes.title }),
+      /* @__PURE__ */ u2("h3", { children: [
+        opts.title ?? i18n(locale).components.recentNotes.title,
+        opts.linkToMore && opts.linkToHistory && /* @__PURE__ */ u2("span", { class: "see-more", children: /* @__PURE__ */ u2("a", { href: opts.linkToHistory, class: "external see-more", children: i18n(locale).components.recentNotes.seeHistory }) })
+      ] }),
       /* @__PURE__ */ u2("ul", { class: "recent-ul", children: pages.slice(0, opts.limit).map((page) => {
         const title = page.frontmatter?.title ?? "Untitled";
         const tags = page.frontmatter?.tags ?? [];

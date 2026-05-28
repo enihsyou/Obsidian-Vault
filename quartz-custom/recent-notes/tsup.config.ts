@@ -20,7 +20,6 @@ export default defineConfig({
   },
   format: ["esm"],
   dts: true,
-  tsconfig: "tsconfig.build.json",
   sourcemap: true,
   clean: true,
   treeshake: true,

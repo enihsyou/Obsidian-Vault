@@ -59,3 +59,14 @@ tasks:
         git subtree split --prefix=quartz --branch v5-split
         EOF
       - git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' v5-split --squash
+
+  clean-dist:
+    desc: 清理构建产物
+    cmds:
+      - rm -rfv dist
+      - rm -rfv public
+      - rm -rfv .quartz
+      - rm -rfv quartz-custom/**/dist
+      - rm -rfv quartz-custom/**/package-lock.json
+      - rm -rfv quartz-custom/**/node_modules
+      - rm -rfv quartz/.quartz-cache

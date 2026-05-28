@@ -1,6 +1,9 @@
 # dependencies (bun install)
 node_modules
 
+# use pnpm
+package-lock.json
+
 # IntelliJ based IDEs
 .idea
 

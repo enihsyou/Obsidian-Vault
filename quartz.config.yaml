@@ -18,8 +18,8 @@ configuration:
     fontOrigin: local
     cdnCaching: true
     typography:
-      header: MiSans VF
-      body: MiSans VF
+      header: MiSans
+      body: MiSans
       code: JetBrains Mono
     colors:
       lightMode:
@@ -297,7 +297,7 @@ plugins:
     order: 6
     options:
       stylesheets:
-        - href: "https://cdn-font.hyperos.mi.com/font/css?family=MiSans_VF:VF:Chinese_Simplify,Latin&display=swap"
+        - href: "https://cdn-font.hyperos.mi.com/font/css?family=MiSans:300,400,500,600,700:Chinese_Simplify,Latin&display=swap"
         - href: "https://fontsapi.zeoseven.com/521/main/result.css"
           crossorigin: anonymous
         - href: "https://fontsapi.zeoseven.com/521/bold/result.css"

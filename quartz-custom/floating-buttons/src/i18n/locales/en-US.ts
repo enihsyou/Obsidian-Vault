@@ -4,7 +4,7 @@ export default {
       scrollTop: "Scroll to top",
       scrollBottom: "Scroll to bottom",
       graph: "Global graph",
-      graphTooltip: "Global graph  Ctrl G",
+      graphTooltip: "Global graph",
     },
   },
 }

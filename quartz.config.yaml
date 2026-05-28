@@ -129,7 +129,7 @@ plugins:
     enabled: true
   - source: https://gh-proxy.com/github.com/quartz-community/content-page
     enabled: true
-  - source: github:quartz-community/folder-page
+  - source: https://gh-proxy.com/github.com/quartz-community/folder-page
     enabled: true
   - source: https://gh-proxy.com/github.com/quartz-community/tag-page
     enabled: true

@@ -21,7 +21,7 @@ tasks:
     deps:
       - fetch-content
     cmds:
-      - pnpm run quartz plugin install
+      - pnpm run quartz plugin install --from-config
       - pnpm run quartz build --verbose
 
   fetch-content:

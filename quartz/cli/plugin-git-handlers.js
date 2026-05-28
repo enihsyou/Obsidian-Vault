@@ -55,16 +55,17 @@ async function buildPluginAsync(pluginDir, name) {
   try {
     const skipBuild = !needsBuild(pluginDir)
     console.log(styleText("cyan", `  → ${name}: installing dependencies...`))
-    await execAsync("npm install --ignore-scripts", { cwd: pluginDir })
+    await execAsync("pnpm install --ignore-scripts", { cwd: pluginDir })
     if (!skipBuild) {
       console.log(styleText("cyan", `  → ${name}: building...`))
-      await execAsync("npm run build", { cwd: pluginDir })
+      await execAsync("pnpm run build", { cwd: pluginDir })
     }
-    await execAsync("npm prune --omit=dev", { cwd: pluginDir })
+    // await execAsync("npm prune --omit=dev", { cwd: pluginDir })
     linkPeerPlugins(pluginDir)
     return true
   } catch (error) {
-    console.log(styleText("red", `  ✗ ${name}: build failed`))
+    const msg = error instanceof Error ? error.message : String(error)
+    console.log(styleText("red", `  ✗ ${name}: build failed: ${msg}`))
     return false
   }
 }

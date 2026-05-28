@@ -7,12 +7,15 @@ function preloadStylesheetOnloadFn() {
 }
 
 function misansFontStylesheet(): JSX.Element {
-  // font link copied from https://www.xiaomiev.com
+  // font link copied from https://hyperos.mi.com/font/en/
   return (
     <>
       <link rel="stylesheet" media="print"
         {...preloadStylesheetOnloadFn()}
         href="https://cdn-font.hyperos.mi.com/font/css?family=MiSans_VF:VF:Chinese_Simplify,Latin&display=swap" />
+      <link rel="stylesheet" media="print"
+        {...preloadStylesheetOnloadFn()}
+        href="https://cdn-font.hyperos.mi.com/font/css?family=Misans_TC_VF:VF:Chinese_Traditional_TW&display=swap" />
     </>
   )
 }

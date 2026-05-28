@@ -90,7 +90,7 @@ export async function fetchTtf(
   }
 
   let fontUrl: string;
-  if (rawFontName === "MiSans") {
+  if (rawFontName.startsWith("MiSans")) {
     const weightNameMap: Record<number, string> = {
       400: "Regular",
       700: "Bold",

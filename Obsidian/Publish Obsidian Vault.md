@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-14T08:58:52+08:00
-修改时间: 2026-05-27T16:13:35+08:00
+修改时间: 2026-05-29T11:32:33+08:00
 ---
 我是如何把 Obsidian Vault 构建成静态网页的，当然不是使用 [Obsidian Publish](https://publish.obsidian.md/)，而是一个兼容 Obsidian 特性的静态站点构建工具 [Quartz 4](https://quartz.jzhao.xyz/)。
 
@@ -97,7 +97,7 @@ Linux / macOS 正常 npm 项目开发模式跑就行。
 
 ## 支持上游更新
 
-`2025-12-09` 上述方法的好处是 quartz 的源代码在项目中 _不存在_，但坏处是难以拉取上游更新，本地开发缺少 IDE 支持，自己对 quartz 的变更也集中在一个难以管理版本记录的 patch 文件中。
+`2025-12-09` 上述方法的好处是 quartz 的源代码在项目中 *不存在*，但坏处是难以拉取上游更新，本地开发缺少 IDE 支持，自己对 quartz 的变更也集中在一个难以管理版本记录的 patch 文件中。
 
 随着我对 quartz 源代码的改动越来越多，光一个 patch 文件就有上千行，已经超过它的能力范畴了。所以我在想是时候把源代码引入进来了，但这次要方便更新、不带历史、适配编辑环境。
 
@@ -128,4 +128,9 @@ wsl --cd /home/enihsyou/GitHub/quartz.git -- `
 git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/quartz.git' subtree-split --squash
 ```
 
-`2026-05-26` 升级 v5 也是同样的路数
+`2026-05-26` 升级 v5 也是同样的路数。但用起来 v5 的插件系统是 Vibe 糊出来的半成品
+- 先是 `plugin install` 的时候会把整个仓库 reset 到 plugin 的 git root，直接清空本地文件…
+- 再是想要改个三方插件得 clone 后分支，这还好，但 folder-page / tag-page 插件之间还有冲突…
+- 然后 `quartz.lock.json` 会把 local 插件的本地绝对路径记录上去…在云平台编译时明显的错误
+- 以及每个 plugin 有自己的一套编译生态，倒没错，但就是太重复了
+最后还是不升级了

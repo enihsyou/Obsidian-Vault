@@ -18,8 +18,8 @@ configuration:
     fontOrigin: local
     cdnCaching: true
     typography:
-      header: MiSans
-      body: MiSans
+      header: MiSans VF
+      body: MiSans VF
       code: JetBrains Mono
     colors:
       lightMode:
@@ -82,11 +82,17 @@ plugins:
   - source: https://gh-proxy.com/github.com/quartz-community/table-of-contents
     enabled: true
     order: 50
+    layout:
+      position: right
+      priority: 30
   - source: https://gh-proxy.com/github.com/quartz-community/crawl-links
     enabled: true
     options:
       markdownLinkResolution: shortest
+      prettyLinks: false
       openLinksInNewTab: true
+      # disableBrokenWikilinks 不识别文件夹页面
+      # disableBrokenWikilinks: true
     order: 60
   - source: ./quartz-custom/description
     enabled: true
@@ -138,7 +144,7 @@ plugins:
     layout:
       position: left
       priority: 50
-  - source: https://gh-proxy.com/github.com/quartz-community/graph
+  - source: https://gh-proxy.com/github.com/enihsyou/quartz-community-graph
     enabled: true
     layout:
       position: right
@@ -297,7 +303,10 @@ plugins:
     order: 6
     options:
       stylesheets:
-        - href: "https://cdn-font.hyperos.mi.com/font/css?family=MiSans:300,400,500,600,700:Chinese_Simplify,Latin&display=swap"
+        - href: "https://cdn-font.hyperos.mi.com/font/css?family=MiSans_VF:VF:Chinese_Simplify,Latin&display=swap"
+          crossorigin: anonymous
+        - href: "https://cdn-font.hyperos.mi.com/font/css?family=Misans_TC_VF:VF:Chinese_Traditional_TW&display=swap"
+          crossorigin: anonymous
         - href: "https://fontsapi.zeoseven.com/521/main/result.css"
           crossorigin: anonymous
         - href: "https://fontsapi.zeoseven.com/521/bold/result.css"
@@ -319,7 +328,7 @@ layout:
     toolbar:
       priority: 35
       direction: row
-      gap: 0.5rem
+      gap: 1rem
   byPageType:
     "404":
       positions:

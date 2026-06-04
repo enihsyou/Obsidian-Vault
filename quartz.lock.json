@@ -145,12 +145,6 @@
       "commit": "3eabbaa252ce175665ab3f62e1af25948a83e8b6",
       "installedAt": "2026-06-04T06:49:05.257Z"
     },
-    "graph": {
-      "source": "https://gh-proxy.com/github.com/quartz-community/graph",
-      "resolved": "https://gh-proxy.com/github.com/quartz-community/graph",
-      "commit": "46f0ba1c3c0cc484697572e7bcf315fa384d80d2",
-      "installedAt": "2026-06-04T06:49:07.517Z"
-    },
     "hard-line-breaks": {
       "source": "https://gh-proxy.com/github.com/quartz-community/hard-line-breaks",
       "resolved": "https://gh-proxy.com/github.com/quartz-community/hard-line-breaks",
@@ -186,6 +180,12 @@
       "resolved": "D:\\Documents\\Obsidian Vault.worktrees\\pages\\quartz-custom\\ping",
       "commit": "local",
       "installedAt": "2026-06-04T06:48:57.238Z"
+    },
+    "quartz-community-graph": {
+      "source": "https://gh-proxy.com/github.com/enihsyou/quartz-community-graph",
+      "resolved": "https://gh-proxy.com/github.com/enihsyou/quartz-community-graph",
+      "commit": "16db4d3012947affea0b1f8dbd375eb62af03d5e",
+      "installedAt": "2026-06-04T09:26:04.856Z"
     },
     "reader-mode": {
       "source": "https://gh-proxy.com/github.com/quartz-community/reader-mode",

@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-14T08:58:52+08:00
-修改时间: 2026-05-29T11:32:33+08:00
+修改时间: 2026-06-04T16:34:19+08:00
 ---
 我是如何把 Obsidian Vault 构建成静态网页的，当然不是使用 [Obsidian Publish](https://publish.obsidian.md/)，而是一个兼容 Obsidian 特性的静态站点构建工具 [Quartz 4](https://quartz.jzhao.xyz/)。
 
@@ -130,7 +130,6 @@ git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/qu
 
 `2026-05-26` 升级 v5 也是同样的路数。但用起来 v5 的插件系统是 Vibe 糊出来的半成品
 - 先是 `plugin install` 的时候会把整个仓库 reset 到 plugin 的 git root，直接清空本地文件…
-- 再是想要改个三方插件得 clone 后分支，这还好，但 folder-page / tag-page 插件之间还有冲突…
+- 再是想要改个三方插件得 clone 后分支，这还好，但 folder-page / tag-page 插件之间有大量相同代码…
 - 然后 `quartz.lock.json` 会把 local 插件的本地绝对路径记录上去…在云平台编译时明显的错误
 - 以及每个 plugin 有自己的一套编译生态，倒没错，但就是太重复了
-最后还是不升级了

@@ -1,27 +1,5 @@
 let currentCleanup: (() => void) | null = null
 
-function toggleGraph() {
-  const graphComponent = document.querySelector(".graph")
-  if (!(graphComponent instanceof HTMLElement)) return
-
-  if (graphComponent.classList.contains("active")) {
-    graphComponent.classList.remove("active")
-    return
-  }
-
-  graphComponent.classList.add("active")
-  document
-    .querySelector(".global-graph-icon")
-    ?.dispatchEvent(new MouseEvent("click", { view: window, bubbles: true, cancelable: true }))
-
-  const handleEsc = (event: KeyboardEvent) => {
-    if (event.key !== "Escape") return
-    graphComponent.classList.remove("active")
-    document.removeEventListener("keydown", handleEsc)
-  }
-  document.addEventListener("keydown", handleEsc)
-}
-
 function handleButtonClick(event: Event) {
   const target = event.target
   if (!(target instanceof Element)) return
@@ -38,7 +16,10 @@ function handleButtonClick(event: Event) {
       center.lastElementChild?.scrollIntoView({ behavior: "smooth" })
       break
     case "graph":
-      toggleGraph()
+      requestAnimationFrame(() => {
+        document.querySelector<HTMLElement>(".global-graph-icon")
+          ?.dispatchEvent(new MouseEvent("click"))
+      });
       break
   }
 }

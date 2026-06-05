@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-08-14T08:58:52+08:00
-修改时间: 2026-06-04T18:39:16+08:00
+修改时间: 2026-06-05T16:11:24+08:00
 ---
 我是如何把 Obsidian Vault 构建成静态网页的，当然不是使用 [Obsidian Publish](https://publish.obsidian.md/)，而是一个兼容 Obsidian 特性的静态站点构建工具 [Quartz 4](https://quartz.jzhao.xyz/)。
 
@@ -134,3 +134,4 @@ git subtree pull --prefix=quartz '//wsl.localhost/Ubuntu/home/enihsyou/GitHub/qu
 - 然后 `quartz.lock.json` 会把 local 插件的本地绝对路径记录上去…在云平台编译时明显的错误
 - 以及每个 plugin 有自己的一套编译生态，倒没错，但就是太重复了
 - slugifyPath 把路径全变小写了，产生了不兼容
+暂时先不升级

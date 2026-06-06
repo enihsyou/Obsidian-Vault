@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-10-16T18:55:03+08:00
-修改时间: 2026-06-06T14:44:48+08:00
+修改时间: 2026-06-06T15:44:34+08:00
 ---
 ## 查看引用的结果列表包含自身
 
@@ -21,6 +21,22 @@ Code Lens 会在函数、类型符号上显示一行 `12 references`，点击会
 - <https://github.com/microsoft/vscode/blob/9497c551b1ffb03c18fb5271aeb38733956938f3/src/vs/editor/contrib/gotoSymbol/browser/goToSymbol.ts#L77>
 
 直接去修改 workbench.desktop.main.js 中对应的编译产物，能解决这个痛点。目前没翻到这么设计的原因。
+
+若是想要每次更新后自动化修改 VSCode 编译产物，目前有个 Custom UI Style 插件可以做到，虽然不能直接，但它有个修改插件的功能，可以让它修改自身，让修改后的自身再去修改 VSCode。
+
+```json
+"custom-ui-style.extensions.config": {
+  "subframe7536.custom-ui-style":[
+    {
+      "filePath": "dist/index.js",
+      "find": "patch(e){let{monospace",
+      "replace": "patch(e){e=e.replaceAll(/{includeDeclaration:!0}([^?]+\\?\\.filter)/g, '{includeDeclaration:!1}$1');let{monospace",
+    }
+  ]
+}
+```
+
+注意点就是需要 Reload 两次，一次修改 Custom UI Style，第二次修改 VSCode。
 
 ## Ctrl+LMB 点击符号默认在预览窗口查看引用
 

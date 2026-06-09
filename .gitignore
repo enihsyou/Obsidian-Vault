@@ -30,3 +30,9 @@
 !.obsidian.vimrc
 !.gitignore
 !.stignore*
+
+# allow CI / tooling config
+!.github/
+!.github/**
+!.lycheeignore
+!lychee.toml

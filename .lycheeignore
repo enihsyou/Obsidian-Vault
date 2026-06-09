@@ -1,0 +1,13 @@
+# .lycheeignore — per-vault overrides for lychee link checker
+# One pattern per line. Supports regex and glob.
+# Reference: https://github.com/lycheeverse/lychee/blob/master/.lycheeignore
+#
+# Universal config (timeout, file extensions, Cloudflare-walled sites, etc.)
+# lives in `lychee.toml`. This file is for vault-specific patterns that
+# don't fit cleanly in the TOML config.
+
+# mDNS / LAN hostnames frequently referenced in network-related notes.
+.*\.local
+.*\.lan
+
+# Add more vault-specific patterns below as needed.

@@ -1,0 +1,64 @@
+# lychee.toml — configuration for the lychee link checker
+# Reference: https://lychee.cli.rs/guides/config/
+#
+# CLI flags and the workflow's `args:` override values in this file.
+# Use `.lycheeignore` for per-repo / per-vault pattern overrides.
+
+#############################  Requests  ############################
+# Connect-to-response timeout, in seconds.
+timeout = 5
+
+#############################  Inputs  ###############################
+# Only scan Markdown files; the vault ships no other link-bearing types.
+extensions = ["md"]
+# Don't treat mailto: links as targets (they have no HTTP status).
+include_mail = false
+# Don't follow Obsidian [[wikilinks]] (they resolve to local files, not URLs).
+include_wikilinks = false
+
+#############################  Exclusions  ##########################
+# Drop loopback / private / link-local addresses out of the box.
+exclude_loopback = true
+exclude_private = true
+exclude_link_local = true
+
+# URL regex patterns to always skip. Listed by category so it's easy to
+# toggle entire groups on/off by commenting them out.
+
+# Stack Exchange / Q&A network — heavy Cloudflare bot challenges, blocks
+# headless link checkers.
+exclude = [
+    '^https?://([a-z0-9-]+\.)?stackoverflow\.com',
+    '^https?://([a-z0-9-]+\.)?superuser\.com',
+    '^https?://([a-z0-9-]+\.)?serverfault\.com',
+    '^https?://([a-z0-9-]+\.)?askubuntu\.com',
+    '^https?://([a-z0-9-]+\.)?mathoverflow\.net',
+    '^https?://([a-z0-9-]+\.)?stackapps\.com',
+    '^https?://([a-z0-9-]+\.)?stackexchange\.com',
+
+    # Social platforms with aggressive bot / rate-limit blocking.
+    '^https?://(www\.)?twitter\.com',
+    '^https?://(www\.)?x\.com',
+    '^https?://(www\.)?t\.me',
+    '^https?://(www\.)?weibo\.com',
+    '^https?://(www\.)?weibo\.cn',
+
+    # Chinese platforms with anti-bot protections.
+    '^https?://(www\.)?zhihu\.com',
+    '^https?://(www\.)?bilibili\.com',
+    '^https?://(www\.)?douban\.com',
+    '^https?://(www\.)?csdn\.net',
+    '^https?://(www\.)?jianshu\.com',
+    '^https?://(www\.)?juejin\.cn',
+
+    # App / extension stores that block headless clients.
+    '^https?://apps\.apple\.com',
+    '^https?://play\.google\.com',
+    '^https?://(www\.)?microsoft\.com/.*store',
+
+    # Anchor-only and other non-fetchable local references.
+    '^#',
+    '^\.$',
+    '^file://',
+    '^/',
+]

@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-04-27T20:23:19+08:00
-修改时间: 2025-04-27T20:23:19+08:00
+修改时间: 2026-06-09T22:59:23+08:00
 ---
 Chromium Based Application （Edge、VSCode） 切换 Tab 只渲染一部分，一般是上半 40%，滚动
 [Only part of screen updating when i switch tabs, anyone else experiencing this issue? (started 1-2ish weeks ago : r/chrome](https://www.reddit.com/r/chrome/comments/1gt4la0/only_part_of_screen_updating_when_i_switch_tabs/)
@@ -37,4 +37,4 @@ Windows Registry Editor Version 5.00
 - [(2) X 上的 九条涼果：“这半年在 #Windows11 上使用Chromium Based Application （Edge、VSCode） 切换Tab/滚动 元素重渲染只会显示一部分（截图无体现），夜晚 / 夜间模式下显示暗色内容更容易触发。 结合 AutoHDR 会有更难以接受的闪屏问题🙄 网上讨论指向了MPO，关闭确实能解决这遇到离谱问题https://t.co/W4qKeEHw3n https://t.co/DxHZbFbudM” / X](https://x.com/enihsyou/status/1934739456508219473)
 
 结合 AutoHDR 会有更难以接受的闪屏问题，快捷键关开 HDR 能恢复正常
-![[IMG_7148.mov]] ^7588d8
+![[Images/Samsung Odyssey G85SB/IMG_7148.mov|IMG_7148]] ^7588d8

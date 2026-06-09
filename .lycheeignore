@@ -15,43 +15,54 @@
 ^https?://(\w+\.)?linksysinfo\.org
 
 # Social / publishing platforms with aggressive bot / rate-limit blocking
-^https?://(\w\.)?twitter\.com
-^https?://(\w\.)?x\.com
-^https?://(\w\.)?t\.me
-^https?://(\w\.)?weibo\.com
-^https?://(\w\.)?weibo\.cn
-^https?://(\w\.)?medium\.com
-^https?://(\w\.)?renenyffenegger\.ch
+^https?://(\w+\.)?twitter\.com
+^https?://(\w+\.)?x\.com
+^https?://(\w+\.)?t\.me
+^https?://(\w+\.)?weibo\.com
+^https?://(\w+\.)?weibo\.cn
+^https?://(\w+\.)?medium\.com
+^https?://(\w+\.)?renenyffenegger\.ch
 
 # Chinese platforms with anti-bot protections
-^https?://(\w\.)?zhihu\.com
-^https?://(\w\.)?bilibili\.com
-^https?://(\w\.)?douban\.com
-^https?://(\w\.)?csdn\.net
-^https?://(\w\.)?jianshu\.com
-^https?://(\w\.)?juejin\.cn
+^https?://(\w+\.)?zhihu\.com
+^https?://(\w+\.)?bilibili\.com
+^https?://(\w+\.)?douban\.com
+^https?://(\w+\.)?csdn\.net
+^https?://(\w+\.)?jianshu\.com
+^https?://(\w+\.)?juejin\.cn
 ^https?://(\w+\.)?nga\.cn
-^https?://(\w\.)?10jqka\.com\.cn
+^https?://(\w+\.)?10jqka\.com\.cn
 
 # Other sites that reject headless / non-browser clients
-^https?://(\w\.)?ip\.network
-^https?://(\w\.)?haxnode\.net
-^https?://(\w\.)?nvidia\.custhelp\.com
-^https?://(\w\.)?xcnya\.cn
-^https?://(\w\.)?makingsoftware\.com
-^https?://(\w\.)?archive\.ph
+^https?://(\w+\.)?ip\.network
+^https?://(\w+\.)?haxnode\.net
+^https?://(\w+\.)?nvidia\.custhelp\.com
+^https?://(\w+\.)?xcnya\.cn
+^https?://(\w+\.)?makingsoftware\.com
+^https?://(\w+\.)?archive\.ph
 
 # App / extension stores that block headless clients
-^https?://(\w\.)?apps\.apple\.com
-^https?://(\w\.)?play\.google\.com
-^https?://(\w\.)?microsoft\.com
+^https?://(\w+\.)?apps\.apple\.com
+^https?://(\w+\.)?play\.google\.com
+^https?://(\w+\.)?microsoft\.com
 
 # Broken pages
 ^https://vfox\.dev/zh-hans/usage/shims-path\.html$
 ^https://kpi\.xlog\.app/xlog-genshin-impact
 ^https://getforest\.io/$
+^https://shiki\.tmrs\.site/languages$
+
+# Expected 403 / blocked by bot protection (not an error)
+^https://wget\.la/GE/CC/VALIDATOR
 
 # Blocked by Firewall / network issues
-^https?://(\w\.)?gnu\.org
-^https?://(\w\.)?fournoas\.com
-^https?://(\w\.)?imagemagick\.org
+^https?://(\w+\.)?gnu\.org
+^https?://(\w+\.)?fournoas\.com
+^https?://(\w+\.)?imagemagick\.org
+^https?://(\w+\.)?mjg59\.dreamwidth\.org
+^https?://(\w+\.)?tech\.p2hp\.com
+^https?://(\w+\.)?skillicons\.dev
+^https?://(\w+\.)?freedium\.cfd
+^https?://(\w+\.)?r2d3\.us
+^https?://(\w+\.)?starduster\.me
+^https?://dnsmasq-discuss\.thekelleys\.org\.narkive\.com

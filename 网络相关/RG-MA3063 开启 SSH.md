@@ -30,7 +30,7 @@ RT-AX86U == RG-MA3063 == AMD-9700X
 - [锐捷MA3063 信号相当强，59元入手刷机openwrt 冲！哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1QQ4y1M7td/) 刷机教程，操作太糙了，还得买 TTL 高风险拆机刷机，Pass
 - [锐捷MA3063系列中国移动定制版免拆开启ssh、删除插件、解除锁网限制(更新全版本通用)-OPENWRT专版-恩山无线论坛 - Powered by Discuz!](https://www.right.com.cn/forum/thread-8377493-1-1.html) 恩山的信息向来封闭，我没有权限访问
 	- [【转载】新版锐捷MA3063开启SSH方法 - 厂商技术专区 - 通信人家园 - Powered by C114](https://www.txrjy.com/thread-1352289-1-1.html) 但好在有好人转载了，注册回帖就能下载「新版锐捷 MA3063 开启 SSH 方法」。里面介绍了如何往隐藏路径发请求来打开开发者模式，再修改 root 密码开启 SSH。
-- [锐捷RG-MA3063另类的 开启SSH 原机openwrt 刷机 做集客AP 拆机 交换机 - 数码罗记](https://godsun.pro/blog/rui-jie-rg-ma3063) 这里不同于恩山的内容，独立提供了进入工厂模式的新方法，一键式懒人无感开启 SSH，并且提供了解密的关键密码
+- [锐捷RG-MA3063另类的 开启SSH 原机openwrt 刷机 做集客AP 拆机 交换机 - 数码罗记](https://godsun.pro/blog/rui-jie-rg-ma3063.html) 这里不同于恩山的内容，独立提供了进入工厂模式的新方法，一键式懒人无感开启 SSH，并且提供了解密的关键密码
 
 ## 设备信息
 

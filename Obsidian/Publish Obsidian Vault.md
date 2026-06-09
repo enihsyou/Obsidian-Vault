@@ -8,7 +8,7 @@
 
 - [Quartz Syncer Documentation](https://saberzero1.github.io/quartz-syncer-docs/) 实际上是建了个用于 Publish 的仓库，想发布的文章都推到这个仓库上。和我想要在一个仓库完成所有事并且保持 SSOT 的想法背离。
 - [oleeskild/obsidian-digital-garden](https://github.com/oleeskild/Obsidian-Digital-Garden) 得加 frontmatter 才能发布，而我需要全发布，默认主题也不太行
-- [Standalone Binary · 议题 #2133 · jackyzha0/quartz](https://github.com/jackyzha0/quartz/issues/2133) ~~Quartz 没有独立的 Binary NPM Package，强制在 Vault 中包含 Quartz 源码，对于只想用基础功能不改源码的我来说有些多余。但用 Git Worktree 多分支管理源码是个路子。~~然后我发现其实官方有提供 [Docker Support](https://quartz.jzhao.xyz/features/Docker-Support)，直接挂载自己的目录和配置文件就好
+- [Standalone Binary · 议题 #2133 · jackyzha0/quartz](https://github.com/jackyzha0/quartz/issues/2133) ~~Quartz 没有独立的 Binary NPM Package，强制在 Vault 中包含 Quartz 源码，对于只想用基础功能不改源码的我来说有些多余。但用 Git Worktree 多分支管理源码是个路子。~~然后我发现其实官方有提供 [Docker Support](https://quartz.jzhao.xyz/features/docker-support)，直接挂载自己的目录和配置文件就好
 
 ## 网上关于 Quartz 的教程
 

@@ -44,7 +44,7 @@ ExternalPlugin.RecentNotes({
 
 ## Documentation
 
-See the [Quartz documentation](https://quartz.jzhao.xyz/features/recent%20notes) for more information.
+See the [Quartz documentation](https://quartz.jzhao.xyz/features/recent-notes) for more information.
 
 ## License
 

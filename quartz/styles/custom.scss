@@ -13,8 +13,8 @@ li.section-li {
 // 修改页面上的字体，允许多个 fallback，但不改变构建脚本中对只有一个主字体的假设
 // 优先使用本地资源，再加载网络字体
 :root {
-    --titleFont:  "MiSans VF", "MiSans TC VF", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --headerFont:  "MiSans VF", "MiSans TC VF", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --bodyFont:  "MiSans VF", "MiSans TC VF", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --titleFont: "MiSans VF", "MiSans TC VF", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --headerFont: "MiSans VF", "MiSans TC VF", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --bodyFont: "MiSans VF", "MiSans TC VF", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --codeFont: "JetBrains Mono", "JetBrains Maple Mono", ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace
 }

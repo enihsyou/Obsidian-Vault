@@ -52,6 +52,7 @@
 ^https://kpi\.xlog\.app/xlog-genshin-impact
 ^https://getforest\.io/$
 ^https://shiki\.tmrs\.site/languages$
+^https://httpbin\.org/
 
 # Expected 403 / blocked by bot protection (not an error)
 ^https://wget\.la/GE/CC/VALIDATOR

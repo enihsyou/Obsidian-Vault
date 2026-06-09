@@ -30,35 +30,4 @@ exclude_loopback = true
 exclude_private = true
 exclude_link_local = true
 
-# Sites known to block headless link checkers (Cloudflare bot challenges,
-# aggressive rate limiting, anti-bot walls, etc.). Match by domain only.
-exclude = [
-    # Stack Exchange network
-    "//stackoverflow\\.com",
-    "//superuser\\.com",
-    "//serverfault\\.com",
-    "//askubuntu\\.com",
-    "//mathoverflow\\.net",
-    "//stackapps\\.com",
-    "//stackexchange\\.com",
-
-    # Social platforms with aggressive bot / rate-limit blocking
-    "//twitter\\.com",
-    "//x\\.com",
-    "//t\\.me",
-    "//weibo\\.com",
-    "//weibo\\.cn",
-
-    # Chinese platforms with anti-bot protections
-    "//zhihu\\.com",
-    "//bilibili\\.com",
-    "//douban\\.com",
-    "//csdn\\.net",
-    "//jianshu\\.com",
-    "//juejin\\.cn",
-
-    # App / extension stores that block headless clients
-    "//apps\\.apple\\.com",
-    "//play\\.google\\.com",
-    "//microsoft\\.com",
-]
+# include content in .lycheeignore

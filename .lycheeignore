@@ -1,0 +1,49 @@
+# Stack Exchange network
+^https?://([a-z0-9-]+\.)?stackoverflow\.com
+^https?://([a-z0-9-]+\.)?superuser\.com
+^https?://([a-z0-9-]+\.)?serverfault\.com
+^https?://([a-z0-9-]+\.)?askubuntu\.com
+^https?://([a-z0-9-]+\.)?mathoverflow\.net
+^https?://([a-z0-9-]+\.)?stackapps\.com
+^https?://([a-z0-9-]+\.)?stackexchange\.com
+
+# Other forums / Q&A sites behind Cloudflare bot challenges
+^https?://([a-z0-9-]+\.)?snbforums\.com
+^https?://([a-z0-9-]+\.)?tenforums\.com
+^https?://([a-z0-9-]+\.)?elevenforum\.com
+^https?://([a-z0-9-]+\.)?linuxquestions\.org
+^https?://([a-z0-9-]+\.)?linksysinfo\.org
+
+# Social / publishing platforms with aggressive bot / rate-limit blocking
+^https?://(www\.)?twitter\.com
+^https?://(www\.)?x\.com
+^https?://(www\.)?t\.me
+^https?://(www\.)?weibo\.com
+^https?://(www\.)?weibo\.cn
+^https?://(www\.)?medium\.com
+^https?://(www\.)?renenyffenegger\.ch
+
+# Chinese platforms with anti-bot protections
+^https?://(www\.)?zhihu\.com
+^https?://(www\.)?bilibili\.com
+^https?://(www\.)?douban\.com
+^https?://(www\.)?csdn\.net
+^https?://(www\.)?jianshu\.com
+^https?://(www\.)?juejin\.cn
+^https?://(www\.)?nga\.cn
+^https?://(www\.)?10jqka\.com\.cn
+
+# Other sites that reject headless / non-browser clients
+^https?://(www\.)?ip\.network
+^https?://(www\.)?haxnode\.net
+^https?://(www\.)?nvidia\.custhelp\.com
+^https?://(www\.)?xcnya\.cn
+^https?://(www\.)?makingsoftware\.com
+^https?://(www\.)?archive\.ph
+
+# App / extension stores that block headless clients
+^https?://(www\.)?apps\.apple\.com
+^https?://(www\.)?play\.google\.com
+^https?://(www\.)?microsoft\.com
+
+^https://vfox\.dev/zh-hans/usage/shims-path\.html$

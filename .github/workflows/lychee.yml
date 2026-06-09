@@ -33,6 +33,8 @@ jobs:
           format: markdown
           output: lychee/out.md
           args: >-
+            --max-retries 0
+            --base-url ${{ github.workspace }}
             --verbose
             .
         env:

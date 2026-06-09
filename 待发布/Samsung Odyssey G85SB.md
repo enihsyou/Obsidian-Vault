@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-03-23T12:06:32+08:00
-修改时间: 2025-10-25T14:52:16+08:00
+修改时间: 2026-06-09T16:34:29+08:00
 ---
 [Samsung Odyssey OLED G85SB S34BG85 Review - RTINGS.com](https://www.rtings.com/monitor/reviews/samsung/odyssey-oled-g8-g85sb-s34bg85)
 
@@ -18,17 +18,15 @@ Mica 好看，但不像 Arcylic 一样有 noise texture，色带非常明显，�
 
 ## **粉边问题**
 
-![my image](IMG_6956.jpg#left)
-![my image](IMG_6957.jpg#right)
+![[Images/Samsung Odyssey G85SB/IMG_6956.jpg#left]]
+![[Images/Samsung Odyssey G85SB/IMG_6957.jpg#right]]
 对原神而言或许是个 bug，因为进入游戏亮度设置再返回就恢复了，下次启动还有。
 其他人也提到过，管这个叫特别是粉色云朵，It become really nasty
 但这个效果在全系统都能见到，特别是亮色模式下 Windows 程序窗口投射的阴影，映射错误
 
+![[Images/Samsung Odyssey G85SB/Pasted image 20250323131154.png]] HDR10 Gaming
 
-
-![[Pasted image 20250323131154.png]] HDR10 Gaming
-
-![[Pasted image 20250323132738.png]]
+![[Images/Samsung Odyssey G85SB/Pasted image 20250323132738.png]]
 HDR Gaming off, Game HDR on/off, Peak Brightness off 或者非游戏模式下开 HDR
 
 
@@ -75,7 +73,7 @@ HDR 下 ACM 时不时失效，颜色飘来飘去的
 
 HDR400 模式下，如果不自己添加校验 ICC 文件，显示器告诉系统，自己的全屏最高亮度 248nit，10% 窗口 400nit。
 开启色调映射后，超过 400nit 的白色显示一律同样亮，但高亮度的颜色有明显的变色，截屏是无法表达的，这里拍屏幕
-![[IMG_6959.jpg]]
+![[Images/Samsung Odyssey G85SB/IMG_6959.jpg]]
 
 | 图像模式 | Windows HDR | Windows ACM | 色彩空间 | 观感                                                        |
 | ---- | ----------- | ----------- | ---- | --------------------------------------------------------- |
@@ -170,6 +168,5 @@ MHC2 MaxCLL: 400nits
 电源砖块我贴在桌子底下了，冬天当暖手宝
 
 [[Windows 11 窗口只渲染一半#^7588d8]]
-
 
 直到有一天我给主机插线板接上了个功率计，发现各家评测都没提到的待机功耗着实不小，即便是显示器待机黑屏状态，也吃掉 30W 的功率，一天下来就是 0.72 kWh。

@@ -20,8 +20,9 @@ timeout = 10
 extensions = ["md"]
 # Don't treat mailto: links as targets (they have no HTTP status).
 include_mail = false
-# Don't follow Obsidian [[wikilinks]] (they resolve to local files, not URLs).
-include_wikilinks = false
+
+include_wikilinks = true
+fallback_extensions = ["md"]
 
 #############################  Exclusions  ##########################
 # Drop loopback / private / link-local addresses out of the box.

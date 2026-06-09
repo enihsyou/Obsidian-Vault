@@ -2,11 +2,18 @@
 # Reference: https://lychee.cli.rs/guides/config/
 #
 # CLI flags and the workflow's `args:` override values in this file.
-# Use `.lycheeignore` for per-repo / per-vault pattern overrides.
+
+#############################  Cache  ###############################
+cache = true
+max_cache_age = "1d"
+
+#############################  Display  #############################
+no_progress = true
+verbose = "info"
 
 #############################  Requests  ############################
 # Connect-to-response timeout, in seconds.
-timeout = 5
+timeout = 10
 
 #############################  Inputs  ###############################
 # Only scan Markdown files; the vault ships no other link-bearing types.
@@ -22,43 +29,35 @@ exclude_loopback = true
 exclude_private = true
 exclude_link_local = true
 
-# URL regex patterns to always skip. Listed by category so it's easy to
-# toggle entire groups on/off by commenting them out.
-
-# Stack Exchange / Q&A network — heavy Cloudflare bot challenges, blocks
-# headless link checkers.
+# Sites known to block headless link checkers (Cloudflare bot challenges,
+# aggressive rate limiting, anti-bot walls, etc.). Match by domain only.
 exclude = [
-    '^https?://([a-z0-9-]+\.)?stackoverflow\.com',
-    '^https?://([a-z0-9-]+\.)?superuser\.com',
-    '^https?://([a-z0-9-]+\.)?serverfault\.com',
-    '^https?://([a-z0-9-]+\.)?askubuntu\.com',
-    '^https?://([a-z0-9-]+\.)?mathoverflow\.net',
-    '^https?://([a-z0-9-]+\.)?stackapps\.com',
-    '^https?://([a-z0-9-]+\.)?stackexchange\.com',
+    # Stack Exchange network
+    "//stackoverflow\\.com",
+    "//superuser\\.com",
+    "//serverfault\\.com",
+    "//askubuntu\\.com",
+    "//mathoverflow\\.net",
+    "//stackapps\\.com",
+    "//stackexchange\\.com",
 
-    # Social platforms with aggressive bot / rate-limit blocking.
-    '^https?://(www\.)?twitter\.com',
-    '^https?://(www\.)?x\.com',
-    '^https?://(www\.)?t\.me',
-    '^https?://(www\.)?weibo\.com',
-    '^https?://(www\.)?weibo\.cn',
+    # Social platforms with aggressive bot / rate-limit blocking
+    "//twitter\\.com",
+    "//x\\.com",
+    "//t\\.me",
+    "//weibo\\.com",
+    "//weibo\\.cn",
 
-    # Chinese platforms with anti-bot protections.
-    '^https?://(www\.)?zhihu\.com',
-    '^https?://(www\.)?bilibili\.com',
-    '^https?://(www\.)?douban\.com',
-    '^https?://(www\.)?csdn\.net',
-    '^https?://(www\.)?jianshu\.com',
-    '^https?://(www\.)?juejin\.cn',
+    # Chinese platforms with anti-bot protections
+    "//zhihu\\.com",
+    "//bilibili\\.com",
+    "//douban\\.com",
+    "//csdn\\.net",
+    "//jianshu\\.com",
+    "//juejin\\.cn",
 
-    # App / extension stores that block headless clients.
-    '^https?://apps\.apple\.com',
-    '^https?://play\.google\.com',
-    '^https?://(www\.)?microsoft\.com/.*store',
-
-    # Anchor-only and other non-fetchable local references.
-    '^#',
-    '^\.$',
-    '^file://',
-    '^/',
+    # App / extension stores that block headless clients
+    "//apps\\.apple\\.com",
+    "//play\\.google\\.com",
+    "//microsoft\\.com",
 ]

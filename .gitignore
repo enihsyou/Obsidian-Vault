@@ -34,5 +34,4 @@
 # allow CI / tooling config
 !.github/
 !.github/**
-!.lycheeignore
 !lychee.toml

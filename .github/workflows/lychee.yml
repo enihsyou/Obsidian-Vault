@@ -33,9 +33,6 @@ jobs:
           format: markdown
           output: lychee/out.md
           args: >-
-            --cache
-            --max-cache-age 1d
-            --no-progress
             --verbose
             .
         env:

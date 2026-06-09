@@ -34,6 +34,8 @@ exclude_loopback = true
 exclude_private = true
 exclude_link_local = true
 
+exclude_path = ["Images"]
+
 # include content in .lycheeignore
 
 [hosts."blog.xcnya.cn".headers]

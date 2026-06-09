@@ -28,6 +28,7 @@
 !*.md
 !LICENSE.txt
 !.obsidian.vimrc
+
 !.gitignore
 !.stignore*
 !.lycheeignore
@@ -36,3 +37,4 @@
 !.github/
 !.github/**
 !lychee.toml
+!Taskfile.yml

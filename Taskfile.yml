@@ -1,0 +1,12 @@
+version: '3'
+
+tasks:
+  lychee:
+    desc: Run lychee link checker locally
+    cmds:
+      - lychee
+        --base-url "$PWD"
+        --max-retries 0
+        --exclude "Vault/Images/"
+        .
+    # Note: local output is omitted (CI uses --output lychee.output)

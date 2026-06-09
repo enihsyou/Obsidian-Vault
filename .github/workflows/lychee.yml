@@ -32,9 +32,10 @@ jobs:
         with:
           format: markdown
           output: lychee/out.md
+          # 排除掉只在本地存在的资源
           args: >-
-            --max-retries 0
             --base-url ${{ github.workspace }}
+            --exclude "Vault/Images/"
             --verbose
             .
         env:

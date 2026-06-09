@@ -22,7 +22,7 @@
 ^https?://(\w+\.)?weibo\.cn
 ^https?://(\w+\.)?medium\.com
 ^https?://(\w+\.)?renenyffenegger\.ch
-^https?://(\w\.)?reddit\.com
+^https?://(\w+\.)?reddit\.com
 
 # Chinese platforms with anti-bot protections
 ^https?://(\w+\.)?zhihu\.com
@@ -53,6 +53,7 @@
 ^https://getforest\.io/$
 ^https://shiki\.tmrs\.site/languages$
 ^https://httpbin\.org/
+^https://manpages.debian.org
 
 # Expected 403 / blocked by bot protection (not an error)
 ^https://wget\.la/GE/CC/VALIDATOR
@@ -68,3 +69,6 @@
 ^https?://(\w+\.)?r2d3\.us
 ^https?://(\w+\.)?starduster\.me
 ^https?://dnsmasq-discuss\.thekelleys\.org\.narkive\.com
+
+# Download resource
+^https://mirrors.cernet.edu.cn

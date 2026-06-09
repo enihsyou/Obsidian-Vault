@@ -33,10 +33,12 @@ jobs:
           format: markdown
           output: lychee/out.md
           # 排除掉只在本地存在的资源
+          # README 中 tags 引用在 Linux 下有奇怪的表现
           # 额外允许在云端无法访问的资源
           args: >-
             --base-url ${{ github.workspace }}
             --exclude "Vault/"
+            --exclude-path './README.md'
             --accept "200..=403, 418..=500"
             --verbose
             .

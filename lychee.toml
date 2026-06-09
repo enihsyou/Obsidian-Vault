@@ -5,16 +5,13 @@
 
 #############################  Cache  ###############################
 cache = true
-max_cache_age = "1d"
+max_cache_age = "7d"
 
 #############################  Display  #############################
 no_progress = true
 verbose = "info"
 
 #############################  Requests  ############################
-# Connect-to-response timeout, in seconds.
-timeout = 10
-
 insecure = true
 
 accept = ["200..=204", "300..=308", "401", "403", "429"]

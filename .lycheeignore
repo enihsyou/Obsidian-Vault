@@ -1,49 +1,57 @@
 # Stack Exchange network
-^https?://([a-z0-9-]+\.)?stackoverflow\.com
-^https?://([a-z0-9-]+\.)?superuser\.com
-^https?://([a-z0-9-]+\.)?serverfault\.com
-^https?://([a-z0-9-]+\.)?askubuntu\.com
-^https?://([a-z0-9-]+\.)?mathoverflow\.net
-^https?://([a-z0-9-]+\.)?stackapps\.com
-^https?://([a-z0-9-]+\.)?stackexchange\.com
+^https?://(\w+\.)?stackoverflow\.com
+^https?://(\w+\.)?superuser\.com
+^https?://(\w+\.)?serverfault\.com
+^https?://(\w+\.)?askubuntu\.com
+^https?://(\w+\.)?mathoverflow\.net
+^https?://(\w+\.)?stackapps\.com
+^https?://(\w+\.)?stackexchange\.com
 
 # Other forums / Q&A sites behind Cloudflare bot challenges
-^https?://([a-z0-9-]+\.)?snbforums\.com
-^https?://([a-z0-9-]+\.)?tenforums\.com
-^https?://([a-z0-9-]+\.)?elevenforum\.com
-^https?://([a-z0-9-]+\.)?linuxquestions\.org
-^https?://([a-z0-9-]+\.)?linksysinfo\.org
+^https?://(\w+\.)?snbforums\.com
+^https?://(\w+\.)?tenforums\.com
+^https?://(\w+\.)?elevenforum\.com
+^https?://(\w+\.)?linuxquestions\.org
+^https?://(\w+\.)?linksysinfo\.org
 
 # Social / publishing platforms with aggressive bot / rate-limit blocking
-^https?://(www\.)?twitter\.com
-^https?://(www\.)?x\.com
-^https?://(www\.)?t\.me
-^https?://(www\.)?weibo\.com
-^https?://(www\.)?weibo\.cn
-^https?://(www\.)?medium\.com
-^https?://(www\.)?renenyffenegger\.ch
+^https?://(\w\.)?twitter\.com
+^https?://(\w\.)?x\.com
+^https?://(\w\.)?t\.me
+^https?://(\w\.)?weibo\.com
+^https?://(\w\.)?weibo\.cn
+^https?://(\w\.)?medium\.com
+^https?://(\w\.)?renenyffenegger\.ch
 
 # Chinese platforms with anti-bot protections
-^https?://(www\.)?zhihu\.com
-^https?://(www\.)?bilibili\.com
-^https?://(www\.)?douban\.com
-^https?://(www\.)?csdn\.net
-^https?://(www\.)?jianshu\.com
-^https?://(www\.)?juejin\.cn
-^https?://(www\.)?nga\.cn
-^https?://(www\.)?10jqka\.com\.cn
+^https?://(\w\.)?zhihu\.com
+^https?://(\w\.)?bilibili\.com
+^https?://(\w\.)?douban\.com
+^https?://(\w\.)?csdn\.net
+^https?://(\w\.)?jianshu\.com
+^https?://(\w\.)?juejin\.cn
+^https?://(\w+\.)?nga\.cn
+^https?://(\w\.)?10jqka\.com\.cn
 
 # Other sites that reject headless / non-browser clients
-^https?://(www\.)?ip\.network
-^https?://(www\.)?haxnode\.net
-^https?://(www\.)?nvidia\.custhelp\.com
-^https?://(www\.)?xcnya\.cn
-^https?://(www\.)?makingsoftware\.com
-^https?://(www\.)?archive\.ph
+^https?://(\w\.)?ip\.network
+^https?://(\w\.)?haxnode\.net
+^https?://(\w\.)?nvidia\.custhelp\.com
+^https?://(\w\.)?xcnya\.cn
+^https?://(\w\.)?makingsoftware\.com
+^https?://(\w\.)?archive\.ph
 
 # App / extension stores that block headless clients
-^https?://(www\.)?apps\.apple\.com
-^https?://(www\.)?play\.google\.com
-^https?://(www\.)?microsoft\.com
+^https?://(\w\.)?apps\.apple\.com
+^https?://(\w\.)?play\.google\.com
+^https?://(\w\.)?microsoft\.com
 
+# Broken pages
 ^https://vfox\.dev/zh-hans/usage/shims-path\.html$
+^https://kpi\.xlog\.app/xlog-genshin-impact
+^https://getforest\.io/$
+
+# Blocked by Firewall / network issues
+^https?://(\w\.)?gnu\.org
+^https?://(\w\.)?fournoas\.com
+^https?://(\w\.)?imagemagick\.org

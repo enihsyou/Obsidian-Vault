@@ -15,6 +15,10 @@ verbose = "info"
 # Connect-to-response timeout, in seconds.
 timeout = 10
 
+insecure = true
+
+accept = ["200..=204", "300..=308", "429"]
+
 #############################  Inputs  ###############################
 # Only scan Markdown files; the vault ships no other link-bearing types.
 extensions = ["md"]
@@ -31,3 +35,7 @@ exclude_private = true
 exclude_link_local = true
 
 # include content in .lycheeignore
+
+[hosts."blog.xcnya.cn".headers]
+accept-language = 'zh-CN,zh;q=0.9'
+sec-ch-ua = '"Microsoft Edge";v="149"'

@@ -56,7 +56,7 @@ async function prefetchMiSansTtf(ctx: BuildCtx): Promise<void> {
     } catch {
       // not cached, download below
     }
-    const url = `https://github.com/dsrkafuu/misans/raw/refs/heads/main/raw/Normal/ttf/MiSans-${weightName}.ttf`
+    const url = `https://gh-proxy.org/https://github.com/dsrkafuu/misans/raw/refs/heads/main/raw/Normal/ttf/MiSans-${weightName}.ttf`
     try {
       const response = await fetch(url)
       if (!response.ok) {

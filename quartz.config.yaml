@@ -129,6 +129,7 @@ plugins:
     enabled: true
   - source: https://gh-proxy.com/github.com/quartz-community/og-image
     enabled: true
+    order: 70
   - source: https://gh-proxy.com/github.com/quartz-community/cname
     enabled: true
   - source: https://gh-proxy.com/github.com/quartz-community/canvas-page

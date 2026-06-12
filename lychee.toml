@@ -16,6 +16,10 @@ insecure = true
 
 accept = ["200..=204", "300..=308", "401", "403", "429"]
 
+timeout = 10
+retry_wait_time = 2
+max_retries = 3
+
 #############################  Inputs  ###############################
 # Only scan Markdown files; the vault ships no other link-bearing types.
 extensions = ["md"]

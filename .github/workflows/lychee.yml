@@ -1,7 +1,10 @@
 name: Link Checker
 
 on:
-  push:
+  schedule:
+    # 每周一 UTC 03:17 运行
+    - cron: '17 3 * * 1'
+  workflow_dispatch:
 
 # 避免并发运行互相覆盖缓存
 concurrency:

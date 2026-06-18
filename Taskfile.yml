@@ -32,6 +32,10 @@ tasks:
       - git worktree remove content --force || true
       - git branch -D content || true
       - git worktree add -b content ./content enihsyou-PC
+      - cmd: "'C:/Program Files/Git/usr/bin/ln.exe' -svf ./README.md ./content/index.md"
+        platforms: [windows]
+      - cmd: ln -svf ./README.md ./content/index.md
+        platforms: [linux, darwin]
 
   upstream-subtree-split:
     desc: 首次从上游仓库拆分 quartz 目录为独立分支

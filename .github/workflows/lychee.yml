@@ -44,6 +44,8 @@ jobs:
             --exclude "Vault/"
             --exclude "wikidevi.wi-cat.ru"
             --exclude "backreference.org"
+            --exclude "owo.cab"
+            --exclude "55188.com"
             --exclude-path './README.md'
             --accept "200..=403, 418..=500"
             --verbose

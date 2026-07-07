@@ -1,7 +1,8 @@
 ---
 创建时间: 2025-07-25T16:37:25+08:00
-修改时间: 2025-07-25T16:37:25+08:00
+修改时间: 2026-07-07T21:58:32+08:00
 ---
+CloudFlare DDNS for asuswrt/merlin hnd/axhnd platform v1.1 插件强制会注册 IPv4 的地址，并且与当前的 Cloudflare API 不太兼容
 
 [rogsoft/cfddns/cfddns/scripts/cfddns_config.sh at master · koolshare/rogsoft](https://github.com/koolshare/rogsoft/blob/master/cfddns/cfddns/scripts/cfddns_config.sh)
 
@@ -52,3 +53,5 @@ index 7cd4ef0..3c2c027 100644
  			check_update 6 >> $LOG_FILE
  		fi
 ```
+
+API Key 从 [API 令牌 | Cloudflare](https://dash.cloudflare.com/profile/api-tokens) 申请，不需要用 User API Key

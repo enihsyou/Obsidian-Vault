@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-03-23T12:06:32+08:00
-修改时间: 2026-06-09T16:34:29+08:00
+修改时间: 2026-07-19T00:03:37+08:00
 ---
 [Samsung Odyssey OLED G85SB S34BG85 Review - RTINGS.com](https://www.rtings.com/monitor/reviews/samsung/odyssey-oled-g8-g85sb-s34bg85)
 
@@ -8,7 +8,7 @@
 色温标准
 HDR
 **VRR Control** 关，否则在灰色背景低帧率下频闪严重，比如夜间的原神载入界面
-`2026-08`
+`2026-07-18` 因为 [[Diary/2026-06-26#极限竞速地平线 6 网络连接不好时会闪退]] 需要重启电脑，重启后出现全屏色块画屏。经测试，在开启灵动竞技 + VRR Control 时会触发。关闭才勉强恢复
 
 在 HDR 模式下，RGB 值有 1 的差别时非常明显，举例是 Windows 11 亮色模式下的系统设置 Mica 背景，和游戏模式无关。截图无法展示，手机拍屏幕可见，虽然有摩尔纹
 甚至切换到 8bitFCR 没这问题，10bit 就有，HDMI & DisplayPort 都有

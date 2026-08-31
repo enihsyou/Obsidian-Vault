@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:19:35+08:00
-修改时间: 2026-08-09T20:06:40+08:00
+修改时间: 2026-08-31T21:43:21+08:00
 ---
 ### 撤销选择下一个单词
 
@@ -195,3 +195,40 @@ See [[2026-01-01#VSCode & Zed 打开远程服务器根目录后持续占用 CPU]
 ## 把**当前文件**和 Git 的基准版本做 Diff
 
 使用 `Git: Open Changes`，之前一直用 `compare` 做关键词搜索没个结果 😄
+
+## 插件使用技巧
+
+### Flash Nvim for VSCode 快捷键
+
+最值得记的 5 个
+
+| 键位                    | 心智模型                 |
+| --------------------- | -------------------- |
+| `Alt + F`             | 我要跳过去                |
+| `Alt + Shift + F`     | 我要选到那里               |
+| `Ctrl + Alt + Enter`  | 我要选整个函数 / 类 / Symbol |
+| `Alt + Enter`         | 我要选当前代码块 / 语法范围      |
+| `Shift + Alt + Enter` | 我要跳到远处，再选代码块         |
+
+完整快捷键清单
+
+| 快捷键                                | 功能                          | 说明                                        |
+| ---------------------------------- | --------------------------- | ----------------------------------------- |
+| `Alt + F`                          | Flash Jump                  | 输入搜索内容后，通过标签直接跳到目标位置                      |
+| `Alt + Shift + F`                  | Flash Selection             | 跳转到目标，并从当前光标位置一路选中到目标                     |
+| `Alt + F` → 输入内容 → `Enter`         | 下一个匹配                       | 跳到下一个搜索结果                                 |
+| `Alt + F` → 输入内容 → `Shift + Enter` | 上一个匹配                       | 跳到上一个搜索结果                                 |
+| `Alt + F` → `Enter`                | 重复上次搜索                      | 不重新输入关键词，直接使用上一次查询                        |
+| 先选中文字 → `Alt + F`                  | 搜索选中文字                      | 自动用当前 Selection 作为搜索内容                    |
+| `Ctrl + Alt + Enter`               | Symbol Selection            | 标记当前文件里的函数、类、变量等 Symbol，按标签后直接选中整个 Symbol |
+| `Alt + Enter`                      | Treesitter Selection        | 标记当前光标附近的表达式、语句、代码块、函数等语法范围               |
+| `Shift + Alt + Enter`              | Remote Treesitter Selection | 先跳到远处目标，再立即进入 Treesitter 范围选择             |
+| `Alt + J`                          | 下一行                         | 标记/跳转到下一行                                 |
+| `Alt + K`                          | 上一行                         | 标记/跳转到上一行                                 |
+| `Backspace`                        | 删除搜索字符                      | Flash 模式下删除最后一个搜索字符                       |
+| `Esc`                              | 退出                          | 退出 Flash 跳转模式                             |
+
+### 类 Vim 的 TextObject Select 体验
+
+- [Quick and Simple Text Selection - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=dbankier.vscode-quick-select) 的 `Ctrl+K "`，但不能选择第 N 个参数
+- [Flash Nvim for VSCode - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=souravahmed.flash-vscode-latest) 的 `Alt + Enter`， 能选择到参数

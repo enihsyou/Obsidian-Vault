@@ -1,6 +1,6 @@
 ---
 创建时间: 2025-05-21T14:19:35+08:00
-修改时间: 2026-08-31T21:43:21+08:00
+修改时间: 2026-08-31T23:16:06+08:00
 ---
 ### 撤销选择下一个单词
 
@@ -232,3 +232,4 @@ See [[2026-01-01#VSCode & Zed 打开远程服务器根目录后持续占用 CPU]
 
 - [Quick and Simple Text Selection - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=dbankier.vscode-quick-select) 的 `Ctrl+K "`，但不能选择第 N 个参数
 - [Flash Nvim for VSCode - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=souravahmed.flash-vscode-latest) 的 `Alt + Enter`， 能选择到参数
+- [Extended Move - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=statiolake.vscode-extended-move) 更好，但需要自己找 AI 生成个快捷键配置

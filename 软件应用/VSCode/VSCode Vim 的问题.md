@@ -9,7 +9,7 @@
 未解决，VSCode 的默认行为就是跳转并选中关键字，自然切换为了 VISUAL 模式
 
 - [Opening a peek window result makes vscode-vim switch to VISUAL mode · 议题 #5491 · VSCodeVim/Vim](https://github.com/VSCodeVim/Vim/issues/5491)
-	- [1.17.[0/1] Regression: VSCode find now enters Visual mode, it should remain in Normal mode · 议题 #5495 · VSCodeVim/Vim](https://github.com/VSCodeVim/Vim/issues/5495)
+  - [1.17.[0/1] Regression: VSCode find now enters Visual mode, it should remain in Normal mode · 议题 #5495 · VSCodeVim/Vim](https://github.com/VSCodeVim/Vim/issues/5495)
 - [[Feature Request] navigate peeked definitions · 议题 #2675 · VSCodeVim/Vim](https://github.com/VSCodeVim/Vim/issues/2675)
 
 ## 在 Peek Definition 窗口按 Enter 或者双击进行跳转后，光标会动但是视窗留在原位

@@ -14,6 +14,9 @@
   "MD024": false,
   // MD028/no-blanks-blockquote : Blank line inside blockquote
   "MD028": false,
+  // MD029/ol-prefix : Ordered list item prefix
+  // （用户习惯在 OrderList 项之间换行写长内容，但 markdownlint 会按代码块/分隔重排编号，与语义引用冲突）
+  "MD029": false,
   // MD032/blanks-around-lists : Lists should be surrounded by blank lines
   "MD032": false,
   // MD033/no-inline-html : Inline HTML

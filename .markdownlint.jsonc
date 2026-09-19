@@ -1,0 +1,27 @@
+{
+  // MD010/no-hard-tabs : Hard tabs
+  "MD010": false,
+  // MD012/no-multiple-blanks : Multiple consecutive blank lines
+  "MD012": false,
+  // MD013/line-length : Line length
+  "MD013": false,
+  // MD014/commands-show-output : Dollar signs used before commands without showing output
+  "MD014": false,
+  // MD018/no-missing-space-atx : No space after hash on atx style heading
+  // （误报 Obsidian hashtag，例如 "#已发布"）
+  "MD018": false,
+  // MD024/no-duplicate-heading : Multiple headings with the same content
+  "MD024": false,
+  // MD028/no-blanks-blockquote : Blank line inside blockquote
+  "MD028": false,
+  // MD032/blanks-around-lists : Lists should be surrounded by blank lines
+  "MD032": false,
+  // MD033/no-inline-html : Inline HTML
+  "MD033": false,
+  // MD040/fenced-code-language : Fenced code blocks should have a language specified
+  "MD040": false,
+  // MD041/first-line-heading/first-line-h1 : First line in a file should be a top-level heading
+  "MD041": false,
+  // MD060/table-column-style : Table column style
+  "MD060": false
+}

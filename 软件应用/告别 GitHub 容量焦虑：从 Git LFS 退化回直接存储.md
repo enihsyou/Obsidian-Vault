@@ -113,7 +113,7 @@ Format: sha, unpacked size, packed size, filename(s) object stored as
 git remote remove origin
 ```
 
-[3]: <https://htmlpreview.github.io/?https>:<//github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#_why_is_my_origin_removed>
+[3]: <https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#_why_is_my_origin_removed>
     "Why is my origin removed? - git-filter-repo(1)"
 
 ### 2. 卸载 Git LFS
@@ -244,7 +244,7 @@ def file_info_callback(filename, mode, blob_id, value):
     BODY
 ```
 
-[6]: <https://github.com/newren/git-filter-repo/blob/5d63e44137ae1c6c1e3ed2820ab1c2b4ad81b0b9/git-filter-repo#L1876>\
+[6]: <https://github.com/newren/git-filter-repo/blob/5d63e44137ae1c6c1e3ed2820ab1c2b4ad81b0b9/git-filter-repo#L1876>
     "git-filter-repo - file_info_callback"
 
 传入的文本会用于替换 `BODY`，函数接受四个参数，需要返回一个三元元组。

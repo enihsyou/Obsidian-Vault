@@ -5,4 +5,4 @@
 ## 颜值
 
 - [Charm](https://github.com/charmbracelet)
-	- [charmbracelet/log: A minimal, colorful Go logging library 🪵](https://github.com/charmbracelet/log)
+  - [charmbracelet/log: A minimal, colorful Go logging library 🪵](https://github.com/charmbracelet/log)

@@ -37,5 +37,6 @@
 # allow CI / tooling config
 !.github/
 !.github/**
+!.agents/
 !lychee.toml
 !Taskfile.yml

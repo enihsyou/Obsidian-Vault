@@ -38,5 +38,6 @@
 !.github/
 !.github/**
 !.agents/
+!.agents/**
 !lychee.toml
 !Taskfile.yml

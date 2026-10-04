@@ -41,3 +41,4 @@
 !.agents/**
 !lychee.toml
 !Taskfile.yml
+!edgeone.json

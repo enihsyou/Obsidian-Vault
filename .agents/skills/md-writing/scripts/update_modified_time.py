@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Set the modified-time property in an Obsidian diary's YAML frontmatter."""
+"""Set the modified-time property in an Obsidian note's YAML frontmatter."""
 
 from __future__ import annotations
 
@@ -89,7 +89,7 @@ def update_file(path: Path) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("note", type=Path, help="Diary Markdown file to update")
+    parser.add_argument("note", type=Path, help="Markdown file to update")
     args = parser.parse_args()
 
     try:

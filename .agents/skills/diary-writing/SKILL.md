@@ -30,13 +30,7 @@ description: Write or edit Obsidian Diary entries, especially technical tinkerin
 
 ## 格式约定
 
-新日记的 YAML frontmatter 只包含 `创建时间` 和 `修改时间`，使用实际本地时间及 ISO 8601 格式；编辑已有笔记时保留原 `创建时间`，更新 `修改时间`。不要在 frontmatter 添加 `tags`。
-
-正文写完或修改后，运行本 Skill 的 `scripts/update_modified_time.py` 设置 `修改时间`。脚本会只在 YAML frontmatter 中新增或替换该属性，并保留 `创建时间` 和正文；不要用 shell 字符串替换或占位符替换时间字段。从 Vault 根目录运行时：
-
-```powershell
-python .agents/skills/diary-writing/scripts/update_modified_time.py "Diary/YYYY-MM-DD.md"
-```
+新日记的 YAML frontmatter 只包含 `创建时间` 和 `修改时间`，不要添加 `tags`。时间字段的格式和更新方式遵循 [md-writing](../md-writing/SKILL.md)。
 
 ```yaml
 ---

@@ -11,7 +11,7 @@ description: 在本 Obsidian Vault 中撰写或修改 Markdown 笔记，维护 Y
 
 适用于本仓库的 Markdown 笔记，不限于 `Diary/`。日记的行文和格式另见 [diary-writing](../diary-writing/SKILL.md)；修复 Markdown lint 问题时遵循 [markdownlint-fix](../markdownlint-fix/SKILL.md)。
 
-撰写或修改中文内容时参考 `/humanizer-zh` Skill。AI 起草的笔记或章节，在对应内容处添加 `#AIGC`；局部修改时，不把标签放到未由 AI 撰写的相邻内容上。
+撰写或修改中文内容时参考 `/humanizer-zh` Skill。AI 新起草的笔记或章节，在对应内容处添加 `#AIGC`。修改已有内容（包括润色、改写和调整结构）时，无需新增 `#AIGC`，保留已有标签。
 
 ## 修改时间
 

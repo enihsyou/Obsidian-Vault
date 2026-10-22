@@ -96,7 +96,8 @@ export async function fetchTtf(
       700: "Bold",
     }
     const filename = `MiSans-${weightNameMap[weight]}.ttf`
-    fontUrl = `https://github.com/dsrkafuu/misans/raw/refs/heads/main/raw/Normal/ttf/${filename}`
+    // dsrkafuu/misans v5.0.0 has replaced with a single VF TTF file, it cannot be read by satori.
+    fontUrl = `https://github.com/dsrkafuu/misans/raw/refs/tags/v4.1.0/raw/Normal/ttf/${filename}`
   } else {
   // Get css file from google fonts
   const cssResponse = await fetch(
@@ -121,6 +122,7 @@ export async function fetchTtf(
   }
 
   // fontData is an ArrayBuffer containing the .ttf file data
+  console.log(`Fetching font from URL: ${fontUrl}`)
   const fontResponse = await fetch(fontUrl)
   if (fontResponse.status !== 200) {
     console.log(styleText("yellow", `\nWarning: Unexpected status code for font ${rawFontName} (${fontUrl})`));

@@ -14,3 +14,9 @@ public/
 
 # 避免运行时产生的临时文件被包含到 patch 中
 .quartz-cache
+
+# Tencent Cloud EdgeOne
+.env
+.edgeone/*
+.tef_dist/*
+  

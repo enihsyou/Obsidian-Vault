@@ -1,6 +1,6 @@
 ---
 创建时间: 2026-10-23T21:00:48+08:00
-修改时间: 2026-10-23T22:38:25+08:00
+修改时间: 2026-10-25T02:26:20+08:00
 ---
 
 
@@ -17,14 +17,16 @@
 
 然后试了 Orca，对外宣传它是一个 ADE，它一打开就是几个终端界面，倒是能够兼容各种各样的 Harness CLI 工具，但是 CLI 工具阅读起来体验当然肯定不会有图形界面那么好。但整个应用上下左右看起来就像是那种古早的 SSH 连接管理工具 （MobaXterm, Xshell ？）就是 Vibe 出了太多功能进来。不过作为这种集成开发环境的先锋，这个倒是也很合理。它的交互我还不太习惯，那关键我也没有那么多重型项目需要开发，大部分功能我还用不上，虽然像看板、进度、并行这些东西我觉得还是很有用的
 
+Kero 和 Solo 以及 Herdr / Rex 可以分类为现代化的 tmux，功能太少了
+
 还有 Paseo ，这是个 GUI 类应用，也就是把 AI 的那些动作以聊天框的形式展现出来。我受限于一个人的生产力，产品精度是不错的，但是功能更新上还是有些慢
 
 其实 OpenCode 也可以归作这一类，它既是一个 Coding Agent，也可以用来掌管多个 Agent。提供 Web、Desktop、CLI 界面。
 
 最后是 T3 Code，更可以把它归类为现在各类官方出的 Agent Harness 的上层统合版，因为功能集其实都差不多：一个 UI 界面、一个聊天框，右侧是文件管理器、内置浏览器，还有可标记的对文件的评论。相比官方的好处就是它统合了各类模型提供商，而且有一个不输于官方的、比较好看的界面。那个 T3.chat 其实我觉得就是很美观的网站。它的架构上其实依赖的都是背后的 CLI 工具的扩层，和其他工具都一样。也就是像会话都会记录在对应的 CLI 工具上。
 
-这种工具倒是层出不穷，目前我使用 T3 Code 作为 Coding Agent 的主入口，日常工作交给 OpenCode，使用 MiniMax M3.1 Flash 和 DeepSeek V4.1 Flash 模型，复杂的工作交给 Codex CLI，使用 GPT 系列模型。在 CC Switch 中查看会话记录，使用 Tokscale 统计 Token 消耗。
+这种工具倒是层出不穷，目前我使用 `T3 Code` 作为 Coding Agent 的主入口，日常工作交给 `OpenCode`，使用 MiniMax M3.1 Flash 和 DeepSeek V4.1 Flash 模型，复杂的工作交给 `Codex`，使用 GPT 系列模型。在 `CC Switch` 中查看会话记录，使用 `Tokscale` 统计 Token 消耗，如果想要看到 system prompt，还是得用 `claude-tap`。
 
 我觉得一个没有 UI 层的 Core，实现 Loop、Harness 等工作是比较合理的设计思路，外部可以接 CLI、Web，甚至可以用 Web 来替代 Desktop，这样能省去一个 Electron 应用。
 
-目前各家 Harness 还没感觉出有什么不同，核心还是模型。等我遇到无法解决的问题时，再来试试不同的 Harness。但是 Claude Code 实在是太封闭了，首先是它的 CLAUDE.md 文件就是不随大流支持 AGENTS.md，然后还有它的 Skills 目录到现在还不支持，也特意不支持嵌套目录，这几个相关 Issue 都被官方给关闭了
+目前各家 Harness 还没感觉出有什么不同，核心还是模型。等我遇到无法解决的问题时，再来试试不同的 Harness。但是 Claude Code 实在是太封闭了，~~首先是它的 CLAUDE.md 文件就是不随大流支持 AGENTS.md~~（Claude Code v2.1.277 终于有了 [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory#agents-md)），然后还有它的 Skills 目录到现在还不支持，也特意不支持嵌套目录，这几个相关 Issue 都被官方给关闭了
